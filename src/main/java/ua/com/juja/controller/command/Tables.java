@@ -13,7 +13,7 @@ public class Tables implements Command {
     private View view;
     private DatabaseManager manager;
 
-    public Tables(View view, DatabaseManager manager){
+    public Tables(View view, DatabaseManager manager) {
         this.view = view;
         this.manager = manager;
     }
@@ -27,6 +27,7 @@ public class Tables implements Command {
     public void process(String command) {
         doTables();
     }
+
     private void doTables() {
         Set<String> tableNames = manager.getTableNames();
 
