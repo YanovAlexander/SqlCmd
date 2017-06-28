@@ -17,7 +17,7 @@ import static org.junit.Assert.fail;
  */
 public class ExitTestWithMockito {
 
-    private View view = Mockito.mock(View.class) ;
+    private View view = Mockito.mock(View.class);
 
     @Test
     public void exitCanProcessTest() {
