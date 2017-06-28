@@ -1,8 +1,8 @@
-package integration;
+package main.java.ua.com.juja.integration;
 
-import main.java.ua.com.juja.controller.Main;
-import main.java.ua.com.juja.model.DatabaseManager;
-import main.java.ua.com.juja.model.JDBCDatabaseManager;
+import ua.com.juja.controller.Main;
+import ua.com.juja.model.DatabaseManager;
+import ua.com.juja.model.JDBCDatabaseManager;
 import org.junit.Before;
 import org.junit.Test;
 

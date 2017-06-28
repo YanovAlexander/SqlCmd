@@ -1,8 +1,8 @@
-package main.java.ua.com.juja.controller;
+package ua.com.juja.controller;
 
-import main.java.ua.com.juja.controller.command.*;
-import main.java.ua.com.juja.model.DatabaseManager;
-import main.java.ua.com.juja.view.View;
+import ua.com.juja.controller.command.*;
+import ua.com.juja.model.DatabaseManager;
+import ua.com.juja.view.View;
 
 /**
  * Created by Alexandero on 13.06.2017.

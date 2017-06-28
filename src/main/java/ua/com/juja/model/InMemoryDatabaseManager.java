@@ -1,4 +1,4 @@
-package main.java.ua.com.juja.model;
+package ua.com.juja.model;
 
 import java.util.*;
 

@@ -1,8 +1,8 @@
-package model;
+package main.java.ua.com.juja.model;
 
-import main.java.ua.com.juja.model.DataSet;
-import main.java.ua.com.juja.model.DataSetImpl;
-import main.java.ua.com.juja.model.DatabaseManager;
+import ua.com.juja.model.DataSet;
+import ua.com.juja.model.DataSetImpl;
+import ua.com.juja.model.DatabaseManager;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package main.java.ua.com.juja.controller.command;
+package ua.com.juja.controller.command;
 
 /**
  * Created by Alexandero on 14.06.2017.

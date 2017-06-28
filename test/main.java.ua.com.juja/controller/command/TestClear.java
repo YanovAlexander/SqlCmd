@@ -1,10 +1,10 @@
 package controller.command;
 
-import main.java.ua.com.juja.controller.command.Clear;
-import main.java.ua.com.juja.controller.command.Command;
-import main.java.ua.com.juja.model.DataSet;
-import main.java.ua.com.juja.model.DatabaseManager;
-import main.java.ua.com.juja.view.View;
+import ua.com.juja.controller.command.Clear;
+import ua.com.juja.controller.command.Command;
+import ua.com.juja.model.DataSet;
+import ua.com.juja.model.DatabaseManager;
+import ua.com.juja.view.View;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;

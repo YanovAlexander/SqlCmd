@@ -1,11 +1,11 @@
-package controller.command;
+package main.java.ua.com.juja.controller.command;
 
-import main.java.ua.com.juja.controller.command.Command;
-import main.java.ua.com.juja.controller.command.Find;
-import main.java.ua.com.juja.model.DataSet;
-import main.java.ua.com.juja.model.DataSetImpl;
-import main.java.ua.com.juja.model.DatabaseManager;
-import main.java.ua.com.juja.view.View;
+import ua.com.juja.controller.command.Command;
+import ua.com.juja.controller.command.Find;
+import ua.com.juja.model.DataSet;
+import ua.com.juja.model.DataSetImpl;
+import ua.com.juja.model.DatabaseManager;
+import ua.com.juja.view.View;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;

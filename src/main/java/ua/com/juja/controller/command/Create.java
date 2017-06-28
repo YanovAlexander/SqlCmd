@@ -1,9 +1,9 @@
-package main.java.ua.com.juja.controller.command;
+package ua.com.juja.controller.command;
 
-import main.java.ua.com.juja.model.DataSet;
-import main.java.ua.com.juja.model.DataSetImpl;
-import main.java.ua.com.juja.model.DatabaseManager;
-import main.java.ua.com.juja.view.View;
+import ua.com.juja.model.DataSet;
+import ua.com.juja.model.DataSetImpl;
+import ua.com.juja.model.DatabaseManager;
+import ua.com.juja.view.View;
 
 /**
  * Created by Alexandero on 14.06.2017.

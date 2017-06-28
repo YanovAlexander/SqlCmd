@@ -1,7 +1,7 @@
-package model;
+package main.java.ua.com.juja.model;
 
-import main.java.ua.com.juja.model.DatabaseManager;
-import main.java.ua.com.juja.model.InMemoryDatabaseManager;
+import ua.com.juja.model.DatabaseManager;
+import ua.com.juja.model.InMemoryDatabaseManager;
 
 /**
  * Created by Alexandero on 13.06.2017.

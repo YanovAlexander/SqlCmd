@@ -1,6 +1,6 @@
-package controller.command;
+package main.java.ua.com.juja.controller.command;
 
-import main.java.ua.com.juja.view.View;
+import ua.com.juja.view.View;
 
 /**
  * Created by Alexandero on 17.06.2017.

@@ -1,4 +1,4 @@
-package main.java.ua.com.juja.view;
+package ua.com.juja.view;
 
 import java.util.NoSuchElementException;
 import java.util.Scanner;

@@ -1,4 +1,4 @@
-package integration;
+package main.java.ua.com.juja.integration;
 
 import java.io.IOException;
 import java.io.InputStream;
