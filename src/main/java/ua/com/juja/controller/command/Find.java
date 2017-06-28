@@ -12,10 +12,10 @@ import java.util.Set;
  */
 public class Find implements Command {
 
-    private  View view;
+    private View view;
     private DatabaseManager manager;
 
-    public Find(View view, DatabaseManager manager){
+    public Find(View view, DatabaseManager manager) {
         this.view = view;
         this.manager = manager;
     }
@@ -32,7 +32,7 @@ public class Find implements Command {
 
     private void doFind(String command) {
         String[] data = command.split("\\|");
-        if (data.length != 2){
+        if (data.length != 2) {
             throw new IllegalArgumentException("Формат комманды 'find|tableName', а ты ввел : " + command);
         }
         String tableName = data[1];
