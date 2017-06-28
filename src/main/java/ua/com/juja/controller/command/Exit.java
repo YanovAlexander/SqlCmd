@@ -22,5 +22,5 @@ public class Exit implements Command {
     public void process(String command) {
         view.write("Good Bye !");
         throw new ExitException();
-        }
+    }
 }
