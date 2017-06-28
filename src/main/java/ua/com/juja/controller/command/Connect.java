@@ -25,20 +25,21 @@ public class Connect implements Command {
 
     @Override
     public void process(String command) {
-            String[] data = command.split("\\|");
+        String[] data = command.split("\\|");
 
-            if (data.length != count()) {
-                throw new IllegalArgumentException(
-                        String.format("Неверное колличество параметров разделенных знаком \"|\" ," +
-                        "%s is required, but indicated : %s", count(),  data.length));            }
-            String databaseName = data[1];
-            String userName = data[2];
-            String password = data[3];
-
-            manager.connect(databaseName, userName, password);
-
-            view.write("Успех");
+        if (data.length != count()) {
+            throw new IllegalArgumentException(
+                    String.format("Неверное колличество параметров разделенных знаком \"|\" ," +
+                            "%s is required, but indicated : %s", count(), data.length));
         }
+        String databaseName = data[1];
+        String userName = data[2];
+        String password = data[3];
+
+        manager.connect(databaseName, userName, password);
+
+        view.write("Успех");
+    }
 
     private int count() {
         return COMMAND_SAMPLE.split("\\|").length;
