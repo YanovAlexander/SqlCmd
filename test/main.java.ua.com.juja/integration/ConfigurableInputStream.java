@@ -29,7 +29,7 @@ public class ConfigurableInputStream extends InputStream {
             endLine = true;
         }
 
-        return (int)ch;
+        return (int) ch;
     }
 
     public void add(String line) {
@@ -41,7 +41,7 @@ public class ConfigurableInputStream extends InputStream {
     }
 
     @Override
-    public synchronized void reset() throws IOException{
+    public synchronized void reset() throws IOException {
         line = null;
         endLine = false;
     }
