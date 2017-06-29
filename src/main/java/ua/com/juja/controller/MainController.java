@@ -27,9 +27,9 @@ public class MainController {
     }
 
     public void run() {
-        view.write("Привет ползьватель !");
-        view.write("Введи, пожалуйста имя базы, имя пользователя и пароль пользователя в таком формате : " +
-                "connect|database|username|password");
+        view.write("Welcome!");
+        view.write("Enter the database name, username, and password of the user in format : " +
+                "connect|database|username|password  or use 'help' to list all commands");
 
         try {
             while (true) {
@@ -49,7 +49,7 @@ public class MainController {
                         break;
                     }
                 }
-                view.write("Введи команду (или help для помощи):");
+                view.write("Type command (or use 'help' to list all commands):");
             }
         } catch (ExitException e) {
             //do nothing
@@ -62,7 +62,7 @@ public class MainController {
         if (cause != null) {
             message += " " + cause.getMessage();
         }
-        view.write("Неудача! по причине: " + message);
-        view.write("Повтори попытку.");
+        view.write("Error! Because of: " + message);
+        view.write("Please try again.");
     }
 }

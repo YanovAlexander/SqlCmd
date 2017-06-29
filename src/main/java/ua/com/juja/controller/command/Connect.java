@@ -29,7 +29,7 @@ public class Connect implements Command {
 
         if (data.length != count()) {
             throw new IllegalArgumentException(
-                    String.format("Неверное колличество параметров разделенных знаком \"|\" ," +
+                    String.format("Invalid number of parameters separeted be a sign \"|\" ," +
                             "%s is required, but indicated : %s", count(), data.length));
         }
         String databaseName = data[1];
@@ -38,7 +38,7 @@ public class Connect implements Command {
 
         manager.connect(databaseName, userName, password);
 
-        view.write("Успех");
+        view.write("Success");
     }
 
     private int count() {

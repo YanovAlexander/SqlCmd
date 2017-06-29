@@ -156,7 +156,7 @@ public class TestFind {
             command.process("find|users|wtf");
             fail("Expected exception");
         } catch (IllegalArgumentException e) {
-            assertEquals("Формат комманды 'find|tableName', а ты ввел : find|users|wtf", e.getMessage());
+            assertEquals("Format of the command 'find|tableName', but indicated : find|users|wtf", e.getMessage());
         }
     }
 

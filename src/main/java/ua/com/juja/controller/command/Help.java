@@ -24,27 +24,27 @@ public class Help implements Command {
     }
 
     private void doHelp() {
-        view.write("Сущеуствующие команды");
+        view.write("Existing commands");
 
         view.write("\tconnect|database|username|password");
-        view.write("\t\tдля получения к базе данных, с которой необъходимо работать");
+        view.write("\t\tTo get to the database, with which it is necessary to work");
 
         view.write("\ttables");
-        view.write("\t\tдля получения списка всех таблиц базы");
+        view.write("\t\tTo get a list of all database tables");
 
         view.write("\tfind|tableName");
-        view.write("\t\tдля получения содержимого таблицы 'tableName'");
+        view.write("\t\tTo retrieve table contents 'tableName'");
 
         view.write("\tclear|tableName");
-        view.write("\t\tдля очистки всей таблицы с названием 'tableName'");
+        view.write("\t\tTo clear the entire table with the name 'tableName'");
 
         view.write("\tcreate|tableName|column1|value1|column2|value2...columnN|valueN");
-        view.write("\t\tдля создания записи в таблице с названием 'tableName'"); //TODO если ввел команду, переспросить
+        view.write("\t\tTo create an entry in the table named 'tableName'"); //TODO если ввел команду, переспросить
 
         view.write("\texit");
-        view.write("\t\tдля завершения работы приложения");
+        view.write("\t\tTo terminate the application");
 
         view.write("\thelp");
-        view.write("\t\tдля вывода этого списка на экран");
+        view.write("\t\tTo display this list on the screen");
     }
 }

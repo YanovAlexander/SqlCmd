@@ -42,25 +42,24 @@ public class IntegrationTest {
         Main.main(new String[0]);
 
         //then
-        assertEquals("Привет ползьватель !\r\n" +
-                "Введи, пожалуйста имя базы, имя пользователя и пароль пользователя в таком формате :" +
-                " connect|database|username|password\r\n" +
-                "Сущеуствующие команды\r\n" +
+        assertEquals("Welcome!\r\n" +
+                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\r\n" +
+                "Existing commands\r\n" +
                 "\tconnect|database|username|password\r\n" +
-                "\t\tдля получения к базе данных, с которой необъходимо работать\r\n" +
+                "\t\tTo get to the database, with which it is necessary to work\r\n" +
                 "\ttables\r\n" +
-                "\t\tдля получения списка всех таблиц базы\r\n" +
+                "\t\tTo get a list of all database tables\r\n" +
                 "\tfind|tableName\r\n" +
-                "\t\tдля получения содержимого таблицы 'tableName'\r\n" +
+                "\t\tTo retrieve table contents 'tableName'\r\n" +
                 "\tclear|tableName\r\n" +
-                "\t\tдля очистки всей таблицы с названием 'tableName'\r\n" +
+                "\t\tTo clear the entire table with the name 'tableName'\r\n" +
                 "\tcreate|tableName|column1|value1|column2|value2...columnN|valueN\r\n" +
-                "\t\tдля создания записи в таблице с названием 'tableName'\r\n" +
+                "\t\tTo create an entry in the table named 'tableName'\r\n" +
                 "\texit\r\n" +
-                "\t\tдля завершения работы приложения\r\n" +
+                "\t\tTo terminate the application\r\n" +
                 "\thelp\r\n" +
-                "\t\tдля вывода этого списка на экран\r\n" +
-                "Введи команду (или help для помощи):\r\n" +
+                "\t\tTo display this list on the screen\r\n" +
+                "Type command (or use 'help' to list all commands):\r\n" +
                 "Good Bye !\r\n", getData());
     }
 
@@ -73,9 +72,9 @@ public class IntegrationTest {
         Main.main(new String[0]);
 
         //then
-        assertEquals("Привет ползьватель !\r\n" +
-                "Введи, пожалуйста имя базы, имя пользователя и пароль пользователя в таком формате :" +
-                " connect|database|username|password\r\n" +
+        assertEquals("Welcome!\r\n" +
+                "Enter the database name, username, and password of the user in format :" +
+                " connect|database|username|password  or use 'help' to list all commands\r\n" +
                 "Good Bye !\r\n", getData());
     }
 
@@ -89,12 +88,10 @@ public class IntegrationTest {
         Main.main(new String[0]);
 
         //then
-        assertEquals("Привет ползьватель !\r\n" +
-                "Введи, пожалуйста имя базы, имя пользователя и пароль пользователя в таком формате :" +
-                " connect|database|username|password\r\n" +
-                "Вы не можете пользоваться командой 'tables', пока не подключитесь с помощью команды " +
-                "connect|database|username|password\r\n" +
-                "Введи команду (или help для помощи):\r\n" +
+        assertEquals("Welcome!\r\n" +
+                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\r\n" +
+                "You can not use the command 'tables', while not connect with the command connect|database|username|password\r\n" +
+                "Type command (or use 'help' to list all commands):\r\n" +
                 "Good Bye !\r\n", getData());
     }
 
@@ -108,12 +105,10 @@ public class IntegrationTest {
         Main.main(new String[0]);
 
         //then
-        assertEquals("Привет ползьватель !\r\n" +
-                "Введи, пожалуйста имя базы, имя пользователя и пароль пользователя в таком формате :" +
-                " connect|database|username|password\r\n" +
-                "Вы не можете пользоваться командой 'find|users', пока не подключитесь с помощью команды " +
-                "connect|database|username|password\r\n" +
-                "Введи команду (или help для помощи):\r\n" +
+        assertEquals("Welcome!\r\n" +
+                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\r\n" +
+                "You can not use the command 'find|users', while not connect with the command connect|database|username|password\r\n" +
+                "Type command (or use 'help' to list all commands):\r\n" +
                 "Good Bye !\r\n", getData());
     }
 
@@ -127,12 +122,10 @@ public class IntegrationTest {
         Main.main(new String[0]);
 
         //then
-        assertEquals("Привет ползьватель !\r\n" +
-                "Введи, пожалуйста имя базы, имя пользователя и пароль пользователя в таком формате :" +
-                " connect|database|username|password\r\n" +
-                "Вы не можете пользоваться командой 'asdf', пока не подключитесь с помощью команды " +
-                "connect|database|username|password\r\n" +
-                "Введи команду (или help для помощи):\r\n" +
+        assertEquals("Welcome!\r\n" +
+                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\r\n" +
+                "You can not use the command 'asdf', while not connect with the command connect|database|username|password\r\n" +
+                "Type command (or use 'help' to list all commands):\r\n" +
                 "Good Bye !\r\n", getData());
     }
 
@@ -147,13 +140,12 @@ public class IntegrationTest {
         Main.main(new String[0]);
 
         //then
-        assertEquals("Привет ползьватель !\r\n" +
-                "Введи, пожалуйста имя базы, имя пользователя и пароль пользователя в таком формате : " +
-                "connect|database|username|password\r\n" +
-                "Успех\r\n" +
-                "Введи команду (или help для помощи):\r\n" +
-                "Несуществующая команда :asdf\r\n" +
-                "Введи команду (или help для помощи):\r\n" +
+        assertEquals("Welcome!\r\n" +
+                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\r\n" +
+                "Success\r\n" +
+                "Type command (or use 'help' to list all commands):\r\n" +
+                "Unsupported command :asdf\r\n" +
+                "Type command (or use 'help' to list all commands):\r\n" +
                 "Good Bye !\r\n", getData());
     }
 
@@ -168,15 +160,14 @@ public class IntegrationTest {
         Main.main(new String[0]);
 
         //then
-        assertEquals("Привет ползьватель !\r\n" +
-                "Введи, пожалуйста имя базы, имя пользователя и пароль пользователя в таком формате : " +
-                "connect|database|username|password\r\n" +
-                "Успех\r\n" +
-                "Введи команду (или help для помощи):\r\n" +
+        assertEquals("Welcome!\r\n" +
+                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\r\n" +
+                "Success\r\n" +
+                "Type command (or use 'help' to list all commands):\r\n" +
                 "------------------------\r\n" +
                 "|id|username|password|\r\n" +
                 "------------------------\r\n" +
-                "Введи команду (или help для помощи):\r\n" +
+                "Type command (or use 'help' to list all commands):\r\n" +
                 "Good Bye !\r\n", getData());
     }
 
@@ -193,17 +184,16 @@ public class IntegrationTest {
         Main.main(new String[0]);
 
         //then
-        assertEquals("Привет ползьватель !\r\n" +
-                "Введи, пожалуйста имя базы, имя пользователя и пароль пользователя в таком формате : " +
-                "connect|database|username|password\r\n" +
-                "Успех\r\n" +
-                "Введи команду (или help для помощи):\r\n" +
+        assertEquals("Welcome!\r\n" +
+                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\r\n" +
+                "Success\r\n" +
+                "Type command (or use 'help' to list all commands):\r\n" +
                 "[users, test]\r\n" +
-                "Введи команду (или help для помощи):\r\n" +
-                "Успех\r\n" +
-                "Введи команду (или help для помощи):\r\n" +
+                "Type command (or use 'help' to list all commands):\r\n" +
+                "Success\r\n" +
+                "Type command (or use 'help' to list all commands):\r\n" +
                 "[ratata]\r\n" +
-                "Введи команду (или help для помощи):\r\n" +
+                "Type command (or use 'help' to list all commands):\r\n" +
                 "Good Bye !\r\n", getData());
     }
 
@@ -217,13 +207,11 @@ public class IntegrationTest {
         Main.main(new String[0]);
 
         //then
-        assertEquals("Привет ползьватель !\r\n" +
-                "Введи, пожалуйста имя базы, имя пользователя и пароль пользователя в таком формате :" +
-                " connect|database|username|password\r\n" +
-                "Неудача! по причине: Неверное колличество параметров разделенных знаком \"|\" ," +
-                "4 is required, but indicated : 2\r\n" +
-                "Повтори попытку.\r\n" +
-                "Введи команду (или help для помощи):\r\n" +
+        assertEquals("Welcome!\r\n" +
+                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\r\n" +
+                "Error! Because of: Invalid number of parameters separeted be a sign \"|\" ,4 is required, but indicated : 2\r\n" +
+                "Please try again.\r\n" +
+                "Type command (or use 'help' to list all commands):\r\n" +
                 "Good Bye !\r\n", getData());
     }
 
@@ -241,25 +229,22 @@ public class IntegrationTest {
         Main.main(new String[0]);
 
         //then
-        assertEquals("Привет ползьватель !\r\n" +
-                "Введи, пожалуйста имя базы, имя пользователя и пароль пользователя в таком формате :" +
-                " connect|database|username|password\r\n" +
-                "Успех\r\n" +
-                "Введи команду (или help для помощи):\r\n" +
-                "Таблица users была успешно очищена.\r\n" +
-                "Введи команду (или help для помощи):\r\n" +
-                "Запись {names = [id, username, password], values = [13, Beckcham, ******], }" +
-                " была успешно создана в таблице users.\r\n" +
-                "Введи команду (или help для помощи):\r\n" +
-                "Запись {names = [id, username, password], values = [15, Martial, +++++], } " +
-                "была успешно создана в таблице users.\r\n" +
-                "Введи команду (или help для помощи):\r\n" +
+        assertEquals("Welcome!\r\n" +
+                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\r\n" +
+                "Success\r\n" +
+                "Type command (or use 'help' to list all commands):\r\n" +
+                "Table users was successfully cleaned.\r\n" +
+                "Type command (or use 'help' to list all commands):\r\n" +
+                "{names = [id, username, password], values = [13, Beckcham, ******], } was successfully created in table users.\r\n" +
+                "Type command (or use 'help' to list all commands):\r\n" +
+                "{names = [id, username, password], values = [15, Martial, +++++], } was successfully created in table users.\r\n" +
+                "Type command (or use 'help' to list all commands):\r\n" +
                 "------------------------\r\n" +
                 "|id|username|password|\r\n" +
                 "------------------------\r\n" +
                 "|13|Beckcham|******|\r\n" +
                 "|15|Martial|+++++|\r\n" +
-                "Введи команду (или help для помощи):\r\n" +
+                "Type command (or use 'help' to list all commands):\r\n" +
                 "Good Bye !\r\n", getData());
     }
 
@@ -274,13 +259,12 @@ public class IntegrationTest {
         Main.main(new String[0]);
 
         //then
-        assertEquals("Привет ползьватель !\r\n" +
-                "Введи, пожалуйста имя базы, имя пользователя и пароль пользователя в таком формате :" +
-                " connect|database|username|password\r\n" +
-                "Успех\r\n" +
-                "Введи команду (или help для помощи):\r\n" +
-                "Несуществующая команда :clear\r\n" +
-                "Введи команду (или help для помощи):\r\n" +
+        assertEquals("Welcome!\r\n" +
+                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\r\n" +
+                "Success\r\n" +
+                "Type command (or use 'help' to list all commands):\r\n" +
+                "Unsupported command :clear\r\n" +
+                "Type command (or use 'help' to list all commands):\r\n" +
                 "Good Bye !\r\n", getData());
     }
 
@@ -295,14 +279,13 @@ public class IntegrationTest {
         Main.main(new String[0]);
 
         //then
-        assertEquals("Привет ползьватель !\r\n" +
-                "Введи, пожалуйста имя базы, имя пользователя и пароль пользователя в таком формате :" +
-                " connect|database|username|password\r\n" +
-                "Успех\r\n" +
-                "Введи команду (или help для помощи):\r\n" +
-                "Неудача! по причине: Формат комманды 'clear|tableName', а ты ввел : clear|papspsps|asasasa\r\n" +
-                "Повтори попытку.\r\n" +
-                "Введи команду (или help для помощи):\r\n" +
+        assertEquals("Welcome!\r\n" +
+                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\r\n" +
+                "Success\r\n" +
+                "Type command (or use 'help' to list all commands):\r\n" +
+                "Error! Because of: Format of the command 'clear|tableName', but you type : clear|papspsps|asasasa\r\n" +
+                "Please try again.\r\n" +
+                "Type command (or use 'help' to list all commands):\r\n" +
                 "Good Bye !\r\n", getData());
     }
 
@@ -317,16 +300,13 @@ public class IntegrationTest {
         Main.main(new String[0]);
 
         //then
-        assertEquals("Привет ползьватель !\r\n" +
-                "Введи, пожалуйста имя базы, имя пользователя и пароль пользователя в таком формате :" +
-                " connect|database|username|password\r\n" +
-                "Успех\r\n" +
-                "Введи команду (или help для помощи):\r\n" +
-                "Неудача! по причине: Должно быть четное колличество параметров в формате " +
-                "create|tableName|column1|value1|column2|value2...columnN|valueN, а указано :" +
-                " 'create|users|bugaga'\r\n" +
-                "Повтори попытку.\r\n" +
-                "Введи команду (или help для помощи):\r\n" +
+        assertEquals("Welcome!\r\n" +
+                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\r\n" +
+                "Success\r\n" +
+                "Type command (or use 'help' to list all commands):\r\n" +
+                "Error! Because of: There must be an even number of parameters in the format create|tableName|column1|value1|column2|value2...columnN|valueN, but indicated : 'create|users|bugaga'\r\n" +
+                "Please try again.\r\n" +
+                "Type command (or use 'help' to list all commands):\r\n" +
                 "Good Bye !\r\n", getData());
     }
 

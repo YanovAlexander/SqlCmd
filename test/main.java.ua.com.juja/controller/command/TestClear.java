@@ -1,4 +1,4 @@
-package controller.command;
+package main.java.ua.com.juja.controller.command;
 
 import ua.com.juja.controller.command.Clear;
 import ua.com.juja.controller.command.Command;
@@ -46,7 +46,7 @@ public class TestClear {
         //then
 
         verify(manager).clear("users");
-        verify(view).write("Таблица users была успешно очищена.");
+        verify(view).write("Table users was successfully cleaned.");
     }
 
 
@@ -89,7 +89,7 @@ public class TestClear {
             fail();
         } catch (IllegalArgumentException e) {
             //then
-            assertEquals("Формат комманды 'clear|tableName', а ты ввел : clear", e.getMessage());
+            assertEquals("Format of the command 'clear|tableName', but you type : clear", e.getMessage());
         }
     }
 
@@ -102,7 +102,7 @@ public class TestClear {
             fail();
         } catch (IllegalArgumentException e) {
             //then
-            assertEquals("Формат комманды 'clear|tableName', а ты ввел : clear|users|tables", e.getMessage());
+            assertEquals("Format of the command 'clear|tableName', but you type : clear|users|tables", e.getMessage());
         }
     }
 

@@ -22,7 +22,7 @@ public class IsConnected implements Command {
 
     @Override
     public void process(String command) {
-        view.write(String.format("Вы не можете пользоваться командой '%s', " +
-                "пока не подключитесь с помощью команды connect|database|username|password", command));
+        view.write(String.format("You can not use the command '%s', " +
+                "while not connect with the command connect|database|username|password", command));
     }
 }

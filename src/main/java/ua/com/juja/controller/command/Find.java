@@ -33,7 +33,7 @@ public class Find implements Command {
     private void doFind(String command) {
         String[] data = command.split("\\|");
         if (data.length != 2) {
-            throw new IllegalArgumentException("Формат комманды 'find|tableName', а ты ввел : " + command);
+            throw new IllegalArgumentException("Format of the command 'find|tableName', but indicated : " + command);
         }
         String tableName = data[1];
 
