@@ -149,20 +149,47 @@ public class JDBCDatabaseManager implements DatabaseManager {
         String sql = "SELECT datname FROM pg_database WHERE datistemplate = false;";
         try (Statement stmt = connection.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
-        while (rs.next()){
-            result.add(rs.getString(1));
-        }
-        return result;
-        }catch (SQLException e){
+            while (rs.next()) {
+                result.add(rs.getString(1));
+            }
+            return result;
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-            return result;
-        }
+        return result;
+    }
 
-        @Override
-        public boolean isConnected () {
-            return connection != null;
+    @Override
+    public void deleteTable(String tableName) {
+        try (Statement stmt = connection.createStatement()) {
+            stmt.executeUpdate("DROP TABLE IF EXISTS " + tableName);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+    }
+
+    @Override
+    public void deleteDatabase(String databaseName) {
+        try (Statement stmt = connection.createStatement()) {
+            stmt.executeUpdate("DROP DATABASE IF EXISTS " + databaseName);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void createTable(String tableName) {
+        try (Statement stmt = connection.createStatement()) {
+            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS " + tableName);
+        } catch (SQLException e) {
+            throw new DatabaseManagerException("It is impossible cause : ", e);
+        }
+    }
+
+    @Override
+    public boolean isConnected() {
+        return connection != null;
+    }
 
     private String getValuesFormated(DataSet input, String format) {
         String values = "";

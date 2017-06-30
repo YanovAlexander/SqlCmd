@@ -27,5 +27,11 @@ public interface DatabaseManager {
 
     Set<String > databasesList();
 
+    void deleteTable(String tableName);
+
+    void deleteDatabase(String databaseName);
+
+    void createTable(String tableName);
+
     boolean isConnected();
 }

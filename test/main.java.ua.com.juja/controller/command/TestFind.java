@@ -1,5 +1,8 @@
 package main.java.ua.com.juja.controller.command;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import ua.com.juja.controller.command.Command;
 import ua.com.juja.controller.command.Find;
 import ua.com.juja.model.DataSet;
@@ -30,6 +33,7 @@ public class TestFind {
 
     @Before
     public void setup() {
+        Logger.getRootLogger().setLevel(Level.OFF); //Disable log4j
         manager = mock(DatabaseManager.class);
         view = mock(View.class);
         command = new Find(view, manager);

@@ -24,7 +24,10 @@ public class MainController {
                 new Clear(view, manager),
                 new Create(view, manager),
                 new CreateDatabase(view, manager),
+                new CreateTable(view, manager),
                 new DatabaseList(view, manager),
+                new DeleteTable(view, manager),
+                new DeleteDatabase(view, manager),
                 new UnsuportedCommand(view)};
     }
 

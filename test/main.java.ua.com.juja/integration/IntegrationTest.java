@@ -1,5 +1,8 @@
 package main.java.ua.com.juja.integration;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import ua.com.juja.controller.Main;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.model.JDBCDatabaseManager;
@@ -24,6 +27,8 @@ public class IntegrationTest {
 
     @Before
     public void setup() {
+        BasicConfigurator.configure();
+        Logger.getRootLogger().setLevel(Level.OFF); //Disable log4j
         databaseManager = new JDBCDatabaseManager();
         in = new ConfigurableInputStream();
         out = new ByteArrayOutputStream();
@@ -153,28 +158,6 @@ public class IntegrationTest {
                 "Good Bye !\r\n", getData());
     }
 
-//    @Test
-//    public void testFindAfterConnect() {
-//        //given
-//        in.add("connect|postgres|postgres|pass");
-//        in.add("find|users");
-//        in.add("exit");
-//
-//        //when
-//        Main.main(new String[0]);
-//
-//        //then
-//        assertEquals("Welcome!\r\n" +
-//                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\r\n" +
-//                "Connected successful\r\n" +
-//                "Type command (or use 'help' to list all commands):\r\n" +
-//                "+--+--------+--------+\r\n" +
-//                "|id|username|password|\r\n" +
-//                "+--+--------+--------+\r\n" +
-//                "Type command (or use 'help' to list all commands):\r\n" +
-//                "Good Bye !\r\n", getData());
-//    }
-
     @Test
     public void testConnectAfterConnect() {
         //given
@@ -223,41 +206,6 @@ public class IntegrationTest {
                 "Type command (or use 'help' to list all commands):\r\n" +
                 "Good Bye !\r\n", getData());
     }
-//
-//    @Test
-//    public void testFindAfterConnectWithData() {
-//        //given
-//        in.add("connect|postgres|postgres|pass");
-//        in.add("clear|users");
-//        in.add("create|users|id|13|username|Beckcham|password|******");
-//        in.add("create|users|id|15|username|Martial|password|+++++");
-//        in.add("find|users");
-//        in.add("exit");
-//
-//        //when
-//        Main.main(new String[0]);
-//
-//        //then
-//        assertEquals("Welcome!\r\n" +
-//                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\r\n" +
-//                "Connected successful\r\n" +
-//                "Type command (or use 'help' to list all commands):\r\n" +
-//                "Table users was successfully cleaned.\r\n" +
-//                "Type command (or use 'help' to list all commands):\r\n" +
-//                "{names = [id, username, password], values = [13, Beckcham, ******], } was successfully created in table users.\r\n" +
-//                "Type command (or use 'help' to list all commands):\r\n" +
-//                "{names = [id, username, password], values = [15, Martial, +++++], } was successfully created in table users.\r\n" +
-//                "Type command (or use 'help' to list all commands):\r\n" +
-//                "+--+--------+--------+\r\n" +
-//                "|id|username|password|\r\n" +
-//                "+--+--------+--------+\r\n" +
-//                "|13|Beckcham|******  |\r\n" +
-//                "+--+--------+--------+\r\n" +
-//                "|15|Martial |+++++   |\r\n" +
-//                "+--+--------+--------+\r\n" +
-//                "Type command (or use 'help' to list all commands):\r\n" +
-//                "Good Bye !\r\n", getData());
-//    }
 
     @Test
     public void testClearWithError() {
