@@ -24,27 +24,33 @@ public class Help implements Command {
     }
 
     private void doHelp() {
-        view.write("Existing commands");
+        view.write("-------------------COMMANDS-----------------");
 
         view.write("\tconnect|database|username|password");
-        view.write("\t\tTo get to the database, with which it is necessary to work");
+        view.write("\t\t-> To get to the database, with which it is necessary to work");
 
         view.write("\ttables");
-        view.write("\t\tTo get a list of all database tables");
+        view.write("\t\t-> To get a list of all database tables");
+
+        view.write("\t databaseList");
+        view.write("\t\t -> To get a list of all databases");
 
         view.write("\tfind|tableName");
-        view.write("\t\tTo retrieve table contents 'tableName'");
+        view.write("\t\t-> To retrieve table contents 'tableName'");
 
         view.write("\tclear|tableName");
-        view.write("\t\tTo clear the entire table with the name 'tableName'");
+        view.write("\t\t-> To clear the entire table with the name 'tableName'");
 
         view.write("\tcreate|tableName|column1|value1|column2|value2...columnN|valueN");
-        view.write("\t\tTo create an entry in the table named 'tableName'"); //TODO если ввел команду, переспросить
+        view.write("\t\t-> To create an entry in the table named 'tableName'"); //TODO если ввел команду, переспросить
+
+        view.write("\t createDatabase|databaseName");
+        view.write("\t\t -> Create new database named 'databaseName'");
 
         view.write("\texit");
-        view.write("\t\tTo terminate the application");
+        view.write("\t\t-> To terminate the application");
 
         view.write("\thelp");
-        view.write("\t\tTo display this list on the screen");
+        view.write("\t\t-> To display this list on the screen");
     }
 }

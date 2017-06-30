@@ -2,6 +2,7 @@ package ua.com.juja.controller.command;
 
 import ua.com.juja.model.DataSet;
 import ua.com.juja.model.DatabaseManager;
+import ua.com.juja.model.TableFormat;
 import ua.com.juja.view.View;
 
 import java.util.List;
@@ -33,41 +34,13 @@ public class Find implements Command {
     private void doFind(String command) {
         String[] data = command.split("\\|");
         if (data.length != 2) {
-            throw new IllegalArgumentException("Format of the command 'find|tableName', but indicated : " + command);
+            throw new IllegalArgumentException("Format of the command " +
+                    "'find|tableName', but indicated : " + command);
         }
         String tableName = data[1];
-
-        List<DataSet> tableData = manager.getTableData(tableName);
         Set<String> tableColumns = manager.getTableColumns(tableName);
-        printHeader(tableColumns);
-        prindTable(tableData);
+        List<DataSet> tableData = manager.getTableData(tableName);
+        TableFormat format = new TableFormat(tableColumns, tableData);
+        view.write(format.getTableString());
     }
-
-    private void prindTable(List<DataSet> tableData) {
-        for (DataSet row : tableData) {
-            printRow(row);
-        }
-    }
-
-    private void printHeader(Set<String> tableColumns) {
-        String result = "|";
-        for (String name : tableColumns) {
-            result += name + "|";
-        }
-        view.write("------------------------");
-        view.write(result);
-        view.write("------------------------");
-
-    }
-
-    private void printRow(DataSet row) {
-        List<Object> values = row.getValues();
-        String result = "|";
-        for (Object value : values) {
-            result += value + "|";
-        }
-
-        view.write(result);
-    }
-
 }

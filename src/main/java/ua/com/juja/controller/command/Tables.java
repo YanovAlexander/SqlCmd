@@ -30,9 +30,10 @@ public class Tables implements Command {
 
     private void doTables() {
         Set<String> tableNames = manager.getTableNames();
-
-        String message = tableNames.toString();
-
-        view.write(message);
+        view.write("-------------------TABLES-------------------");
+        for (String message : tableNames ){
+            view.write("- " + message);
+        }
+        view.write("--------------------------------------------");
     }
 }

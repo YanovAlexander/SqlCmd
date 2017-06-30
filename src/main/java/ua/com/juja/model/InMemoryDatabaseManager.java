@@ -65,6 +65,16 @@ public class InMemoryDatabaseManager implements DatabaseManager {
     }
 
     @Override
+    public void createDatabase(String databaseName) {
+
+    }
+
+    @Override
+    public Set<String> databasesList() {
+        return null;
+    }
+
+    @Override
     public boolean isConnected() {
         return true;
     }

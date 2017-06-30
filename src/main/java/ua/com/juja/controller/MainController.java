@@ -23,6 +23,8 @@ public class MainController {
                 new Tables(view, manager),
                 new Clear(view, manager),
                 new Create(view, manager),
+                new CreateDatabase(view, manager),
+                new DatabaseList(view, manager),
                 new UnsuportedCommand(view)};
     }
 

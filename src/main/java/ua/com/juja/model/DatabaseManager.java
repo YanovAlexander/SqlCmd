@@ -17,12 +17,15 @@ public interface DatabaseManager {
 
     void clear(String tableName);
 
-
     void create(String tableName, DataSet input);
 
     void update(String tableName, int id, DataSet newValue);
 
     Set<String> getTableColumns(String tableName);
+
+    void createDatabase(String databaseName);
+
+    Set<String > databasesList();
 
     boolean isConnected();
 }

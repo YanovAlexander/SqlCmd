@@ -135,9 +135,34 @@ public class JDBCDatabaseManager implements DatabaseManager {
     }
 
     @Override
-    public boolean isConnected() {
-        return connection != null;
+    public void createDatabase(String databaseName) {
+        try (Statement stmt = connection.createStatement()) {
+            stmt.executeUpdate("CREATE DATABASE " + databaseName);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+
+    @Override
+    public Set<String> databasesList() {
+        Set<String> result = new LinkedHashSet<>();
+        String sql = "SELECT datname FROM pg_database WHERE datistemplate = false;";
+        try (Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+        while (rs.next()){
+            result.add(rs.getString(1));
+        }
+        return result;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+            return result;
+        }
+
+        @Override
+        public boolean isConnected () {
+            return connection != null;
+        }
 
     private String getValuesFormated(DataSet input, String format) {
         String values = "";

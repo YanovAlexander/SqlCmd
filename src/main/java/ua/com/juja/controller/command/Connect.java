@@ -38,7 +38,7 @@ public class Connect implements Command {
 
         manager.connect(databaseName, userName, password);
 
-        view.write("Success");
+        view.write("Connected successful");
     }
 
     private int count() {
