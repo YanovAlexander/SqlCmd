@@ -9,9 +9,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Alexandero on 02.06.2017.
@@ -19,9 +17,11 @@ import java.util.Set;
 public abstract class DatabaseManagerTest {
 
     private DatabaseManager manager;
-    private DatabaseManager databaseManager;
 
     public abstract DatabaseManager getDatabaseManager();
+
+    private static final String TABLE_NAME = "users";
+
 
     @Before
     public void setup() {
@@ -34,7 +34,28 @@ public abstract class DatabaseManagerTest {
     @Test
     public void selectAllTablesName() {
         Set<String> tableNames = manager.getTableNames();
-        assertEquals("[users, test]", tableNames.toString());
+        assertEquals("[users, test, mytable, mytable22]", tableNames.toString());
+    }
+
+    @Test
+    public void testClear() {
+        //given
+        DataSet input = new DataSetImpl();
+        input.put("username", "Bob");
+        input.put("password", "*****");
+        input.put("id", 1);
+
+        manager.create(TABLE_NAME, input);
+        List<DataSet> users = manager.getTableData("users");
+
+        //when
+        List<DataSet> tests = manager.getTableData(TABLE_NAME);
+        manager.clear("users");
+
+        //then
+        DataSet user = users.get(0);
+        assertEquals("[id, username, password]", user.getNames().toString());
+        assertEquals("[1, Bob, *****]", user.getValues().toString());
     }
 
     @Test
@@ -93,4 +114,6 @@ public abstract class DatabaseManagerTest {
     public void testIsConnected() {
         assertTrue(manager.isConnected());
     }
+
+
 }

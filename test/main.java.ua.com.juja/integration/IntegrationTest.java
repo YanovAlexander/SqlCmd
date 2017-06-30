@@ -37,40 +37,6 @@ public class IntegrationTest {
     }
 
 
-    @Test
-    public void testHelp() {
-        //given
-        in.add("help");
-        in.add("exit");
-
-        //when
-        Main.main(new String[0]);
-
-        //then
-        assertEquals("Welcome!\r\n" +
-                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\r\n" +
-                "-------------------COMMANDS-----------------\r\n" +
-                "\tconnect|database|username|password\r\n" +
-                "\t\t-> To get to the database, with which it is necessary to work\r\n" +
-                "\ttables\r\n" +
-                "\t\t-> To get a list of all database tables\r\n" +
-                "\t databaseList\r\n" +
-                "\t\t -> To get a list of all databases\r\n" +
-                "\tfind|tableName\r\n" +
-                "\t\t-> To retrieve table contents 'tableName'\r\n" +
-                "\tclear|tableName\r\n" +
-                "\t\t-> To clear the entire table with the name 'tableName'\r\n" +
-                "\tcreate|tableName|column1|value1|column2|value2...columnN|valueN\r\n" +
-                "\t\t-> To create an entry in the table named 'tableName'\r\n" +
-                "\t createDatabase|databaseName\r\n" +
-                "\t\t -> Create new database named 'databaseName'\r\n" +
-                "\texit\r\n" +
-                "\t\t-> To terminate the application\r\n" +
-                "\thelp\r\n" +
-                "\t\t-> To display this list on the screen\r\n" +
-                "Type command (or use 'help' to list all commands):\r\n" +
-                "Good Bye !\r\n", getData());
-    }
 
     @Test
     public void testExit() {
@@ -178,6 +144,8 @@ public class IntegrationTest {
                 "-------------------TABLES-------------------\r\n" +
                 "- users\r\n" +
                 "- test\r\n" +
+                "- mytable\r\n" +
+                "- mytable22\r\n"+
                 "--------------------------------------------\r\n" +
                 "Type command (or use 'help' to list all commands):\r\n" +
                 "Connected successful\r\n" +

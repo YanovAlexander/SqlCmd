@@ -140,7 +140,6 @@ public class TestFind {
         command.process("find|users");
 
         //then
-
         shouldPrint("[+--+\n" +
                 "|id|\n" +
                 "+--+\n" +
