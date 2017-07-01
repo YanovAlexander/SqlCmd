@@ -22,13 +22,16 @@ public class CreateTable implements Command {
 
     @Override
     public void process(String command) {
-        String[] data = command.split("\\|");
-        if (data.length != 2) {
-            throw new IllegalArgumentException(String.format("There must be an even number of parameters in the format " +
-                    "'createTable|tableName',  but indicated " + command));
-        }
-        String tableName = data[1];
-        manager.createTable(tableName);
-        view.write("Table with name " + tableName + " created successful !");
+     int vaildParameters = (command.split("\\(")).length;
+     if (vaildParameters < 2){
+         throw new IllegalArgumentException(String.format("There must be an even number of parameters in the format " +
+                    "'createTable|tableName(id SERIAL NOT NULL PRIMARY KEY," +
+                    "username varchar(225) NOT NULL UNIQUE, password varchar(225))',  but indicated " + command));
+     }
+     String input =  command.split("\\|")[1];
+     String tableName = input.split("\\(")[0];
+
+     manager.createTable(input);
+     view.write("Table with name " + tableName + " created successful !");
     }
 }
