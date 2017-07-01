@@ -26,11 +26,12 @@ public class DeleteDatabase implements Command {
         if (data.length != 2) {
             throw new IllegalArgumentException("Format of the command 'clear|tableName', but you type : " + command);
         }
-        view.write("Do you really want to delete database '" + data[1] + " ? All data will delete ! " +
+        view.write("Do you really want to delete database '" + data[1] + "' ? All data will delete ! " +
                 "If you sure press Y/N ?");
         if (view.read().equalsIgnoreCase("Y")){
             manager.deleteDatabase(data[1]);
             view.write("Database " + data[1] + " delete successful !");
         }
+        view.write("Action is Cancelled !");
     }
 }

@@ -32,5 +32,6 @@ public class DeleteTable implements Command {
             manager.deleteTable(data[1]);
             view.write("Table " + data[1] + " delete successful !");
         }
+        view.write("The action is canceled!");
     }
 }

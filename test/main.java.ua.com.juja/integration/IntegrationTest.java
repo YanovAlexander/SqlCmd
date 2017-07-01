@@ -220,7 +220,7 @@ public class IntegrationTest {
     public void testCreatUserWithError() {
         //given
         in.add("connect|postgres|postgres|pass");
-        in.add("create|users|bugaga");
+        in.add("createQuery|users|bugaga");
         in.add("exit");
 
         //when
@@ -231,7 +231,7 @@ public class IntegrationTest {
                 "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\r\n" +
                 "Connected successful\r\n" +
                 "Type command (or use 'help' to list all commands):\r\n" +
-                "Error! Because of: There must be an even number of parameters in the format create|tableName|column1|value1|column2|value2...columnN|valueN, but indicated : 'create|users|bugaga'\r\n" +
+                "Error! Because of: There must be an even number of parameters in the format createQuery|tableName|column1|value1|column2|value2...columnN|valueN, but indicated : 'createQuery|users|bugaga'\r\n" +
                 "Please try again.\r\n" +
                 "Type command (or use 'help' to list all commands):\r\n" +
                 "Good Bye !\r\n", getData());
