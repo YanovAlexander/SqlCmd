@@ -57,6 +57,7 @@ public class ConnectTest {
             command.process("connect|dbName|User");
             fail("Expected IllegalArgumentException");
         }catch (IllegalArgumentException e){
+         //then
             assertEquals("Invalid number of parameters separeted be a sign \"|\" ,4 is required, but indicated : 3", e.getMessage());
         }
     }

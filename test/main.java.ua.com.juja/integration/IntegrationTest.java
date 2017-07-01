@@ -64,8 +64,10 @@ public class IntegrationTest {
 
         //then
         assertEquals("Welcome!\r\n" +
-                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\r\n" +
-                "You can not use the command 'tables', while not connect with the command connect|database|username|password\r\n" +
+                "Enter the database name, username, and password of the user in format :" +
+                " connect|database|username|password  or use 'help' to list all commands\r\n" +
+                "You can not use the command 'tables', while not connect with the command " +
+                "connect|database|username|password\r\n" +
                 "Type command (or use 'help' to list all commands):\r\n" +
                 "Good Bye !\r\n", getData());
     }
@@ -81,8 +83,10 @@ public class IntegrationTest {
 
         //then
         assertEquals("Welcome!\r\n" +
-                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\r\n" +
-                "You can not use the command 'find|users', while not connect with the command connect|database|username|password\r\n" +
+                "Enter the database name, username, and password of the user in format : " +
+                "connect|database|username|password  or use 'help' to list all commands\r\n" +
+                "You can not use the command 'find|users', while not connect with the " +
+                "command connect|database|username|password\r\n" +
                 "Type command (or use 'help' to list all commands):\r\n" +
                 "Good Bye !\r\n", getData());
     }
@@ -98,8 +102,10 @@ public class IntegrationTest {
 
         //then
         assertEquals("Welcome!\r\n" +
-                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\r\n" +
-                "You can not use the command 'asdf', while not connect with the command connect|database|username|password\r\n" +
+                "Enter the database name, username, and password of the user in format : " +
+                "connect|database|username|password  or use 'help' to list all commands\r\n" +
+                "You can not use the command 'asdf', while not connect with the command " +
+                "connect|database|username|password\r\n" +
                 "Type command (or use 'help' to list all commands):\r\n" +
                 "Good Bye !\r\n", getData());
     }
@@ -116,7 +122,8 @@ public class IntegrationTest {
 
         //then
         assertEquals("Welcome!\r\n" +
-                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\r\n" +
+                "Enter the database name, username, and password of the user in format : " +
+                "connect|database|username|password  or use 'help' to list all commands\r\n" +
                 "Connected successful\r\n" +
                 "Type command (or use 'help' to list all commands):\r\n" +
                 "Unsupported command :asdf\r\n" +
@@ -138,7 +145,8 @@ public class IntegrationTest {
 
         //then
         assertEquals("Welcome!\r\n" +
-                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\r\n" +
+                "Enter the database name, username, and password of the user in format :" +
+                " connect|database|username|password  or use 'help' to list all commands\r\n" +
                 "Connected successful\r\n" +
                 "Type command (or use 'help' to list all commands):\r\n" +
                 "-------------------TABLES-------------------\r\n" +
@@ -168,8 +176,10 @@ public class IntegrationTest {
 
         //then
         assertEquals("Welcome!\r\n" +
-                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\r\n" +
-                "Error! Because of: Invalid number of parameters separeted be a sign \"|\" ,4 is required, but indicated : 2\r\n" +
+                "Enter the database name, username, and password of the user in format : " +
+                "connect|database|username|password  or use 'help' to list all commands\r\n" +
+                "Error! Because of: Invalid number of parameters separeted be a sign \"|\" ," +
+                "4 is required, but indicated : 2\r\n" +
                 "Please try again.\r\n" +
                 "Type command (or use 'help' to list all commands):\r\n" +
                 "Good Bye !\r\n", getData());
@@ -187,7 +197,8 @@ public class IntegrationTest {
 
         //then
         assertEquals("Welcome!\r\n" +
-                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\r\n" +
+                "Enter the database name, username, and password of the user in format :" +
+                " connect|database|username|password  or use 'help' to list all commands\r\n" +
                 "Connected successful\r\n" +
                 "Type command (or use 'help' to list all commands):\r\n" +
                 "Unsupported command :clear\r\n" +
@@ -207,10 +218,12 @@ public class IntegrationTest {
 
         //then
         assertEquals("Welcome!\r\n" +
-                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\r\n" +
+                "Enter the database name, username, and password of the user in format : " +
+                "connect|database|username|password  or use 'help' to list all commands\r\n" +
                 "Connected successful\r\n" +
                 "Type command (or use 'help' to list all commands):\r\n" +
-                "Error! Because of: Format of the command 'clear|tableName', but you type : clear|papspsps|asasasa\r\n" +
+                "Error! Because of: Format of the command 'clear|tableName', but you type :" +
+                " clear|papspsps|asasasa\r\n" +
                 "Please try again.\r\n" +
                 "Type command (or use 'help' to list all commands):\r\n" +
                 "Good Bye !\r\n", getData());
@@ -228,10 +241,13 @@ public class IntegrationTest {
 
         //then
         assertEquals("Welcome!\r\n" +
-                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\r\n" +
+                "Enter the database name, username, and password of the user in format :" +
+                " connect|database|username|password  or use 'help' to list all commands\r\n" +
                 "Connected successful\r\n" +
                 "Type command (or use 'help' to list all commands):\r\n" +
-                "Error! Because of: There must be an even number of parameters in the format createQuery|tableName|column1|value1|column2|value2...columnN|valueN, but indicated : 'createQuery|users|bugaga'\r\n" +
+                "Error! Because of: There must be an even number of parameters in the" +
+                " format createQuery|tableName|column1|value1|column2|value2...columnN|valueN, but indicated :" +
+                " 'createQuery|users|bugaga'\r\n" +
                 "Please try again.\r\n" +
                 "Type command (or use 'help' to list all commands):\r\n" +
                 "Good Bye !\r\n", getData());

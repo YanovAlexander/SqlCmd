@@ -51,7 +51,6 @@ public class TablesTest {
     public void testCantProcessWithWrongCommand() {
         //when
         boolean result = command.canProcess("tables1");
-
         //then
         assertFalse(result);
     }

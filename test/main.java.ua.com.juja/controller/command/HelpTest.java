@@ -4,7 +4,6 @@ package main.java.ua.com.juja.controller.command;
 import org.junit.Before;
 import org.junit.Test;
 import ua.com.juja.controller.command.*;
-import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
 import static org.junit.Assert.assertFalse;

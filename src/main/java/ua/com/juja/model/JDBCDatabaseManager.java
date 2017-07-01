@@ -12,7 +12,8 @@ public class JDBCDatabaseManager implements DatabaseManager {
         Set<String> tables = new LinkedHashSet<>();
         try (Statement stmt = connection.createStatement();
              ResultSet rs = stmt.executeQuery("SELECT table_name FROM information_schema.tables " +
-                     "WHERE table_schema = 'public'")) {
+                     "WHERE table_schema = 'public'"))
+        {
             while (rs.next()) {
                 tables.add(rs.getString("table_name"));
             }
@@ -27,7 +28,8 @@ public class JDBCDatabaseManager implements DatabaseManager {
     public List<DataSet> getTableData(String tableName) {
         List<DataSet> result = new LinkedList<>();
         try (Statement stmt = connection.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM public." + tableName)) {
+             ResultSet rs = stmt.executeQuery("SELECT * FROM public." + tableName))
+        {
             ResultSetMetaData rsmd = rs.getMetaData();
             int columnSize = rsmd.getColumnCount();
             while (rs.next()) {
@@ -48,7 +50,8 @@ public class JDBCDatabaseManager implements DatabaseManager {
     @Override
     public int getSize(String tableName) {
         try (Statement stmt = connection.createStatement();
-             ResultSet rsCount = stmt.executeQuery("SELECT COUNT (*) FROM public." + tableName)) {
+             ResultSet rsCount = stmt.executeQuery("SELECT COUNT (*) FROM public." + tableName))
+        {
             rsCount.next();
             int size = rsCount.getInt(1);
             return size;
@@ -123,7 +126,8 @@ public class JDBCDatabaseManager implements DatabaseManager {
         Set<String> tables = new LinkedHashSet<>();
         try (Statement stmt = connection.createStatement();
              ResultSet rs = stmt.executeQuery("SELECT * FROM information_schema.columns " +
-                     "WHERE table_schema = 'public'  AND table_name = '" + tableName + "'")) {
+                     "WHERE table_schema = 'public'  AND table_name = '" + tableName + "'"))
+        {
             while (rs.next()) {
                 tables.add(rs.getString("column_name"));
             }
@@ -148,7 +152,8 @@ public class JDBCDatabaseManager implements DatabaseManager {
         Set<String> result = new LinkedHashSet<>();
         String sql = "SELECT datname FROM pg_database WHERE datistemplate = false;";
         try (Statement stmt = connection.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+             ResultSet rs = stmt.executeQuery(sql))
+        {
             while (rs.next()) {
                 result.add(rs.getString(1));
             }

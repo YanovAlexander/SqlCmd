@@ -5,7 +5,6 @@ import org.nocrala.tools.texttablefmt.ShownBorders;
 import org.nocrala.tools.texttablefmt.Table;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 /**

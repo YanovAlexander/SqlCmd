@@ -32,7 +32,6 @@ public class CreateQuery implements Command {
         }
 
         String tableName = data[1];
-
         DataSet dataSet = new DataSetImpl();
         for (int index = 1; index < (data.length / 2); index++) {
             String columnName = data[index * 2];
@@ -42,7 +41,6 @@ public class CreateQuery implements Command {
         }
 
         manager.create(tableName, dataSet);
-
         view.write(String.format("%s was successfully created in table %s.", dataSet, tableName));
     }
 }
