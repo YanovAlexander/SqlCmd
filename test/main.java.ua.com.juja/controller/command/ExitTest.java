@@ -3,7 +3,6 @@ package main.java.ua.com.juja.controller.command;
 import ua.com.juja.controller.command.Command;
 import ua.com.juja.controller.command.Exit;
 import ua.com.juja.controller.command.ExitException;
-import ua.com.juja.view.View;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
@@ -16,16 +15,14 @@ import static org.junit.Assert.fail;
  */
 public class ExitTest {
 
-    private TestView view = new TestView();
+    private ViewTest view = new ViewTest();
 
     @Test
     public void exitCanProcessTest() {
         //given
         Command command = new Exit(view);
-
         //when
         boolean exit = command.canProcess("exit");
-
         //then
         assertTrue(exit);
     }
@@ -34,10 +31,8 @@ public class ExitTest {
     public void exitCantProcessQWETest() {
         //given
         Command command = new Exit(view);
-
         //when
         boolean exit = command.canProcess("qwe");
-
         //then
         assertFalse(exit);
     }
@@ -46,7 +41,6 @@ public class ExitTest {
     public void exitProcessTest() {
         //given
         Command command = new Exit(view);
-
         //when
         try {
             command.process("exit");

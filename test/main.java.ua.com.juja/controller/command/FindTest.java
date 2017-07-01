@@ -25,7 +25,7 @@ import static junit.framework.TestCase.assertEquals;
 /**
  * Created by Alexandero on 17.06.2017.
  */
-public class TestFind {
+public class FindTest {
 
     private View view;
     private DatabaseManager manager;
@@ -56,12 +56,9 @@ public class TestFind {
         user2.put("password", "+++===");
 
         when(manager.getTableData("users")).thenReturn(Arrays.asList(user1, user2));
-
         //when
         command.process("find|users");
-
         //then
-
         shouldPrint("[+--+--------+--------+\n" +
                 "|id|username|password|\n" +
                 "+--+--------+--------+\n" +
@@ -74,30 +71,24 @@ public class TestFind {
 
     @Test
     public void findCanProcessTest() {
-
         //when
         boolean result = command.canProcess("find|users");
-
         //then
         assertTrue(result);
     }
 
     @Test
     public void findCantProcessWithoutParametersTest() {
-
         //when
         boolean result = command.canProcess("find");
-
         //then
         assertFalse(result);
     }
 
     @Test
     public void findCantProcessWithQWETest() {
-
         //when
         boolean result = command.canProcess("qwe");
-
         //then
         assertFalse(result);
     }
@@ -105,16 +96,11 @@ public class TestFind {
 
     @Test
     public void testPrintEmptyTableData() {
-
         when(manager.getTableColumns("users"))
                 .thenReturn(new LinkedHashSet<String>(Arrays.asList("id", "username", "password")));
-
-
         when(manager.getTableData("users")).thenReturn(new ArrayList<>());
-
         //when
         command.process("find|users");
-
         //then
 
         shouldPrint("[+--+--------+--------+\n" +
@@ -135,10 +121,8 @@ public class TestFind {
         user2.put("id", 11);
 
         when(manager.getTableData("users")).thenReturn(Arrays.asList(user1, user2));
-
         //when
         command.process("find|users");
-
         //then
         shouldPrint("[+--+\n" +
                 "|id|\n" +
@@ -151,13 +135,9 @@ public class TestFind {
 
     @Test
     public void testErrorWhenWrongCommandFind() {
-
         when(manager.getTableColumns("users"))
                 .thenReturn(new LinkedHashSet<>(Arrays.asList("id", "username", "password")));
-
-
         when(manager.getTableData("users")).thenReturn(new ArrayList<>());
-
         //when
         try {
             command.process("find|users|wtf");
@@ -172,5 +152,4 @@ public class TestFind {
         verify(view, atLeastOnce()).write(captor.capture());
         assertEquals(expected, captor.getAllValues().toString());
     }
-
 }

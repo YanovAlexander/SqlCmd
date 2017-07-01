@@ -8,7 +8,6 @@ import ua.com.juja.controller.command.Command;
 import ua.com.juja.controller.command.UnsuportedCommand;
 import ua.com.juja.view.View;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
@@ -17,7 +16,7 @@ import static org.mockito.Mockito.verify;
 /**
  * Created by Alexandero on 30.06.2017.
  */
-public class TestUnsupportedCommand {
+public class UnsupportedCommandTest {
     private Command command;
     private View view;
 
@@ -31,7 +30,7 @@ public class TestUnsupportedCommand {
     public void canProcess(){
         //when
         boolean result = command.canProcess("unsupported");
-
+        //then
         assertTrue(result);
     }
 
@@ -39,7 +38,6 @@ public class TestUnsupportedCommand {
     public void process(){
         //when
         command.process("unsupported");
-
         //then
        shouldPrint("[Unsupported command :unsupported]");
     }

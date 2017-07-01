@@ -2,12 +2,10 @@ package main.java.ua.com.juja.controller.command;
 
 import ua.com.juja.controller.command.Clear;
 import ua.com.juja.controller.command.Command;
-import ua.com.juja.model.DataSet;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.ArgumentCaptor;
 
 import java.util.Arrays;
 import java.util.LinkedHashSet;
@@ -21,7 +19,7 @@ import static org.mockito.Mockito.*;
 /**
  * Created by Alexandero on 17.06.2017.
  */
-public class TestClear {
+public class ClearTest {
 
     private View view;
     private DatabaseManager manager;
@@ -52,7 +50,6 @@ public class TestClear {
 
     @Test
     public void clearCanProcessTest() {
-
         //when
         boolean result = command.canProcess("clear|users");
 
@@ -62,7 +59,6 @@ public class TestClear {
 
     @Test
     public void clearCantProcessWithoutParametersTest() {
-
         //when
         boolean result = command.canProcess("clear");
 
@@ -72,7 +68,6 @@ public class TestClear {
 
     @Test
     public void clearCantProcessWithQWETest() {
-
         //when
         boolean result = command.canProcess("qwe|users");
 
@@ -82,7 +77,6 @@ public class TestClear {
 
     @Test
     public void clearCantProcessWithErrorParametersLessThenTwo() {
-
         //when
         try {
             command.process("clear");
