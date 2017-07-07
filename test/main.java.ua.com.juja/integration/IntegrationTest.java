@@ -21,6 +21,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class IntegrationTest {
 
+    private final String lineSeparator = System.lineSeparator();
     private ConfigurableInputStream in;
     private ByteArrayOutputStream out;
     private DatabaseManager databaseManager;
@@ -47,10 +48,10 @@ public class IntegrationTest {
         Main.main(new String[0]);
 
         //then
-        assertEquals("Welcome!\r\n" +
+        assertEquals("Welcome!" + lineSeparator +
                 "Enter the database name, username, and password of the user in format :" +
-                " connect|database|username|password  or use 'help' to list all commands\r\n" +
-                "Good Bye !\r\n", getData());
+                " connect|database|username|password  or use 'help' to list all commands" + lineSeparator +
+                "Good Bye !" + lineSeparator, getData());
     }
 
     @Test
@@ -63,13 +64,13 @@ public class IntegrationTest {
         Main.main(new String[0]);
 
         //then
-        assertEquals("Welcome!\r\n" +
+        assertEquals("Welcome!" + lineSeparator +
                 "Enter the database name, username, and password of the user in format :" +
-                " connect|database|username|password  or use 'help' to list all commands\r\n" +
+                " connect|database|username|password  or use 'help' to list all commands" + lineSeparator +
                 "You can not use the command 'tables', while not connect with the command " +
-                "connect|database|username|password\r\n" +
-                "Type command (or use 'help' to list all commands):\r\n" +
-                "Good Bye !\r\n", getData());
+                "connect|database|username|password" + lineSeparator +
+                "Type command (or use 'help' to list all commands):" + lineSeparator +
+                "Good Bye !" + lineSeparator, getData());
     }
 
     @Test
@@ -82,13 +83,13 @@ public class IntegrationTest {
         Main.main(new String[0]);
 
         //then
-        assertEquals("Welcome!\r\n" +
+        assertEquals("Welcome!" + lineSeparator +
                 "Enter the database name, username, and password of the user in format : " +
-                "connect|database|username|password  or use 'help' to list all commands\r\n" +
+                "connect|database|username|password  or use 'help' to list all commands" + lineSeparator +
                 "You can not use the command 'find|users', while not connect with the " +
-                "command connect|database|username|password\r\n" +
-                "Type command (or use 'help' to list all commands):\r\n" +
-                "Good Bye !\r\n", getData());
+                "command connect|database|username|password" + lineSeparator +
+                "Type command (or use 'help' to list all commands):" + lineSeparator +
+                "Good Bye !" + lineSeparator , getData());
     }
 
     @Test
@@ -101,13 +102,13 @@ public class IntegrationTest {
         Main.main(new String[0]);
 
         //then
-        assertEquals("Welcome!\r\n" +
+        assertEquals("Welcome!" + lineSeparator +
                 "Enter the database name, username, and password of the user in format : " +
-                "connect|database|username|password  or use 'help' to list all commands\r\n" +
+                "connect|database|username|password  or use 'help' to list all commands" + lineSeparator +
                 "You can not use the command 'asdf', while not connect with the command " +
-                "connect|database|username|password\r\n" +
-                "Type command (or use 'help' to list all commands):\r\n" +
-                "Good Bye !\r\n", getData());
+                "connect|database|username|password" + lineSeparator +
+                "Type command (or use 'help' to list all commands):" + lineSeparator +
+                "Good Bye !" + lineSeparator, getData());
     }
 
     @Test
@@ -121,14 +122,14 @@ public class IntegrationTest {
         Main.main(new String[0]);
 
         //then
-        assertEquals("Welcome!\r\n" +
+        assertEquals("Welcome!" + lineSeparator +
                 "Enter the database name, username, and password of the user in format : " +
-                "connect|database|username|password  or use 'help' to list all commands\r\n" +
-                "Connected successful\r\n" +
-                "Type command (or use 'help' to list all commands):\r\n" +
-                "Unsupported command :asdf\r\n" +
-                "Type command (or use 'help' to list all commands):\r\n" +
-                "Good Bye !\r\n", getData());
+                "connect|database|username|password  or use 'help' to list all commands" + lineSeparator +
+                "Connected successful" + lineSeparator +
+                "Type command (or use 'help' to list all commands):" + lineSeparator +
+                "Unsupported command :asdf" + lineSeparator +
+                "Type command (or use 'help' to list all commands):" + lineSeparator +
+                "Good Bye !" + lineSeparator, getData());
     }
 
     @Test
@@ -144,26 +145,26 @@ public class IntegrationTest {
         Main.main(new String[0]);
 
         //then
-        assertEquals("Welcome!\r\n" +
+        assertEquals("Welcome!" + lineSeparator +
                 "Enter the database name, username, and password of the user in format :" +
-                " connect|database|username|password  or use 'help' to list all commands\r\n" +
-                "Connected successful\r\n" +
-                "Type command (or use 'help' to list all commands):\r\n" +
-                "-------------------TABLES-------------------\r\n" +
-                "- users\r\n" +
-                "- test\r\n" +
-                "- mytable\r\n" +
-                "- mytable22\r\n"+
-                "- sss\r\n"+
-                "--------------------------------------------\r\n" +
-                "Type command (or use 'help' to list all commands):\r\n" +
-                "Connected successful\r\n" +
-                "Type command (or use 'help' to list all commands):\r\n" +
-                "-------------------TABLES-------------------\r\n" +
-                "- ratata\r\n" +
-                "--------------------------------------------\r\n" +
-                "Type command (or use 'help' to list all commands):\r\n" +
-                "Good Bye !\r\n", getData());
+                " connect|database|username|password  or use 'help' to list all commands" + lineSeparator +
+                "Connected successful" + lineSeparator +
+                "Type command (or use 'help' to list all commands):" + lineSeparator +
+                "-------------------TABLES-------------------" + lineSeparator +
+                "- users" + lineSeparator +
+                "- test" + lineSeparator +
+                "- mytable" + lineSeparator +
+                "- mytable22"+ lineSeparator +
+                "- sss"+ lineSeparator +
+                "--------------------------------------------" + lineSeparator +
+                "Type command (or use 'help' to list all commands):" + lineSeparator +
+                "Connected successful" + lineSeparator +
+                "Type command (or use 'help' to list all commands):" + lineSeparator +
+                "-------------------TABLES-------------------" + lineSeparator +
+                "- ratata" + lineSeparator +
+                "--------------------------------------------" + lineSeparator +
+                "Type command (or use 'help' to list all commands):" + lineSeparator +
+                "Good Bye !" + lineSeparator, getData());
     }
 
     @Test
@@ -176,14 +177,14 @@ public class IntegrationTest {
         Main.main(new String[0]);
 
         //then
-        assertEquals("Welcome!\r\n" +
+        assertEquals("Welcome!" + lineSeparator +
                 "Enter the database name, username, and password of the user in format : " +
-                "connect|database|username|password  or use 'help' to list all commands\r\n" +
+                "connect|database|username|password  or use 'help' to list all commands" + lineSeparator +
                 "Error! Because of: Invalid number of parameters separeted be a sign \"|\" ," +
-                "4 is required, but indicated : 2\r\n" +
-                "Please try again.\r\n" +
-                "Type command (or use 'help' to list all commands):\r\n" +
-                "Good Bye !\r\n", getData());
+                "4 is required, but indicated : 2" + lineSeparator +
+                "Please try again." + lineSeparator +
+                "Type command (or use 'help' to list all commands):" + lineSeparator +
+                "Good Bye !" + lineSeparator, getData());
     }
 
     @Test
@@ -197,14 +198,14 @@ public class IntegrationTest {
         Main.main(new String[0]);
 
         //then
-        assertEquals("Welcome!\r\n" +
+        assertEquals("Welcome!" + lineSeparator +
                 "Enter the database name, username, and password of the user in format :" +
-                " connect|database|username|password  or use 'help' to list all commands\r\n" +
-                "Connected successful\r\n" +
-                "Type command (or use 'help' to list all commands):\r\n" +
-                "Unsupported command :clear\r\n" +
-                "Type command (or use 'help' to list all commands):\r\n" +
-                "Good Bye !\r\n", getData());
+                " connect|database|username|password  or use 'help' to list all commands" + lineSeparator +
+                "Connected successful" + lineSeparator +
+                "Type command (or use 'help' to list all commands):" + lineSeparator +
+                "Unsupported command :clear" + lineSeparator +
+                "Type command (or use 'help' to list all commands):" + lineSeparator +
+                "Good Bye !" + lineSeparator, getData());
     }
 
     @Test
@@ -218,16 +219,16 @@ public class IntegrationTest {
         Main.main(new String[0]);
 
         //then
-        assertEquals("Welcome!\r\n" +
+        assertEquals("Welcome!" + lineSeparator +
                 "Enter the database name, username, and password of the user in format : " +
-                "connect|database|username|password  or use 'help' to list all commands\r\n" +
-                "Connected successful\r\n" +
-                "Type command (or use 'help' to list all commands):\r\n" +
+                "connect|database|username|password  or use 'help' to list all commands" + lineSeparator +
+                "Connected successful" + lineSeparator +
+                "Type command (or use 'help' to list all commands):" + lineSeparator +
                 "Error! Because of: Format of the command 'clear|tableName', but you type :" +
-                " clear|papspsps|asasasa\r\n" +
-                "Please try again.\r\n" +
-                "Type command (or use 'help' to list all commands):\r\n" +
-                "Good Bye !\r\n", getData());
+                " clear|papspsps|asasasa" + lineSeparator +
+                "Please try again." + lineSeparator +
+                "Type command (or use 'help' to list all commands):" + lineSeparator +
+                "Good Bye !" + lineSeparator, getData());
     }
 
     @Test
@@ -241,17 +242,17 @@ public class IntegrationTest {
         Main.main(new String[0]);
 
         //then
-        assertEquals("Welcome!\r\n" +
+        assertEquals("Welcome!" + lineSeparator +
                 "Enter the database name, username, and password of the user in format :" +
-                " connect|database|username|password  or use 'help' to list all commands\r\n" +
-                "Connected successful\r\n" +
-                "Type command (or use 'help' to list all commands):\r\n" +
+                " connect|database|username|password  or use 'help' to list all commands" + lineSeparator +
+                "Connected successful" + lineSeparator +
+                "Type command (or use 'help' to list all commands):" + lineSeparator +
                 "Error! Because of: There must be an even number of parameters in the" +
                 " format insertEntry|tableName|column1|value1|column2|value2...columnN|valueN, but indicated :" +
-                " 'insertEntry|users|bugaga'\r\n" +
-                "Please try again.\r\n" +
-                "Type command (or use 'help' to list all commands):\r\n" +
-                "Good Bye !\r\n", getData());
+                " 'insertEntry|users|bugaga'" + lineSeparator +
+                "Please try again." + lineSeparator +
+                "Type command (or use 'help' to list all commands):" + lineSeparator +
+                "Good Bye !" + lineSeparator, getData());
     }
 
 
