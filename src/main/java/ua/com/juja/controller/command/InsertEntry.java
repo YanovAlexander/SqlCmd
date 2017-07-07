@@ -8,11 +8,11 @@ import ua.com.juja.view.View;
 /**
  * Created by Alexandero on 14.06.2017.
  */
-public class CreateQuery implements Command {
+public class InsertEntry implements Command {
     private View view;
     private DatabaseManager manager;
 
-    public CreateQuery(View view, DatabaseManager manager) {
+    public InsertEntry(View view, DatabaseManager manager) {
 
         this.view = view;
         this.manager = manager;
@@ -20,7 +20,7 @@ public class CreateQuery implements Command {
 
     @Override
     public boolean canProcess(String command) {
-        return command.startsWith("createQuery|");
+        return command.startsWith("insertEntry|");
     }
 
     @Override
@@ -28,7 +28,7 @@ public class CreateQuery implements Command {
         String[] data = command.split("\\|");
         if (data.length % 2 != 0) {
             throw new IllegalArgumentException(String.format("There must be an even number of parameters in the format " +
-                    "createQuery|tableName|column1|value1|column2|value2...columnN|valueN, but indicated : '%s'", command));
+                    "insertEntry|tableName|column1|value1|column2|value2...columnN|valueN, but indicated : '%s'", command));
         }
 
         String tableName = data[1];

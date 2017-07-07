@@ -22,7 +22,7 @@ public class MainController {
                 new Find(view, manager),
                 new Tables(view, manager),
                 new Clear(view, manager),
-                new CreateQuery(view, manager),
+                new InsertEntry(view, manager),
                 new CreateDatabase(view, manager),
                 new CreateTable(view, manager),
                 new DatabaseList(view, manager),

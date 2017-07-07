@@ -4,7 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import ua.com.juja.controller.command.Command;
-import ua.com.juja.controller.command.CreateQuery;
+import ua.com.juja.controller.command.InsertEntry;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
@@ -28,13 +28,13 @@ public class CreateQueryTest {
     public void setup() {
         manager = mock(DatabaseManager.class);
         view = mock(View.class);
-        command = new CreateQuery(view, manager);
+        command = new InsertEntry(view, manager);
     }
 
     @Test
     public void testCanProcess() {
         //when
-        boolean result = command.canProcess("createQuery|");
+        boolean result = command.canProcess("insertEntry|");
         //then
         assertTrue(result);
     }
@@ -59,13 +59,13 @@ public class CreateQueryTest {
     public void testProcessWithWrongFormat() {
         //when
         try {
-            command.process("createQuery|users|name");
+            command.process("insertEntry|users|name");
             fail("IllegalArgumentException expected");
         } catch (IllegalArgumentException e) {
             //then
             assertEquals("There must be an even number of parameters in the format" +
-                    " createQuery|tableName|column1|value1|column2|value2...columnN|valueN, but indicated :" +
-                    " 'createQuery|users|name'", e.getMessage());
+                    " insertEntry|tableName|column1|value1|column2|value2...columnN|valueN, but indicated :" +
+                    " 'insertEntry|users|name'", e.getMessage());
         }
     }
 
@@ -73,12 +73,12 @@ public class CreateQueryTest {
     public void testProcessWithEmptyParameters() {
         //when
         try {
-            command.process("createQuery|");
+            command.process("insertEntry|");
             fail("IllegalArgumentException expected");
         } catch (IllegalArgumentException e) {
             assertEquals("There must be an even number of parameters in the format " +
-                    "createQuery|tableName|column1|value1|column2|value2...columnN|valueN," +
-                    " but indicated : 'createQuery|'", e.getMessage());
+                    "insertEntry|tableName|column1|value1|column2|value2...columnN|valueN," +
+                    " but indicated : 'insertEntry|'", e.getMessage());
         }
     }
 

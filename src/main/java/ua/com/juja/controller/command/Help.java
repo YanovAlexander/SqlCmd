@@ -46,7 +46,7 @@ public class Help implements Command {
         view.write("\t|\t-> To clear the entire table with the name 'tableName'");
         view.write("\t+------------------------------------------------------------------");
 
-        view.write("\t| createQuery|tableName|column1|value1|column2|value2...columnN|valueN");
+        view.write("\t| insertEntry|tableName|column1|value1|column2|value2...columnN|valueN");
         view.write("\t|\t-> To create an entry in the table named 'tableName'"); //TODO если ввел команду, переспросить
         view.write("\t+------------------------------------------------------------------");
 
