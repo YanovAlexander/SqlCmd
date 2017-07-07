@@ -25,12 +25,13 @@ public class DeleteTable implements Command {
     public void process(String command) {
         String[] data = command.split("\\|");
         if (data.length != 2) {
-            throw new IllegalArgumentException("Format of the command 'clear|tableName', but you type : " + command);
+            throw new IllegalArgumentException("Format of the command 'deleteTable|tableName', but you type : " + command);
         }
-        view.write("Do you really want to delete table '" + data[1] + " ? All data will delete ! Press Y/N ?");
+        String tableName = data[1];
+        view.write("Do you really want to delete table '" + tableName + " ? All data will delete ! Press Y/N ?");
         if (view.read().equalsIgnoreCase("Y")){
-            manager.deleteTable(data[1]);
-            view.write("Table " + data[1] + " delete successful !");
+            manager.deleteTable(tableName);
+            view.write("Table " + tableName + " delete successful !");
         }
         view.write("The action is canceled!");
     }

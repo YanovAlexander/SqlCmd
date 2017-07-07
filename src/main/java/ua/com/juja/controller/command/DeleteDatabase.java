@@ -24,13 +24,15 @@ public class DeleteDatabase implements Command {
     public void process(String command) {
         String[] data = command.split("\\|");
         if (data.length != 2) {
-            throw new IllegalArgumentException("Format of the command 'clear|tableName', but you type : " + command);
+            throw new IllegalArgumentException("Format of the command 'deleteDatabase|databaseName', but you type : " + command);
         }
-        view.write("Do you really want to delete database '" + data[1] + "' ? All data will delete ! " +
+        String databaseName = data[1];
+
+        view.write("Do you really want to delete database '" + databaseName + "' ? All data will delete ! " +
                 "If you sure press Y/N ?");
         if (view.read().equalsIgnoreCase("Y")){
-            manager.deleteDatabase(data[1]);
-            view.write("Database " + data[1] + " delete successful !");
+            manager.deleteDatabase(databaseName);
+            view.write("Database " + databaseName + " delete successful !");
         }
         view.write("Action is Cancelled !");
     }

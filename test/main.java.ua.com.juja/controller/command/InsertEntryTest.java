@@ -19,7 +19,7 @@ import static org.mockito.Mockito.verify;
 /**
  * Created by Alexandero on 01.07.2017.
  */
-public class CreateQueryTest {
+public class InsertEntryTest {
     private DatabaseManager manager;
     private View view;
     private Command command;

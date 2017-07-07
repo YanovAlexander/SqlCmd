@@ -76,7 +76,7 @@ public class DeleteTableTest {
             fail("Expected IllegalArgumentException");
         } catch (IllegalArgumentException e) {
          //then
-            assertEquals("Format of the command 'clear|tableName', but you type : deleteTable|test|one", e.getMessage());
+            assertEquals("Format of the command 'deleteTable|tableName', but you type : deleteTable|test|one", e.getMessage());
         }
     }
 }

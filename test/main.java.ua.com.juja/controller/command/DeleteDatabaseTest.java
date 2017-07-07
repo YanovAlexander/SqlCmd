@@ -73,7 +73,7 @@ public class DeleteDatabaseTest {
             command.process("deleteDatabase|test|test");
             fail("Expected IllegalArgumentException");
         }catch (IllegalArgumentException e){
-            assertEquals("Format of the command 'clear|tableName', but you type : deleteDatabase|test|test", e.getMessage());
+            assertEquals("Format of the command 'deleteDatabase|databaseName', but you type : deleteDatabase|test|test", e.getMessage());
         }
     }
 }

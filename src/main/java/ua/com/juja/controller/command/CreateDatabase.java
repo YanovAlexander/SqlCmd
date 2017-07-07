@@ -24,11 +24,12 @@ public class CreateDatabase implements Command {
     @Override
     public void process(String command) {
         String[] data = command.split("\\|");
+        String databaseName = data[1];
+
         if (data.length != 2) {
             throw new IllegalArgumentException(String.format("There must be an even number of parameters in the format " +
                     "'createDatabasename|databaseName',  but indicated " + command));
         }
-        String databaseName = data[1];
         manager.createDatabase(databaseName);
         view.write("Database with name "+ databaseName + " created successful !" );
     }
