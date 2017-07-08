@@ -1,4 +1,4 @@
-package main.java.ua.com.juja.controller.command;
+package ua.com.juja.controller.command;
 
 import org.junit.Assert;
 import org.junit.Before;

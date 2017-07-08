@@ -1,4 +1,4 @@
-package main.java.ua.com.juja.integration;
+package ua.com.juja.integration;
 
 import org.junit.*;
 import ua.com.juja.controller.Main;
@@ -32,6 +32,7 @@ public class IntegrationTest {
         manager = new JDBCDatabaseManager();
         manager.connect(DB_NAME, DB_USERNAME, DB_PASSWORD);
         manager.createTable(SQL_CREATE_TABLE);
+
     }
 
     @Before
@@ -146,7 +147,7 @@ public class IntegrationTest {
         //given
         view.addIn("connect|postgres|postgres|pass");
         view.addIn("tables");
-        view.addIn("connect|test|postgres|pass");
+        view.addIn("connect|test|postgres|pass"); //TODO switch to 'testing'
         view.addIn("tables");
         view.addIn("exit");
 

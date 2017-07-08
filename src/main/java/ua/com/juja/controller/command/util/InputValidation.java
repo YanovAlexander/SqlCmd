@@ -28,7 +28,7 @@ public class InputValidation {
     }
 
     public int getLength() {
-        return command.split("\\|").length;
+        return getParameters().length;
     }
 
     public String[] getParameters(){

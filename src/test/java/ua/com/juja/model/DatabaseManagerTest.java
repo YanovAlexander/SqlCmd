@@ -1,4 +1,4 @@
-package main.java.ua.com.juja.model;
+package ua.com.juja.model;
 
 import ua.com.juja.model.DataSet;
 import ua.com.juja.model.DataSetImpl;
@@ -21,7 +21,7 @@ public abstract class DatabaseManagerTest {
     public abstract DatabaseManager getDatabaseManager();
 
     private static final String TABLE_NAME = "users";
-
+    //TODO delete this fucking test
 
     @Before
     public void setup() {
@@ -34,7 +34,7 @@ public abstract class DatabaseManagerTest {
     @Test
     public void selectAllTablesName() {
         Set<String> tableNames = manager.getTableNames();
-        assertEquals("[users, test, mytable, mytable22, sss]", tableNames.toString());
+        assertEquals("[users, test]", tableNames.toString());
     }
 
     @Test

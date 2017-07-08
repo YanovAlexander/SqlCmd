@@ -1,4 +1,4 @@
-package main.java.ua.com.juja.model;
+package ua.com.juja.model;
 
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.model.JDBCDatabaseManager;

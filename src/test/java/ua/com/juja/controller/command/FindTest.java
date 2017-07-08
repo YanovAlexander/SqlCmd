@@ -1,4 +1,4 @@
-package main.java.ua.com.juja.controller.command;
+package ua.com.juja.controller.command;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;

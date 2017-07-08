@@ -1,4 +1,4 @@
-package main.java.ua.com.juja.controller.command;
+package ua.com.juja.controller.command;
 
 import junit.framework.TestCase;
 import org.junit.Before;

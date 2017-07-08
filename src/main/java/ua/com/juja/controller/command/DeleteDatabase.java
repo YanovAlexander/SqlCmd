@@ -32,7 +32,8 @@ public class DeleteDatabase implements Command {
         if (view.read().equalsIgnoreCase("Y")){
             manager.deleteDatabase(databaseName);
             view.write("Database " + databaseName + " delete successful !");
+        } else {
+            view.write("Action is Cancelled !");
         }
-        view.write("Action is Cancelled !");
     }
 }

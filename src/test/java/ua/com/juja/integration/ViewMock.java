@@ -1,4 +1,4 @@
-package main.java.ua.com.juja.integration;
+package ua.com.juja.integration;
 
 import java.io.*;
 

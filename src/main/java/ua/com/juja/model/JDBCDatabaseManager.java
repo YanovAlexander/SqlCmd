@@ -5,6 +5,9 @@ import java.util.*;
 
 public class JDBCDatabaseManager implements DatabaseManager {
 
+    //TODO: handle SQLExceptions
+    //TODO: use PreparedStatement
+
     private Connection connection;
 
     @Override
@@ -97,6 +100,8 @@ public class JDBCDatabaseManager implements DatabaseManager {
 
             String tableNames = getNamesFormated(input, "%s,");
             String values = getValuesFormated(input, "'%s',");
+
+            //TODO: use PreparedStatement
             stmt.executeUpdate("INSERT INTO " + tableName + "(" + tableNames + ") "
                     + "VALUES (" + values + ")");
         } catch (SQLException e) {

@@ -1,12 +1,13 @@
-package main.java.ua.com.juja.controller.command;
+package ua.com.juja.controller.command;
 
 import ua.com.juja.controller.command.Command;
 import ua.com.juja.controller.command.Exit;
 import ua.com.juja.controller.command.ExitException;
-import org.junit.Test;
 import ua.com.juja.controller.command.util.InputValidation;
+import ua.com.juja.view.View;
+import org.junit.Test;
+import org.mockito.Mockito;
 
-import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -14,16 +15,18 @@ import static org.junit.Assert.fail;
 /**
  * Created by Alexandero on 17.06.2017.
  */
-public class ExitTest {
+public class ExitTestWithMockito {
 
-    private ViewTest view = new ViewTest();
+    private View view = Mockito.mock(View.class);
 
     @Test
     public void exitCanProcessTest() {
         //given
         Command command = new Exit(view);
+
         //when
         boolean exit = command.canProcess(new InputValidation("exit"));
+
         //then
         assertTrue(exit);
     }
@@ -32,8 +35,10 @@ public class ExitTest {
     public void exitCantProcessQWETest() {
         //given
         Command command = new Exit(view);
+
         //when
         boolean exit = command.canProcess(new InputValidation("qwe"));
+
         //then
         assertFalse(exit);
     }
@@ -42,6 +47,7 @@ public class ExitTest {
     public void exitProcessTest() {
         //given
         Command command = new Exit(view);
+
         //when
         try {
             command.process(new InputValidation("exit"));
@@ -50,8 +56,7 @@ public class ExitTest {
             //do nothing
         }
         //then
-        assertEquals("Good Bye !\n", view.getContent());
+        Mockito.verify(view).write("Good Bye !");
     }
-
 
 }

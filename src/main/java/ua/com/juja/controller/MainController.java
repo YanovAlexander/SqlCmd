@@ -58,7 +58,7 @@ public class MainController {
                 view.write("Type command (or use 'help' to list all commands):");
             }
         } catch (ExitException e) {
-            //do nothing
+            //do nothing...
         }
     }
 
