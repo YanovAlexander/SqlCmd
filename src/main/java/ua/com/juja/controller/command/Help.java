@@ -1,5 +1,6 @@
 package ua.com.juja.controller.command;
 
+import ua.com.juja.controller.command.util.InputValidation;
 import ua.com.juja.view.View;
 
 /**
@@ -14,16 +15,13 @@ public class Help implements Command {
     }
 
     @Override
-    public boolean canProcess(String command) {
-        return command.equals("help");
+    public String format() {
+        return "help";
     }
 
     @Override
-    public void process(String command) {
-        doHelp();
-    }
-
-    private void doHelp() {
+    public void process(InputValidation command) {
+        command.validationParameters(format());
         view.write("\t+----------------------------COMMANDS------------------------------");
 
         view.write("\t| connect|database|username|password");

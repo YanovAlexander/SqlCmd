@@ -1,5 +1,6 @@
 package ua.com.juja.controller.command;
 
+import ua.com.juja.controller.command.util.InputValidation;
 import ua.com.juja.model.DataSet;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.model.TableFormat;
@@ -22,22 +23,16 @@ public class Find implements Command {
     }
 
     @Override
-    public boolean canProcess(String command) {
-        return command.startsWith("find|");
+    public String format() {
+        return "find|tableName";
     }
 
     @Override
-    public void process(String command) {
-        doFind(command);
-    }
-
-    private void doFind(String command) {
-        String[] data = command.split("\\|");
-        if (data.length != 2) {
-            throw new IllegalArgumentException("Format of the command " +
-                    "'find|tableName', but indicated : " + command);
-        }
+    public void process(InputValidation command) {
+        command.validationParameters(format());
+        String[] data = command.getParameters();
         String tableName = data[1];
+
         Set<String> tableColumns = manager.getTableColumns(tableName);
         List<DataSet> tableData = manager.getTableData(tableName);
         TableFormat format = new TableFormat(tableColumns, tableData);

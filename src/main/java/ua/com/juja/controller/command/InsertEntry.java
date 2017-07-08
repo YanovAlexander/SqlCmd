@@ -1,5 +1,6 @@
 package ua.com.juja.controller.command;
 
+import ua.com.juja.controller.command.util.InputValidation;
 import ua.com.juja.model.DataSet;
 import ua.com.juja.model.DataSetImpl;
 import ua.com.juja.model.DatabaseManager;
@@ -19,19 +20,16 @@ public class InsertEntry implements Command {
     }
 
     @Override
-    public boolean canProcess(String command) {
-        return command.startsWith("insertEntry|");
+    public String format() {
+        return "insertEntry|tableName|column1|value1|column2|value2...columnN|valueN";
     }
 
     @Override
-    public void process(String command) {
-        String[] data = command.split("\\|");
-        if (data.length % 2 != 0) {
-            throw new IllegalArgumentException(String.format("There must be an even number of parameters in the format " +
-                    "insertEntry|tableName|column1|value1|column2|value2...columnN|valueN, but indicated : '%s'", command));
-        }
-
+    public void process(InputValidation command) {
+        command.validationPairs(format());
+        String[] data = command.getParameters();
         String tableName = data[1];
+
         DataSet dataSet = new DataSetImpl();
         for (int index = 1; index < (data.length / 2); index++) {
             String columnName = data[index * 2];

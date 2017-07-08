@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import ua.com.juja.controller.command.Command;
 import ua.com.juja.controller.command.InsertEntry;
+import ua.com.juja.controller.command.util.InputValidation;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
@@ -34,7 +35,7 @@ public class InsertEntryTest {
     @Test
     public void testCanProcess() {
         //when
-        boolean result = command.canProcess("insertEntry|");
+        boolean result = command.canProcess(new InputValidation("insertEntry|"));
         //then
         assertTrue(result);
     }
@@ -42,7 +43,7 @@ public class InsertEntryTest {
     @Test
     public void testCantProcessWithWrongCommand() {
         //when
-        boolean result = command.canProcess("createQuery1|");
+        boolean result = command.canProcess(new InputValidation("createQuery1|"));
         //then
         assertFalse(result);
     }
@@ -50,7 +51,7 @@ public class InsertEntryTest {
     @Test
     public void testProcess() {
         //when
-        command.process("createQuery|users|id|26|userName|Alex|password|++++");
+        command.process(new InputValidation("createQuery|users|id|26|userName|Alex|password|++++"));
         //then
         shouldPrint("[{names = [id, userName, password], values = [26, Alex, ++++], } was successfully created in table users.]");
     }
@@ -59,13 +60,13 @@ public class InsertEntryTest {
     public void testProcessWithWrongFormat() {
         //when
         try {
-            command.process("insertEntry|users|name");
+            command.process(new InputValidation("insertEntry|users|name"));
             fail("IllegalArgumentException expected");
         } catch (IllegalArgumentException e) {
             //then
-            assertEquals("There must be an even number of parameters in the format" +
-                    " insertEntry|tableName|column1|value1|column2|value2...columnN|valueN, but indicated :" +
-                    " 'insertEntry|users|name'", e.getMessage());
+            assertEquals("Invalid command, you must enter and even number of parameters" +
+                    " in the following format : " +
+                    "insertEntry|tableName|column1|value1|column2|value2...columnN|valueN", e.getMessage());
         }
     }
 
@@ -73,12 +74,12 @@ public class InsertEntryTest {
     public void testProcessWithEmptyParameters() {
         //when
         try {
-            command.process("insertEntry|");
+            command.process(new InputValidation("insertEntry|"));
             fail("IllegalArgumentException expected");
         } catch (IllegalArgumentException e) {
-            assertEquals("There must be an even number of parameters in the format " +
-                    "insertEntry|tableName|column1|value1|column2|value2...columnN|valueN," +
-                    " but indicated : 'insertEntry|'", e.getMessage());
+            assertEquals("Invalid command, you must enter and even number of parameters " +
+                    "in the following format : " +
+                    "insertEntry|tableName|column1|value1|column2|value2...columnN|valueN", e.getMessage());
         }
     }
 

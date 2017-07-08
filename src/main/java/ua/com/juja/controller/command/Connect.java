@@ -1,5 +1,6 @@
 package ua.com.juja.controller.command;
 
+import ua.com.juja.controller.command.util.InputValidation;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
@@ -7,8 +8,6 @@ import ua.com.juja.view.View;
  * Created by Alexandero on 14.06.2017.
  */
 public class Connect implements Command {
-
-    private static String COMMAND_SAMPLE = "connect|postgres|postgres|pass";
 
     private DatabaseManager manager;
     private View view;
@@ -19,19 +18,14 @@ public class Connect implements Command {
     }
 
     @Override
-    public boolean canProcess(String command) {
-        return command.startsWith("connect|");
+    public String format() {
+        return "connect|databaseName|userName|password";
     }
 
     @Override
-    public void process(String command) {
-        String[] data = command.split("\\|");
-
-        if (data.length != count()) {
-            throw new IllegalArgumentException(
-                    String.format("Invalid number of parameters separeted be a sign \"|\" ," +
-                            "%s is required, but indicated : %s", count(), data.length));
-        }
+    public void process(InputValidation command) {
+        command.validationParameters(format());
+        String[] data = command.getParameters();
         String databaseName = data[1];
         String userName = data[2];
         String password = data[3];
@@ -39,10 +33,4 @@ public class Connect implements Command {
         manager.connect(databaseName, userName, password);
         view.write("Connected successful");
     }
-
-    private int count() {
-        return COMMAND_SAMPLE.split("\\|").length;
-    }
-
-
 }

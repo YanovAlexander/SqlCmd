@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import ua.com.juja.controller.command.Command;
 import ua.com.juja.controller.command.DeleteDatabase;
+import ua.com.juja.controller.command.util.InputValidation;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
@@ -30,7 +31,7 @@ public class DeleteDatabaseTest {
     @Test
     public void testCanProcess(){
         //when
-        boolean result = command.canProcess("deleteDatabase|");
+        boolean result = command.canProcess(new InputValidation("deleteDatabase|"));
         //then
         assertTrue(result);
     }
@@ -38,7 +39,7 @@ public class DeleteDatabaseTest {
     @Test
     public void testCantProcessWithWrongCommand(){
         //when
-        boolean result = command.canProcess("dropDatabase|");
+        boolean result = command.canProcess(new InputValidation("dropDatabase|"));
         //then
         assertFalse(result);
     }
@@ -47,8 +48,7 @@ public class DeleteDatabaseTest {
     public void testProcess(){
         //when
         when(view.read()).thenReturn("y");
-        command.process("deleteDatabase|test");
-
+        command.process(new InputValidation("deleteDatabase|test"));
         //then
         verify(view).write("Do you really want to delete database 'test' ? All data will delete ! If you sure press Y/N ?");
         verify(manager).deleteDatabase("test");
@@ -59,8 +59,7 @@ public class DeleteDatabaseTest {
     public void testProcessActionCancelled(){
         //when
         when(view.read()).thenReturn("n");
-        command.process("deleteDatabase|test");
-
+        command.process(new InputValidation("deleteDatabase|test"));
         //then
         verify(view).write("Do you really want to delete database 'test' ? All data will delete ! If you sure press Y/N ?");
         verify(view).write("Action is Cancelled !");
@@ -70,10 +69,11 @@ public class DeleteDatabaseTest {
     public void testWrongFormatOfCommand(){
         //when
         try{
-            command.process("deleteDatabase|test|test");
+            command.process(new InputValidation("deleteDatabase|test|test"));
             fail("Expected IllegalArgumentException");
         }catch (IllegalArgumentException e){
-            assertEquals("Format of the command 'deleteDatabase|databaseName', but you type : deleteDatabase|test|test", e.getMessage());
+            assertEquals("Invalid number of parameters separated by '|'," +
+                    " expected 2, but was: 3", e.getMessage());
         }
     }
 }

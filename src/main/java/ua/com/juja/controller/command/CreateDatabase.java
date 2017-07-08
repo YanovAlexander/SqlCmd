@@ -1,5 +1,6 @@
 package ua.com.juja.controller.command;
 
+import ua.com.juja.controller.command.util.InputValidation;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
@@ -15,21 +16,17 @@ public class CreateDatabase implements Command {
         this.manager = manager;
     }
 
-
     @Override
-    public boolean canProcess(String command) {
-        return command.startsWith("createDatabase|");
+    public String format() {
+        return "createDatabase|databaseName";
     }
 
     @Override
-    public void process(String command) {
-        String[] data = command.split("\\|");
+    public void process(InputValidation command) {
+        command.validationParameters(format());
+        String[] data = command.getParameters();
         String databaseName = data[1];
 
-        if (data.length != 2) {
-            throw new IllegalArgumentException(String.format("There must be an even number of parameters in the format " +
-                    "'createDatabasename|databaseName',  but indicated " + command));
-        }
         manager.createDatabase(databaseName);
         view.write("Database with name "+ databaseName + " created successful !" );
     }

@@ -180,8 +180,8 @@ public class IntegrationTest {
         assertEquals("Welcome!" + lineSeparator +
                 "Enter the database name, username, and password of the user in format : " +
                 "connect|database|username|password  or use 'help' to list all commands" + lineSeparator +
-                "Error! Because of: Invalid number of parameters separeted be a sign \"|\" ," +
-                "4 is required, but indicated : 2" + lineSeparator +
+                "Error! Because of: Invalid number of parameters separated by '|'," +
+                " expected 4, but was: 2" + lineSeparator +
                 "Please try again." + lineSeparator +
                 "Type command (or use 'help' to list all commands):" + lineSeparator +
                 "Good Bye !" + lineSeparator, getData());
@@ -203,7 +203,9 @@ public class IntegrationTest {
                 " connect|database|username|password  or use 'help' to list all commands" + lineSeparator +
                 "Connected successful" + lineSeparator +
                 "Type command (or use 'help' to list all commands):" + lineSeparator +
-                "Unsupported command :clear" + lineSeparator +
+                "Error! Because of: Invalid number of parameters separated by '|'," +
+                " expected 2, but was: 1" + lineSeparator +
+                "Please try again." + lineSeparator +
                 "Type command (or use 'help' to list all commands):" + lineSeparator +
                 "Good Bye !" + lineSeparator, getData());
     }
@@ -224,8 +226,8 @@ public class IntegrationTest {
                 "connect|database|username|password  or use 'help' to list all commands" + lineSeparator +
                 "Connected successful" + lineSeparator +
                 "Type command (or use 'help' to list all commands):" + lineSeparator +
-                "Error! Because of: Format of the command 'clear|tableName', but you type :" +
-                " clear|papspsps|asasasa" + lineSeparator +
+                "Error! Because of: Invalid number of parameters separated by '|'," +
+                " expected 2, but was: 3" + lineSeparator +
                 "Please try again." + lineSeparator +
                 "Type command (or use 'help' to list all commands):" + lineSeparator +
                 "Good Bye !" + lineSeparator, getData());
@@ -247,9 +249,9 @@ public class IntegrationTest {
                 " connect|database|username|password  or use 'help' to list all commands" + lineSeparator +
                 "Connected successful" + lineSeparator +
                 "Type command (or use 'help' to list all commands):" + lineSeparator +
-                "Error! Because of: There must be an even number of parameters in the" +
-                " format insertEntry|tableName|column1|value1|column2|value2...columnN|valueN, but indicated :" +
-                " 'insertEntry|users|bugaga'" + lineSeparator +
+                "Error! Because of: Invalid command, you must enter " +
+                "and even number of parameters in the following format : " +
+                "insertEntry|tableName|column1|value1|column2|value2...columnN|valueN" + lineSeparator +
                 "Please try again." + lineSeparator +
                 "Type command (or use 'help' to list all commands):" + lineSeparator +
                 "Good Bye !" + lineSeparator, getData());

@@ -1,5 +1,6 @@
 package ua.com.juja.controller.command;
 
+import ua.com.juja.controller.command.util.InputValidation;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
@@ -19,16 +20,12 @@ public class Tables implements Command {
     }
 
     @Override
-    public boolean canProcess(String command) {
-        return command.equals("tables");
+    public String format() {
+        return "tables";
     }
 
     @Override
-    public void process(String command) {
-        doTables();
-    }
-
-    private void doTables() {
+    public void process(InputValidation command) {
         Set<String> tableNames = manager.getTableNames();
         view.write("-------------------TABLES-------------------");
         for (String message : tableNames ){

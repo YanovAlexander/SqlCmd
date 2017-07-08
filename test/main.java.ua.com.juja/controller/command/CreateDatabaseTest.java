@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import ua.com.juja.controller.command.Command;
 import ua.com.juja.controller.command.CreateDatabase;
+import ua.com.juja.controller.command.util.InputValidation;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
@@ -29,7 +30,8 @@ public class CreateDatabaseTest {
     @Test
     public void testCanProcess(){
         //when
-        boolean result = command.canProcess("createDatabase|");
+        InputValidation input = new InputValidation("createDatabase|");
+        boolean result = command.canProcess(input);
         //then
         assertTrue(result);
     }
@@ -37,7 +39,7 @@ public class CreateDatabaseTest {
     @Test
     public void testCantProcessWithWrongCOmmand(){
         //when
-        boolean result = command.canProcess("creatDataB|");
+        boolean result = command.canProcess(new InputValidation("creatDataB|"));
         //then
         assertFalse(result);
     }
@@ -45,7 +47,7 @@ public class CreateDatabaseTest {
     @Test
     public void testProcess(){
         //when
-        command.process("createDatabase|test");
+        command.process(new InputValidation("createDatabase|test"));
         //then
         verify(manager).createDatabase("test");
         verify(view).write("Database with name test created successful !");
@@ -55,13 +57,12 @@ public class CreateDatabaseTest {
     public void testProcessWithWrongFormat(){
         //when
         try{
-            command.process("createDatabase|test|test");
+            command.process(new InputValidation("createDatabase|test|test"));
             fail("IllegalArgumentException expected");
         }catch (IllegalArgumentException e){
         //then
-            assertEquals("There must be an even number of parameters in the" +
-                    " format 'createDatabasename|databaseName', " +
-                    " but indicated createDatabase|test|test", e.getMessage());
+            assertEquals("Invalid number of parameters separated by '|', " +
+                    "expected 2, but was: 3", e.getMessage());
         }
     }
 }

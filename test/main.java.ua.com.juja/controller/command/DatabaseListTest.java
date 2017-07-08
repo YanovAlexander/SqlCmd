@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import ua.com.juja.controller.command.Command;
 import ua.com.juja.controller.command.DatabaseList;
+import ua.com.juja.controller.command.util.InputValidation;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
@@ -34,7 +35,7 @@ public class DatabaseListTest {
     @Test
     public void testCanProcess(){
         //when
-        boolean result = command.canProcess("databaseList");
+        boolean result = command.canProcess(new InputValidation("databaseList"));
         //then
         assertTrue(result);
     }
@@ -42,7 +43,7 @@ public class DatabaseListTest {
     @Test
     public void testCantProcessWithWrongCommand(){
         //when
-        boolean result = command.canProcess("dabaseLList");
+        boolean result = command.canProcess(new InputValidation("dabaseLList"));
         //then
         assertFalse(result);
     }
@@ -51,7 +52,7 @@ public class DatabaseListTest {
     public void testProcessPtint(){
         //when
         when(manager.databasesList()).thenReturn(new HashSet<>(Arrays.asList("test1", "test2")));
-        command.process("databaseList");
+        command.process(new InputValidation("databaseList"));
         //then
         shouldPrint("[-------------------DATABASES----------------, - test2, - test1, --------------------------------------------]");
     }
@@ -60,7 +61,7 @@ public class DatabaseListTest {
     public void testProcessPtintEmptyDatabaseList(){
         //when
         when(manager.databasesList()).thenReturn(new HashSet<>());
-        command.process("databaseList");
+        command.process(new InputValidation("databaseList"));
         //then
         shouldPrint("[-------------------DATABASES----------------, --------------------------------------------]");
     }

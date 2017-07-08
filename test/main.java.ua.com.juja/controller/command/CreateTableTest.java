@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import ua.com.juja.controller.command.Command;
 import ua.com.juja.controller.command.CreateTable;
+import ua.com.juja.controller.command.util.InputValidation;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
@@ -29,7 +30,7 @@ public class CreateTableTest {
     @Test
     public void testCanProcess(){
         //when
-        boolean result = command.canProcess("createTable|");
+        boolean result = command.canProcess(new InputValidation("createTable|"));
         //then
         assertTrue(result);
     }
@@ -37,7 +38,7 @@ public class CreateTableTest {
     @Test
     public void testCantProcessWithWrongParameters(){
         //when
-        boolean result = command.canProcess("createTables|");
+        boolean result = command.canProcess(new InputValidation("createTables|"));
         //then
         assertFalse(result);
     }
@@ -45,8 +46,8 @@ public class CreateTableTest {
     @Test
     public void testProcess(){
         //when
-        command.process("createTable|users(id SERIAL NOT NULL PRIMARY KEY," +
-                "username varchar(225) NOT NULL UNIQUE, password varchar(225))");
+        command.process(new InputValidation("createTable|users(id SERIAL NOT NULL PRIMARY KEY," +
+                "username varchar(225) NOT NULL UNIQUE, password varchar(225))"));
         //then
         verify(manager).createTable("users(id SERIAL NOT NULL PRIMARY KEY," +
                 "username varchar(225) NOT NULL UNIQUE, password varchar(225))");
@@ -57,14 +58,11 @@ public class CreateTableTest {
     public void testProcessWithEmptyParameters() {
         //when
         try {
-            command.process("createTable|users");
+            command.process(new InputValidation("createTable|users|ss"));
             fail("IllegalArgumentException expected");
         }catch (IllegalArgumentException e){
             //then
-            assertEquals("There must be an even number of parameters in the format " +
-                    "'createTable|tableName(id SERIAL NOT NULL PRIMARY KEY," +
-                    "username varchar(225) NOT NULL UNIQUE, password varchar(225))', " +
-                    " but indicated createTable|users", e.getMessage());
+            assertEquals("Invalid number of parameters separated by '|', expected 2, but was: 3", e.getMessage());
         }
     }
 

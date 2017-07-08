@@ -2,6 +2,7 @@ package main.java.ua.com.juja.controller.command;
 
 import ua.com.juja.controller.command.Clear;
 import ua.com.juja.controller.command.Command;
+import ua.com.juja.controller.command.util.InputValidation;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 import org.junit.Before;
@@ -37,12 +38,9 @@ public class ClearTest {
         //given
         when(manager.getTableColumns("users"))
                 .thenReturn((new LinkedHashSet<String>(Arrays.asList("id", "username", "password"))));
-
         //when
-        command.process("clear|users");
-
+        command.process(new InputValidation("clear|users"));
         //then
-
         verify(manager).clear("users");
         verify(view).write("Table users was successfully cleaned.");
     }
@@ -51,8 +49,7 @@ public class ClearTest {
     @Test
     public void clearCanProcessTest() {
         //when
-        boolean result = command.canProcess("clear|users");
-
+        boolean result = command.canProcess(new InputValidation("clear|users"));
         //then
         assertTrue(result);
     }
@@ -60,17 +57,15 @@ public class ClearTest {
     @Test
     public void clearCantProcessWithoutParametersTest() {
         //when
-        boolean result = command.canProcess("clear");
-
+        boolean result = command.canProcess(new InputValidation("clear"));
         //then
-        assertFalse(result);
+        assertTrue(result);
     }
 
     @Test
     public void clearCantProcessWithQWETest() {
         //when
-        boolean result = command.canProcess("qwe|users");
-
+        boolean result = command.canProcess(new InputValidation("qwe|users"));
         //then
         assertFalse(result);
     }
@@ -79,11 +74,11 @@ public class ClearTest {
     public void clearCantProcessWithErrorParametersLessThenTwo() {
         //when
         try {
-            command.process("clear");
+            command.process(new InputValidation("clear"));
             fail();
         } catch (IllegalArgumentException e) {
             //then
-            assertEquals("Format of the command 'clear|tableName', but you type : clear", e.getMessage());
+            assertEquals("Invalid number of parameters separated by '|', expected 2, but was: 1", e.getMessage());
         }
     }
 
@@ -92,11 +87,11 @@ public class ClearTest {
     public void clearCantProcessWithErrorParametersMoreThenTwo() {
         //when
         try {
-            command.process("clear|users|tables");
+            command.process(new InputValidation("clear|users|tables"));
             fail();
         } catch (IllegalArgumentException e) {
             //then
-            assertEquals("Format of the command 'clear|tableName', but you type : clear|users|tables", e.getMessage());
+            assertEquals("Invalid number of parameters separated by '|', expected 2, but was: 3", e.getMessage());
         }
     }
 

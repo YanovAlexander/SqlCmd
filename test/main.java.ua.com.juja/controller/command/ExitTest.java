@@ -4,6 +4,7 @@ import ua.com.juja.controller.command.Command;
 import ua.com.juja.controller.command.Exit;
 import ua.com.juja.controller.command.ExitException;
 import org.junit.Test;
+import ua.com.juja.controller.command.util.InputValidation;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertFalse;
@@ -22,7 +23,7 @@ public class ExitTest {
         //given
         Command command = new Exit(view);
         //when
-        boolean exit = command.canProcess("exit");
+        boolean exit = command.canProcess(new InputValidation("exit"));
         //then
         assertTrue(exit);
     }
@@ -32,7 +33,7 @@ public class ExitTest {
         //given
         Command command = new Exit(view);
         //when
-        boolean exit = command.canProcess("qwe");
+        boolean exit = command.canProcess(new InputValidation("qwe"));
         //then
         assertFalse(exit);
     }
@@ -43,7 +44,7 @@ public class ExitTest {
         Command command = new Exit(view);
         //when
         try {
-            command.process("exit");
+            command.process(new InputValidation("exit"));
             fail("Expected ExitException");
         } catch (ExitException e) {
             //do nothing

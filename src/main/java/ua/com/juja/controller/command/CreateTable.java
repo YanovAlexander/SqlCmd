@@ -1,5 +1,6 @@
 package ua.com.juja.controller.command;
 
+import ua.com.juja.controller.command.util.InputValidation;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
@@ -16,19 +17,16 @@ public class CreateTable implements Command {
     }
 
     @Override
-    public boolean canProcess(String command) {
-        return command.startsWith("createTable|");
+    public String format() {
+        return "createTable|tableName(id SERIAL NOT NULL PRIMARY KEY," +
+                "username varchar(225) NOT NULL UNIQUE, password varchar(225))";
     }
 
     @Override
-    public void process(String command) {
-     int vaildParameters = (command.split("\\(")).length;
-     if (vaildParameters < 2){
-         throw new IllegalArgumentException(String.format("There must be an even number of parameters in the format " +
-                    "'createTable|tableName(id SERIAL NOT NULL PRIMARY KEY," +
-                    "username varchar(225) NOT NULL UNIQUE, password varchar(225))',  but indicated " + command));
-     }
-     String input =  command.split("\\|")[1];
+    public void process(InputValidation command) {
+     command.validationParameters(format());
+     String[] data = command.getParameters();
+     String input =  data[1];
      String tableName = input.split("\\(")[0];
 
      manager.createTable(input);

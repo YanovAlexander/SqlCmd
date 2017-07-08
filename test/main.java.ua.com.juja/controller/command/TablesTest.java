@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import ua.com.juja.controller.command.Command;
 import ua.com.juja.controller.command.Tables;
+import ua.com.juja.controller.command.util.InputValidation;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
@@ -34,23 +35,23 @@ public class TablesTest {
     @Test
     public void testCanProcessWithoutParameter() {
         //when
-        boolean result = command.canProcess("tables");
+        boolean result = command.canProcess(new InputValidation("tables"));
         //then
         assertTrue(result);
     }
 
     @Test
-    public void testCantProcessWithParameters() {
+    public void testCanProcessWithParameters() {
         //when
-        boolean result = command.canProcess("tables|users");
+        boolean result = command.canProcess(new InputValidation("tables|users"));
         //then
-        assertFalse(result);
+        assertTrue(result);
     }
 
     @Test
     public void testCantProcessWithWrongCommand() {
         //when
-        boolean result = command.canProcess("tables1");
+        boolean result = command.canProcess(new InputValidation("tables1"));
         //then
         assertFalse(result);
     }
@@ -59,7 +60,7 @@ public class TablesTest {
     public void testPrintTables() {
         //when
         when(manager.getTableNames()).thenReturn(new HashSet<>(Arrays.asList("users", "test")));
-        command.process("tables");
+        command.process(new InputValidation("tables"));
         //then
         shouldPrint("[-------------------TABLES-------------------, - test, - users, --------------------------------------------]");
     }
@@ -68,7 +69,7 @@ public class TablesTest {
     public void testPrintEmptyTables() {
         //when
         when(manager.getTableNames()).thenReturn(new HashSet<>());
-        command.process("tables");
+        command.process(new InputValidation("tables"));
         //then
         shouldPrint("[-------------------TABLES-------------------, --------------------------------------------]");
     }

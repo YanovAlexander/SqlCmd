@@ -1,6 +1,7 @@
 package ua.com.juja.controller;
 
 import ua.com.juja.controller.command.*;
+import ua.com.juja.controller.command.util.InputValidation;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
@@ -38,12 +39,12 @@ public class MainController {
 
         try {
             while (true) {
-                String input = view.read();
+                InputValidation entry = new InputValidation(view.read());
 
                 for (Command command : commands) {
                     try {
-                        if (command.canProcess(input)) {
-                            command.process(input);
+                        if (command.canProcess(entry)) {
+                            command.process(entry);
                             break;
                         }
                     } catch (Exception e) {

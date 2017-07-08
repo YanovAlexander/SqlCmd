@@ -4,6 +4,7 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import ua.com.juja.controller.command.Command;
 import ua.com.juja.controller.command.Find;
+import ua.com.juja.controller.command.util.InputValidation;
 import ua.com.juja.model.DataSet;
 import ua.com.juja.model.DataSetImpl;
 import ua.com.juja.model.DatabaseManager;
@@ -56,7 +57,7 @@ public class FindTest {
 
         when(manager.getTableData("users")).thenReturn(Arrays.asList(user1, user2));
         //when
-        command.process("find|users");
+        command.process(new InputValidation("find|users"));
         //then
         shouldPrint("[+--+--------+--------+\n" +
                 "|id|username|password|\n" +
@@ -71,7 +72,7 @@ public class FindTest {
     @Test
     public void findCanProcessTest() {
         //when
-        boolean result = command.canProcess("find|users");
+        boolean result = command.canProcess(new InputValidation("find|users"));
         //then
         assertTrue(result);
     }
@@ -79,15 +80,15 @@ public class FindTest {
     @Test
     public void findCantProcessWithoutParametersTest() {
         //when
-        boolean result = command.canProcess("find");
+        boolean result = command.canProcess(new InputValidation("find"));
         //then
-        assertFalse(result);
+        assertTrue(result);
     }
 
     @Test
     public void findCantProcessWithQWETest() {
         //when
-        boolean result = command.canProcess("qwe");
+        boolean result = command.canProcess(new InputValidation("qwe"));
         //then
         assertFalse(result);
     }
@@ -99,7 +100,7 @@ public class FindTest {
                 .thenReturn(new LinkedHashSet<String>(Arrays.asList("id", "username", "password")));
         when(manager.getTableData("users")).thenReturn(new ArrayList<>());
         //when
-        command.process("find|users");
+        command.process(new InputValidation("find|users"));
         //then
 
         shouldPrint("[+--+--------+--------+\n" +
@@ -121,7 +122,7 @@ public class FindTest {
 
         when(manager.getTableData("users")).thenReturn(Arrays.asList(user1, user2));
         //when
-        command.process("find|users");
+        command.process(new InputValidation("find|users"));
         //then
         shouldPrint("[+--+\n" +
                 "|id|\n" +
@@ -139,10 +140,10 @@ public class FindTest {
         when(manager.getTableData("users")).thenReturn(new ArrayList<>());
         //when
         try {
-            command.process("find|users|wtf");
+            command.process(new InputValidation("find|users|wtf"));
             fail("Expected exception");
         } catch (IllegalArgumentException e) {
-            assertEquals("Format of the command 'find|tableName', but indicated : find|users|wtf", e.getMessage());
+            assertEquals("Invalid number of parameters separated by '|', expected 2, but was: 3", e.getMessage());
         }
     }
 

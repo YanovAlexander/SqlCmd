@@ -1,5 +1,6 @@
 package ua.com.juja.controller.command;
 
+import ua.com.juja.controller.command.util.InputValidation;
 import ua.com.juja.view.View;
 
 /**
@@ -14,12 +15,12 @@ public class Exit implements Command {
     }
 
     @Override
-    public boolean canProcess(String command) {
-        return command.equals("exit");
+    public String format() {
+        return "exit";
     }
 
     @Override
-    public void process(String command) {
+    public void process(InputValidation command) {
         view.write("Good Bye !");
         throw new ExitException();
     }

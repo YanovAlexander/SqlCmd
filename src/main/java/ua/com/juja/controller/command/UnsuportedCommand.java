@@ -1,5 +1,6 @@
 package ua.com.juja.controller.command;
 
+import ua.com.juja.controller.command.util.InputValidation;
 import ua.com.juja.view.View;
 
 /**
@@ -13,12 +14,17 @@ public class UnsuportedCommand implements Command {
     }
 
     @Override
-    public boolean canProcess(String command) {
+    public boolean canProcess(InputValidation command) {
         return true;
     }
 
     @Override
-    public void process(String command) {
+    public String format() {
+        return "";
+    }
+
+    @Override
+    public void process(InputValidation command) {
         view.write("Unsupported command :" + command);
     }
 }

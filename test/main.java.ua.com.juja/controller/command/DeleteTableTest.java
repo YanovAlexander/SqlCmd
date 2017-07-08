@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import ua.com.juja.controller.command.Command;
 import ua.com.juja.controller.command.DeleteTable;
+import ua.com.juja.controller.command.util.InputValidation;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
@@ -34,7 +35,7 @@ public class DeleteTableTest {
     @Test
     public void testCanProcess() {
         //when
-        boolean result = command.canProcess("deleteTable|");
+        boolean result = command.canProcess(new InputValidation("deleteTable|"));
         //then
         assertTrue(result);
     }
@@ -42,7 +43,7 @@ public class DeleteTableTest {
     @Test
     public void testCantProcessWithWrongCommand() {
         //when
-        boolean result = command.canProcess("deleteTables|");
+        boolean result = command.canProcess(new InputValidation("deleteTables|"));
         //then
         assertFalse(result);
     }
@@ -51,7 +52,7 @@ public class DeleteTableTest {
     public void testProcess() {
         //when
         when(view.read()).thenReturn("y");
-        command.process("deleteTable|test");
+        command.process(new InputValidation("deleteTable|test"));
         verify(view).write("Do you really want to delete table 'test ? All data will delete ! Press Y/N ?");
         verify(manager).deleteTable("test");
         //then
@@ -62,7 +63,7 @@ public class DeleteTableTest {
     public void testProcessPressNo() {
         //when
         when(view.read()).thenReturn("n");
-        command.process("deleteTable|test");
+        command.process(new InputValidation("deleteTable|test"));
         verify(view).write("Do you really want to delete table 'test ? All data will delete ! Press Y/N ?");
         //then
         verify(view).write("The action is canceled!");
@@ -72,11 +73,12 @@ public class DeleteTableTest {
     public void testDeleteTableWithWrongParameters() {
         //when
         try {
-            command.process("deleteTable|test|one");
+            command.process(new InputValidation("deleteTable|test|one"));
             fail("Expected IllegalArgumentException");
         } catch (IllegalArgumentException e) {
          //then
-            assertEquals("Format of the command 'deleteTable|tableName', but you type : deleteTable|test|one", e.getMessage());
+            assertEquals("Invalid number of parameters separated by '|'," +
+                    " expected 2, but was: 3", e.getMessage());
         }
     }
 }
