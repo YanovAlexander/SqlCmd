@@ -29,7 +29,7 @@ public class DeleteDatabase implements Command {
 
         view.write("Do you really want to delete database '" + databaseName + "' ? All data will delete ! " +
                 "If you sure press Y/N ?");
-        if (view.read().equalsIgnoreCase("Y")){
+        if (view.read().equalsIgnoreCase("Y")) {
             manager.deleteDatabase(databaseName);
             view.write("Database " + databaseName + " delete successful !");
         } else {
