@@ -34,7 +34,7 @@ public abstract class DatabaseManagerTest {
     @Test
     public void selectAllTablesName() {
         Set<String> tableNames = manager.getTableNames();
-        assertEquals("[users, test]", tableNames.toString());
+        assertEquals("[users, test, mytable, mytable22, sss]", tableNames.toString());
     }
 
     @Test
@@ -114,6 +114,4 @@ public abstract class DatabaseManagerTest {
     public void testIsConnected() {
         assertTrue(manager.isConnected());
     }
-
-
 }

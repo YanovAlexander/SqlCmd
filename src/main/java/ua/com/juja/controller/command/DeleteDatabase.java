@@ -30,6 +30,10 @@ public class DeleteDatabase implements Command {
         view.write("Do you really want to delete database '" + databaseName + "' ? All data will delete ! " +
                 "If you sure press Y/N ?");
         if (view.read().equalsIgnoreCase("Y")) {
+            if (databaseName.equals(manager.getDatabaseName())){
+                view.write("You cant delete database to which already connected !");
+                return;
+            }
             manager.deleteDatabase(databaseName);
             view.write("Database " + databaseName + " delete successful !");
         } else {

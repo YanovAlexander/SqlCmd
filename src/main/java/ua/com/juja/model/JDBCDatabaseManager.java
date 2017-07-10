@@ -9,6 +9,7 @@ public class JDBCDatabaseManager implements DatabaseManager {
     //TODO: use PreparedStatement
 
     private Connection connection;
+    private String database;
 
     @Override
     public Set<String> getTableNames() {
@@ -66,6 +67,7 @@ public class JDBCDatabaseManager implements DatabaseManager {
 
     @Override
     public void connect(String databaseName, String userName, String password) {
+        this.database = databaseName;
         try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException e) {
@@ -181,9 +183,9 @@ public class JDBCDatabaseManager implements DatabaseManager {
     @Override
     public void deleteDatabase(String databaseName) {
         try (Statement stmt = connection.createStatement()) {
-            stmt.executeUpdate("DROP DATABASE IF EXISTS " + databaseName);
+            stmt.executeUpdate("DROP DATABASE " + databaseName);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e.getMessage());
         }
     }
 
@@ -208,6 +210,11 @@ public class JDBCDatabaseManager implements DatabaseManager {
         }
         values = values.substring(0, values.length() - 1);
         return values;
+    }
+
+    @Override
+    public String getDatabaseName() {
+        return database;
     }
 
     private String getNamesFormated(DataSet newValue, String format) {

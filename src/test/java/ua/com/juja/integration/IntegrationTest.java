@@ -5,6 +5,8 @@ import ua.com.juja.controller.Main;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.model.JDBCDatabaseManager;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 
 import static org.junit.Assert.assertEquals;
@@ -15,21 +17,30 @@ import static org.junit.Assert.assertEquals;
  */
 public class IntegrationTest {
 
-    private final static String DB_USERNAME = "postgres";
+    private final static String DB_USERNAME = "postgres"; //change only username and password
     private final static String DB_PASSWORD = "pass";
-    private final static String DB_NAME = "postgres"; // db will be deleted, don't put db what you using
+    private final static String DB_NAME = "testing"; // db will be deleted, don't put db what you using
+    private final static String DB_NAME_SECOND = "testingdb";
     private final static String TABLE_NAME = "testing";
     private final static String SQL_CREATE_TABLE = TABLE_NAME + "(id SERIAL PRIMARY KEY," +
             " username VARCHAR (225) UNIQUE NOT NULL," +
             " password VARCHAR (225) NOT NULL)";
 
-    private final String LINE_SEPARATOR = System.lineSeparator();
+    private ConfigurableInputStream in;
+    private ByteArrayOutputStream out;
     private static DatabaseManager manager;
-    private ViewMock view;
 
     @BeforeClass
     public static void init(){
         manager = new JDBCDatabaseManager();
+        try {
+            manager.connect("", DB_USERNAME, DB_PASSWORD);
+        }catch (RuntimeException e){
+            throw new RuntimeException("Please enter the correct dbname, username and password " +
+                    "to run integration tests");
+        }
+        manager.createDatabase(DB_NAME);
+        manager.createDatabase(DB_NAME_SECOND);
         manager.connect(DB_NAME, DB_USERNAME, DB_PASSWORD);
         manager.createTable(SQL_CREATE_TABLE);
 
@@ -37,12 +48,78 @@ public class IntegrationTest {
 
     @Before
     public  void setup() {
-       view = new ViewMock();
+        out = new ByteArrayOutputStream();
+        in = new ConfigurableInputStream();
+        System.setIn(in);
+        System.setOut(new PrintStream(out));
     }
 
     @AfterClass
     public static void clearAfterAllTests(){
-        manager.deleteTable(TABLE_NAME);
+        try{
+            manager.connect("", DB_USERNAME,DB_PASSWORD);
+            manager.deleteDatabase(DB_NAME);
+            manager.deleteDatabase(DB_NAME_SECOND);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
+    public void testHelp(){
+        //given
+        in.add("help");
+        in.add("exit");
+
+        //when
+        Main.main(new String[0]);
+
+        //then
+        assertEquals("Welcome!\n" +
+                "Enter the database name, username, and password of the user in format :" +
+                " connect|database|username|password  or use 'help' to list all commands\n" +
+                "\t+----------------------------COMMANDS------------------------------\n" +
+                "\t| connect|database|username|password\n" +
+                "\t|\t-> To get to the database, with which it is necessary to work\n" +
+                "\t+------------------------------------------------------------------\n" +
+                "\t| tables\n" +
+                "\t|\t-> To get a list of all database tables\n" +
+                "\t+------------------------------------------------------------------\n" +
+                "\t| databaseList\n" +
+                "\t|\t -> To get a list of all databases\n" +
+                "\t+------------------------------------------------------------------\n" +
+                "\t| find|tableName\n" +
+                "\t|\t-> To retrieve table contents 'tableName'\n" +
+                "\t+------------------------------------------------------------------\n" +
+                "\t| clear|tableName\n" +
+                "\t|\t-> To clear the entire table with the name 'tableName'\n" +
+                "\t+------------------------------------------------------------------\n" +
+                "\t| insertEntry|tableName|column1|value1|column2|value2...columnN|valueN\n" +
+                "\t|\t-> To create an entry in the table named 'tableName'\n" +
+                "\t+------------------------------------------------------------------\n" +
+                "\t| createDatabase|databaseName\n" +
+                "\t|\t -> Create new database named 'databaseName'\n" +
+                "\t+------------------------------------------------------------------\n" +
+                "\t| createTable|tableName(column1,column2,...,columnN)\n" +
+                "\t|\t -> Create new table named 'tableName', in parentheses enter\n" +
+                " \t| column description in SQL format example:\n" +
+                "\t| user(id SERIAL NOT NULL PRIMARY KEY,username varchar(225)\n" +
+                "\t| NOT NULL UNIQUE, password varchar(225))\n" +
+                "\t+------------------------------------------------------------------\n" +
+                "\t| deleteDatabase|databaseName\n" +
+                "\t|\t -> Delete database named 'databaseName'\n" +
+                "\t+------------------------------------------------------------------\n" +
+                "\t| deleteTable|tableName\n" +
+                "\t|\t -> Delete table named 'tableName'\n" +
+                "\t+------------------------------------------------------------------\n" +
+                "\t| exit\n" +
+                "\t|\t-> To terminate the application\n" +
+                "\t+------------------------------------------------------------------\n" +
+                "\t| help\n" +
+                "\t|\t-> To display this list on the screen\n" +
+                "\t+------------------------------------------------------------------\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Good Bye !\n", getData());
     }
 
 
@@ -50,232 +127,300 @@ public class IntegrationTest {
     @Test
     public void testExit() {
         //given
-        view.addIn("exit");
+        in.add("exit");
 
         //when
         Main.main(new String[0]);
 
         //then
-        assertOutput("Welcome!\n" +
+        assertEquals("Welcome!\n" +
                 "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
-                "exit\n" +
-                "Good Bye !\n");
+                "Good Bye !\n", getData());
     }
 
     @Test
     public void testTablesWithoutConnect() {
         //given
-        view.addIn("tables");
-        view.addIn("exit");
+        in.add("tables");
+        in.add("exit");
 
         //when
         Main.main(new String[0]);
 
         //then
-        assertOutput("Welcome!\n" +
+        assertEquals("Welcome!\n" +
                 "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
-                "tables\n" +
                 "You can not use the command 'tables', while not connect with the command connect|database|username|password\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "exit\n" +
-                "Good Bye !\n");
+                "Good Bye !\n", getData());
     }
 
     @Test
     public void testTablesFindUsersWithoutConnect() {
         //given
-        view.addIn("find|users");
-        view.addIn("exit");
+        in.add("find|users");
+        in.add("exit");
 
         //when
         Main.main(new String[0]);
 
         //then
-        assertOutput("Welcome!\n" +
+        assertEquals("Welcome!\n" +
                 "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
-                "find|users\n" +
                 "You can not use the command 'find|users', while not connect with the command connect|database|username|password\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "exit\n" +
-                "Good Bye !\n");
+                "Good Bye !\n", getData());
+    }
+
+    @Test
+    public void testTablesAfterConnect(){
+        //when
+        in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("tables");
+        in.add("connect||" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("exit");
+
+        //then
+        Main.main(new String[0]);
+
+        //then
+        assertEquals("Welcome!\n" +
+                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
+                "Connected successful\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "-------------------TABLES-------------------\n" +
+                "- testing\n" +
+                "--------------------------------------------\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Connected successful\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Good Bye !\n", getData());
+    }
+
+    @Test
+    public void testFindAfterConnect(){
+        //given
+        in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("find|" + DB_NAME);
+        in.add("connect||" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("exit");
+
+        //when
+        Main.main(new String[0]);
+
+        //then
+        assertEquals("Welcome!\n" +
+                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
+                "Connected successful\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "+--+--------+--------+\n" +
+                "|id|username|password|\n" +
+                "+--+--------+--------+\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Connected successful\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Good Bye !\n", getData());
+    }
+
+    @Test
+    public void testFindAfterConnectWithAddingData(){
+        //given
+        in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("insertEntry|testing|id|10|username|Alexandero|password|+++000");
+        in.add("find|" + DB_NAME);
+        in.add("connect||" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("exit");
+
+        //when
+        Main.main(new String[0]);
+
+        //then
+        assertEquals("Welcome!\n" +
+                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
+                "Connected successful\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "{names = [id, username, password], values = [10, Alexandero, +++000], } was successfully created in table testing.\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "+--+----------+--------+\n" +
+                "|id|username  |password|\n" +
+                "+--+----------+--------+\n" +
+                "|10|Alexandero|+++000  |\n" +
+                "+--+----------+--------+\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Connected successful\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Good Bye !\n", getData());
     }
 
     @Test
     public void testUnsupportedWithoutConnect() {
         //given
-        view.addIn("asdf");
-        view.addIn("exit");
+        in.add("asdf");
+        in.add("exit");
 
         //when
         Main.main(new String[0]);
 
         //then
-        assertOutput("Welcome!\n" +
+        assertEquals("Welcome!\n" +
                 "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
-                "asdf\n" +
                 "You can not use the command 'asdf', while not connect with the command connect|database|username|password\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "exit\n" +
-                "Good Bye !\n");
+                "Good Bye !\n", getData());
     }
 
     @Test
     public void testUnsupportedWithConnect() {
         //given
-        view.addIn("connect|postgres|postgres|pass");
-        view.addIn("asdf");
-        view.addIn("exit");
+        in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("asdf");
+        in.add("connect||" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("exit");
 
         //when
         Main.main(new String[0]);
 
         //then
-        assertOutput("Welcome!\n" +
+        assertEquals("Welcome!\n" +
                 "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
-                "connect|postgres|postgres|pass\n" +
                 "Connected successful\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "asdf\n" +
                 "Unsupported command :asdf\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "exit\n" +
-                "Good Bye !\n");
+                "Connected successful\n" +
+                "Type command (or use 'help' to list all commands):\n"+
+                "Good Bye !\n", getData());
     }
 
     @Test
     public void testConnectAfterConnect() {
         //given
-        view.addIn("connect|postgres|postgres|pass");
-        view.addIn("tables");
-        view.addIn("connect|test|postgres|pass"); //TODO switch to 'testing'
-        view.addIn("tables");
-        view.addIn("exit");
+        in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("tables");
+        in.add("connect|" + DB_NAME_SECOND + "|postgres|pass");
+        in.add("tables");
+        in.add("connect||" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("exit");
 
         //when
         Main.main(new String[0]);
 
         //then
-        assertOutput("Welcome!\n" +
+        assertEquals("Welcome!\n" +
                 "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
-                "connect|postgres|postgres|pass\n" +
                 "Connected successful\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "tables\n" +
                 "-------------------TABLES-------------------\n" +
-                "- users\n" +
-                "- test\n" +
-                "- mytable\n" +
-                "- mytable22\n" +
-                "- sss\n" +
-                "- testing\n" +
+                "- testing\n"+
                 "--------------------------------------------\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "connect|test|postgres|pass\n" +
                 "Connected successful\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "tables\n" +
                 "-------------------TABLES-------------------\n" +
-                "- ratata\n" +
                 "--------------------------------------------\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "exit\n" +
-                "Good Bye !\n");
+                "Connected successful\n" +
+                "Type command (or use 'help' to list all commands):\n"+
+                "Good Bye !\n", getData());
     }
 
     @Test
     public void testConnectWithError() {
         //given
-        view.addIn("connect|postgres");
-        view.addIn("exit");
+        in.add("connect|postgres");
+        in.add("exit");
 
         //when
         Main.main(new String[0]);
 
         //then
-        assertOutput("Welcome!\n" +
+        assertEquals("Welcome!\n" +
                 "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
-                "connect|postgres\n" +
                 "Error! Because of: Invalid number of parameters separated by '|', expected 4, but was: 2\n" +
                 "Please try again.\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "exit\n" +
-                "Good Bye !\n");
+                "Good Bye !\n", getData());
     }
 
     @Test
     public void testClearWithError() {
         //given
-        view.addIn("connect|postgres|postgres|pass");
-        view.addIn("clear");
-        view.addIn("exit");
+        in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("clear");
+        in.add("connect||" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("exit");
 
         //when
         Main.main(new String[0]);
 
         //then
-        assertOutput("Welcome!\n" +
+        assertEquals("Welcome!\n" +
                 "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
-                "connect|postgres|postgres|pass\n" +
                 "Connected successful\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "clear\n" +
                 "Error! Because of: Invalid number of parameters separated by '|', expected 2, but was: 1\n" +
                 "Please try again.\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "exit\n" +
-                "Good Bye !\n");
+                "Connected successful\n" +
+                "Type command (or use 'help' to list all commands):\n"+
+                "Good Bye !\n", getData());
     }
 
     @Test
     public void testClearUnsupported() {
         //given
-        view.addIn("connect|postgres|postgres|pass");
-        view.addIn("clear|papspsps|asasasa");
-        view.addIn("exit");
+        in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("clear|papspsps|asasasa");
+        in.add("connect||" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("exit");
 
         //when
         Main.main(new String[0]);
 
         //then
-        assertOutput("Welcome!\n" +
+        assertEquals("Welcome!\n" +
                 "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
-                "connect|postgres|postgres|pass\n" +
                 "Connected successful\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "clear|papspsps|asasasa\n" +
                 "Error! Because of: Invalid number of parameters separated by '|', expected 2, but was: 3\n" +
                 "Please try again.\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "exit\n" +
-                "Good Bye !\n");
+                "Connected successful\n" +
+                "Type command (or use 'help' to list all commands):\n"+
+                "Good Bye !\n", getData());
     }
 
     @Test
     public void testCreatUserWithError() {
         //given
-        view.addIn("connect|postgres|postgres|pass");
-        view.addIn("insertEntry|users|bugaga");
-        view.addIn("exit");
+        in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("insertEntry|users|bugaga");
+        in.add("connect||" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("exit");
 
         //when
         Main.main(new String[0]);
 
         //then
-        assertOutput("Welcome!\n" +
+        assertEquals("Welcome!\n" +
                 "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
-                "connect|postgres|postgres|pass\n" +
                 "Connected successful\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "insertEntry|users|bugaga\n" +
                 "Error! Because of: Invalid command, you must enter and even number of parameters in the following format : insertEntry|tableName|column1|value1|column2|value2...columnN|valueN\n" +
                 "Please try again.\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "exit\n" +
-                "Good Bye !\n");
+                "Connected successful\n" +
+                "Type command (or use 'help' to list all commands):\n"+
+                "Good Bye !\n", getData());
     }
 
-
-  private void assertOutput(String expected){
-        assertEquals(expected.replaceAll("\\n", System.lineSeparator()).replaceAll("%s", "\n"), view.getOut());
-  }
+    public String getData() {
+        try {
+            String result = new String(out.toByteArray(), "UTF-8").replaceAll("\r\n", "\n");
+            out.reset();
+            return result;
+        } catch (UnsupportedEncodingException e) {
+            return e.getMessage();
+        }
+    }
 }

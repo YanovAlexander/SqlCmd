@@ -33,5 +33,7 @@ public interface DatabaseManager {
 
     void createTable(String tableName);
 
+    String getDatabaseName();
+
     boolean isConnected();
 }
