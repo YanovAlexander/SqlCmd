@@ -48,6 +48,10 @@ public class Help implements Command {
         view.write("\t|\t-> To create an entry in the table named 'tableName'"); //TODO если ввел команду, переспросить
         view.write("\t+------------------------------------------------------------------");
 
+        view.write("\t| updateEntry|tableName|ID");
+        view.write("\t|\t-> update the entry in the table 'tableName' using the ID");
+        view.write("\t+------------------------------------------------------------------");
+
         view.write("\t| createDatabase|databaseName");
         view.write("\t|\t -> Create new database named 'databaseName'");
         view.write("\t+------------------------------------------------------------------");

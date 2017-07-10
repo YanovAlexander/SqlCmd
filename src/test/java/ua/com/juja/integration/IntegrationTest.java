@@ -97,6 +97,9 @@ public class IntegrationTest {
                 "\t| insertEntry|tableName|column1|value1|column2|value2...columnN|valueN\n" +
                 "\t|\t-> To create an entry in the table named 'tableName'\n" +
                 "\t+------------------------------------------------------------------\n" +
+                "\t| updateEntry|tableName|ID\n" +
+                "\t|\t-> update the entry in the table 'tableName' using the ID\n" +
+                "\t+------------------------------------------------------------------\n" +
                 "\t| createDatabase|databaseName\n" +
                 "\t|\t -> Create new database named 'databaseName'\n" +
                 "\t+------------------------------------------------------------------\n" +

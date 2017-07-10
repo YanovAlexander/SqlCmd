@@ -24,6 +24,7 @@ public class MainController {
                 new Tables(view, manager),
                 new Clear(view, manager),
                 new InsertEntry(view, manager),
+                new UpdateEntry(view, manager),
                 new CreateDatabase(view, manager),
                 new CreateTable(view, manager),
                 new DatabaseList(view, manager),
