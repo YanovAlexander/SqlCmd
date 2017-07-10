@@ -30,6 +30,7 @@ public class MainController {
                 new DatabaseList(view, manager),
                 new DeleteTable(view, manager),
                 new DeleteDatabase(view, manager),
+                new DisconnectFromDB(view, manager),
                 new UnsuportedCommand(view)};
     }
 
@@ -62,6 +63,7 @@ public class MainController {
             //do nothing...
         }
     }
+
 
     private void printError(Exception e) {
         String message = e.getMessage();

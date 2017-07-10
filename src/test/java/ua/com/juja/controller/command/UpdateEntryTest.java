@@ -1,5 +1,6 @@
 package ua.com.juja.controller.command;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import ua.com.juja.controller.command.util.InputValidation;

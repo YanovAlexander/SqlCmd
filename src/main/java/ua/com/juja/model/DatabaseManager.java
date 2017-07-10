@@ -31,6 +31,8 @@ public interface DatabaseManager {
 
     void deleteDatabase(String databaseName);
 
+    void disconnectFromDB();
+
     void createTable(String tableName);
 
     String getDatabaseName();

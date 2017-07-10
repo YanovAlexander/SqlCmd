@@ -45,7 +45,7 @@ public class Help implements Command {
         view.write("\t+------------------------------------------------------------------");
 
         view.write("\t| insertEntry|tableName|column1|value1|column2|value2...columnN|valueN");
-        view.write("\t|\t-> To create an entry in the table named 'tableName'"); //TODO если ввел команду, переспросить
+        view.write("\t|\t-> To create an entry in the table named 'tableName'");
         view.write("\t+------------------------------------------------------------------");
 
         view.write("\t| updateEntry|tableName|ID");
@@ -69,6 +69,10 @@ public class Help implements Command {
 
         view.write("\t| deleteTable|tableName");
         view.write("\t|\t -> Delete table named 'tableName'");
+        view.write("\t+------------------------------------------------------------------");
+
+        view.write("\t| disconnect");
+        view.write("\t|\t -> disconnect from current database");
         view.write("\t+------------------------------------------------------------------");
 
         view.write("\t| exit");

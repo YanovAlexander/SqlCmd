@@ -10,6 +10,9 @@ public class JDBCDatabaseManager implements DatabaseManager {
 
     private Connection connection;
     private String database;
+    private String userName;
+    private String password;
+    private boolean isConnected;
 
     @Override
     public Set<String> getTableNames() {
@@ -67,6 +70,13 @@ public class JDBCDatabaseManager implements DatabaseManager {
 
     @Override
     public void connect(String databaseName, String userName, String password) {
+        if (userName != null && password != null){
+            this.userName = userName;
+            this.password = password;
+        }
+        if (!"".equals(databaseName)){
+            isConnected = true;
+        }
         this.database = databaseName;
         try {
             Class.forName("org.postgresql.Driver");
@@ -199,8 +209,14 @@ public class JDBCDatabaseManager implements DatabaseManager {
     }
 
     @Override
+    public void disconnectFromDB() {
+        isConnected = false;
+        connect("", userName, password);
+    }
+
+    @Override
     public boolean isConnected() {
-        return connection != null;
+        return isConnected;
     }
 
     private String getValuesFormated(DataSet input, String format) {

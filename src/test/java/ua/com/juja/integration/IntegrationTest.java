@@ -19,7 +19,7 @@ public class IntegrationTest {
 
     private final static String DB_USERNAME = "postgres"; //change only username and password
     private final static String DB_PASSWORD = "pass";
-    private final static String DB_NAME = "testing"; // db will be deleted, don't put db what you using
+    private final static String DB_NAME = "testing"; // db will be deleted, don't put db what you using, dont change db
     private final static String DB_NAME_SECOND = "testingdb";
     private final static String TABLE_NAME = "testing";
     private final static String SQL_CREATE_TABLE = TABLE_NAME + "(id SERIAL PRIMARY KEY," +
@@ -31,11 +31,11 @@ public class IntegrationTest {
     private static DatabaseManager manager;
 
     @BeforeClass
-    public static void init(){
+    public static void init() {
         manager = new JDBCDatabaseManager();
         try {
             manager.connect("", DB_USERNAME, DB_PASSWORD);
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             throw new RuntimeException("Please enter the correct dbname, username and password " +
                     "to run integration tests");
         }
@@ -43,11 +43,10 @@ public class IntegrationTest {
         manager.createDatabase(DB_NAME_SECOND);
         manager.connect(DB_NAME, DB_USERNAME, DB_PASSWORD);
         manager.createTable(SQL_CREATE_TABLE);
-
     }
 
     @Before
-    public  void setup() {
+    public void setup() {
         out = new ByteArrayOutputStream();
         in = new ConfigurableInputStream();
         System.setIn(in);
@@ -55,18 +54,18 @@ public class IntegrationTest {
     }
 
     @AfterClass
-    public static void clearAfterAllTests(){
-        try{
-            manager.connect("", DB_USERNAME,DB_PASSWORD);
+    public static void clearAfterAllTests() {
+        try {
+            manager.connect("", DB_USERNAME, DB_PASSWORD);
             manager.deleteDatabase(DB_NAME);
             manager.deleteDatabase(DB_NAME_SECOND);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     @Test
-    public void testHelp(){
+    public void testHelp() {
         //given
         in.add("help");
         in.add("exit");
@@ -76,55 +75,57 @@ public class IntegrationTest {
 
         //then
         assertEquals("Welcome!\n" +
-                "Enter the database name, username, and password of the user in format :" +
-                " connect|database|username|password  or use 'help' to list all commands\n" +
-                "\t+----------------------------COMMANDS------------------------------\n" +
-                "\t| connect|database|username|password\n" +
-                "\t|\t-> To get to the database, with which it is necessary to work\n" +
-                "\t+------------------------------------------------------------------\n" +
-                "\t| tables\n" +
-                "\t|\t-> To get a list of all database tables\n" +
-                "\t+------------------------------------------------------------------\n" +
-                "\t| databaseList\n" +
-                "\t|\t -> To get a list of all databases\n" +
-                "\t+------------------------------------------------------------------\n" +
-                "\t| find|tableName\n" +
-                "\t|\t-> To retrieve table contents 'tableName'\n" +
-                "\t+------------------------------------------------------------------\n" +
-                "\t| clear|tableName\n" +
-                "\t|\t-> To clear the entire table with the name 'tableName'\n" +
-                "\t+------------------------------------------------------------------\n" +
-                "\t| insertEntry|tableName|column1|value1|column2|value2...columnN|valueN\n" +
-                "\t|\t-> To create an entry in the table named 'tableName'\n" +
-                "\t+------------------------------------------------------------------\n" +
-                "\t| updateEntry|tableName|ID\n" +
-                "\t|\t-> update the entry in the table 'tableName' using the ID\n" +
-                "\t+------------------------------------------------------------------\n" +
-                "\t| createDatabase|databaseName\n" +
-                "\t|\t -> Create new database named 'databaseName'\n" +
-                "\t+------------------------------------------------------------------\n" +
-                "\t| createTable|tableName(column1,column2,...,columnN)\n" +
-                "\t|\t -> Create new table named 'tableName', in parentheses enter\n" +
-                " \t| column description in SQL format example:\n" +
-                "\t| user(id SERIAL NOT NULL PRIMARY KEY,username varchar(225)\n" +
-                "\t| NOT NULL UNIQUE, password varchar(225))\n" +
-                "\t+------------------------------------------------------------------\n" +
-                "\t| deleteDatabase|databaseName\n" +
-                "\t|\t -> Delete database named 'databaseName'\n" +
-                "\t+------------------------------------------------------------------\n" +
-                "\t| deleteTable|tableName\n" +
-                "\t|\t -> Delete table named 'tableName'\n" +
-                "\t+------------------------------------------------------------------\n" +
-                "\t| exit\n" +
-                "\t|\t-> To terminate the application\n" +
-                "\t+------------------------------------------------------------------\n" +
-                "\t| help\n" +
-                "\t|\t-> To display this list on the screen\n" +
-                "\t+------------------------------------------------------------------\n" +
-                "Type command (or use 'help' to list all commands):\n" +
-                "Good Bye !\n", getData());
+                        "Enter the database name, username, and password of the user in format :" +
+                        " connect|database|username|password  or use 'help' to list all commands\n" +
+                        "\t+----------------------------COMMANDS------------------------------\n" +
+                        "\t| connect|database|username|password\n" +
+                        "\t|\t-> To get to the database, with which it is necessary to work\n" +
+                        "\t+------------------------------------------------------------------\n" +
+                        "\t| tables\n" +
+                        "\t|\t-> To get a list of all database tables\n" +
+                        "\t+------------------------------------------------------------------\n" +
+                        "\t| databaseList\n" +
+                        "\t|\t -> To get a list of all databases\n" +
+                        "\t+------------------------------------------------------------------\n" +
+                        "\t| find|tableName\n" +
+                        "\t|\t-> To retrieve table contents 'tableName'\n" +
+                        "\t+------------------------------------------------------------------\n" +
+                        "\t| clear|tableName\n" +
+                        "\t|\t-> To clear the entire table with the name 'tableName'\n" +
+                        "\t+------------------------------------------------------------------\n" +
+                        "\t| insertEntry|tableName|column1|value1|column2|value2...columnN|valueN\n" +
+                        "\t|\t-> To create an entry in the table named 'tableName'\n" +
+                        "\t+------------------------------------------------------------------\n" +
+                        "\t| updateEntry|tableName|ID\n" +
+                        "\t|\t-> update the entry in the table 'tableName' using the ID\n" +
+                        "\t+------------------------------------------------------------------\n" +
+                        "\t| createDatabase|databaseName\n" +
+                        "\t|\t -> Create new database named 'databaseName'\n" +
+                        "\t+------------------------------------------------------------------\n" +
+                        "\t| createTable|tableName(column1,column2,...,columnN)\n" +
+                        "\t|\t -> Create new table named 'tableName', in parentheses enter\n" +
+                        " \t| column description in SQL format example:\n" +
+                        "\t| user(id SERIAL NOT NULL PRIMARY KEY,username varchar(225)\n" +
+                        "\t| NOT NULL UNIQUE, password varchar(225))\n" +
+                        "\t+------------------------------------------------------------------\n" +
+                        "\t| deleteDatabase|databaseName\n" +
+                        "\t|\t -> Delete database named 'databaseName'\n" +
+                        "\t+------------------------------------------------------------------\n" +
+                        "\t| deleteTable|tableName\n" +
+                        "\t|\t -> Delete table named 'tableName'\n" +
+                        "\t+------------------------------------------------------------------\n" +
+                        "\t| disconnect\n" +
+                        "\t|\t -> disconnect from current database\n" +
+                        "\t+------------------------------------------------------------------\n" +
+                        "\t| exit\n" +
+                        "\t|\t-> To terminate the application\n" +
+                        "\t+------------------------------------------------------------------\n" +
+                        "\t| help\n" +
+                        "\t|\t-> To display this list on the screen\n" +
+                        "\t+------------------------------------------------------------------\n" +
+                        "Type command (or use 'help' to list all commands):\n" +
+                        "Good Bye !\n", getData());
     }
-
 
 
     @Test
@@ -176,7 +177,7 @@ public class IntegrationTest {
     }
 
     @Test
-    public void testTablesAfterConnect(){
+    public void testTablesAfterConnect() {
         //when
         in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
         in.add("tables");
@@ -201,7 +202,7 @@ public class IntegrationTest {
     }
 
     @Test
-    public void testFindAfterConnect(){
+    public void testFindAfterConnect() {
         //given
         in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
         in.add("find|" + DB_NAME);
@@ -226,7 +227,7 @@ public class IntegrationTest {
     }
 
     @Test
-    public void testFindAfterConnectWithAddingData(){
+    public void testFindAfterConnectWithAddingData() {
         //given
         in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
         in.add("insertEntry|testing|id|10|username|Alexandero|password|+++000");
@@ -291,7 +292,7 @@ public class IntegrationTest {
                 "Unsupported command :asdf\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Connected successful\n" +
-                "Type command (or use 'help' to list all commands):\n"+
+                "Type command (or use 'help' to list all commands):\n" +
                 "Good Bye !\n", getData());
     }
 
@@ -314,7 +315,7 @@ public class IntegrationTest {
                 "Connected successful\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "-------------------TABLES-------------------\n" +
-                "- testing\n"+
+                "- testing\n" +
                 "--------------------------------------------\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Connected successful\n" +
@@ -323,7 +324,7 @@ public class IntegrationTest {
                 "--------------------------------------------\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Connected successful\n" +
-                "Type command (or use 'help' to list all commands):\n"+
+                "Type command (or use 'help' to list all commands):\n" +
                 "Good Bye !\n", getData());
     }
 
@@ -365,7 +366,7 @@ public class IntegrationTest {
                 "Please try again.\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Connected successful\n" +
-                "Type command (or use 'help' to list all commands):\n"+
+                "Type command (or use 'help' to list all commands):\n" +
                 "Good Bye !\n", getData());
     }
 
@@ -389,7 +390,7 @@ public class IntegrationTest {
                 "Please try again.\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Connected successful\n" +
-                "Type command (or use 'help' to list all commands):\n"+
+                "Type command (or use 'help' to list all commands):\n" +
                 "Good Bye !\n", getData());
     }
 
@@ -413,9 +414,10 @@ public class IntegrationTest {
                 "Please try again.\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Connected successful\n" +
-                "Type command (or use 'help' to list all commands):\n"+
+                "Type command (or use 'help' to list all commands):\n" +
                 "Good Bye !\n", getData());
     }
+
 
     public String getData() {
         try {
