@@ -11,6 +11,9 @@ public class Connect implements Command {
 
     private DatabaseManager manager;
     private View view;
+    private final static Integer DATABASE_NAME = 1;
+    private final static Integer USER_NAME = 2;
+    private final static Integer PASSWORD = 3;
 
     public Connect(View view, DatabaseManager manager) {
         this.view = view;
@@ -26,9 +29,9 @@ public class Connect implements Command {
     public void process(InputValidation command) {
         command.validationParameters(format());
         String[] data = command.getParameters();
-        String databaseName = data[1];
-        String userName = data[2];
-        String password = data[3];
+        String databaseName = data[DATABASE_NAME];
+        String userName = data[USER_NAME];
+        String password = data[PASSWORD];
 
         manager.connect(databaseName, userName, password);
         view.write("Connected successful");

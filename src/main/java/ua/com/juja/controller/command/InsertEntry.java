@@ -12,6 +12,7 @@ import ua.com.juja.view.View;
 public class InsertEntry implements Command {
     private View view;
     private DatabaseManager manager;
+    private final static Integer TABLE_NAME = 1;
 
     public InsertEntry(View view, DatabaseManager manager) {
 
@@ -28,7 +29,7 @@ public class InsertEntry implements Command {
     public void process(InputValidation command) {
         command.validationPairs(format());
         String[] data = command.getParameters();
-        String tableName = data[1];
+        String tableName = data[TABLE_NAME];
 
         DataSet dataSet = new DataSetImpl();
         for (int index = 1; index < (data.length / 2); index++) {

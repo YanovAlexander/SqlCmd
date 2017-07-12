@@ -10,6 +10,7 @@ import ua.com.juja.view.View;
 public class CreateDatabase implements Command {
     private View view;
     private DatabaseManager manager;
+    private final static Integer DATABASE_NAME = 1;
 
     public CreateDatabase(View view, DatabaseManager manager) {
         this.view = view;
@@ -25,7 +26,7 @@ public class CreateDatabase implements Command {
     public void process(InputValidation command) {
         command.validationParameters(format());
         String[] data = command.getParameters();
-        String databaseName = data[1];
+        String databaseName = data[DATABASE_NAME];
 
         manager.createDatabase(databaseName);
         view.write("Database with name "+ databaseName + " created successful !" );

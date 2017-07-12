@@ -10,6 +10,8 @@ import ua.com.juja.view.View;
 public class CreateTable implements Command {
     private View view;
     private DatabaseManager manager;
+    private final static Integer TABLE_WITH_DATA = 1;
+    private final static Integer TABLE_NAME = 0;
 
     public CreateTable(View view, DatabaseManager manager) {
         this.view = view;
@@ -26,8 +28,8 @@ public class CreateTable implements Command {
     public void process(InputValidation command) {
      command.validationParameters(format());
      String[] data = command.getParameters();
-     String input =  data[1];
-     String tableName = input.split("\\(")[0];
+     String input =  data[TABLE_WITH_DATA];
+     String tableName = input.split("\\(")[TABLE_NAME];
 
      manager.createTable(input);
      view.write("Table with name " + tableName + " created successful !");

@@ -36,7 +36,7 @@ public class IntegrationTest {
         try {
             manager.connect("", DB_USERNAME, DB_PASSWORD);
         } catch (RuntimeException e) {
-            throw new RuntimeException("Please enter the correct dbname, username and password " +
+            throw new RuntimeException("Please enter the correct  DB_USERNAME and DB_PASSWORD " +
                     "to run integration tests");
         }
         manager.createDatabase(DB_NAME);

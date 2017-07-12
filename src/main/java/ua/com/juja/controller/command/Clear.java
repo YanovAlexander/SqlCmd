@@ -10,6 +10,7 @@ import ua.com.juja.view.View;
 public class Clear implements Command {
     private View view;
     private DatabaseManager manager;
+    private final static Integer TABLE_NAME = 1;
 
     public Clear(View view, DatabaseManager manager) {
         this.view = view;
@@ -25,7 +26,7 @@ public class Clear implements Command {
     public void process(InputValidation command) {
         command.validationParameters(format());
         String[] data = command.getParameters();
-        String tableName = data[1];
+        String tableName = data[TABLE_NAME];
 
         manager.clear(tableName);
         view.write(String.format("Table %s was successfully cleaned.", tableName));

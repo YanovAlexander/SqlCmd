@@ -16,6 +16,7 @@ public class Find implements Command {
 
     private View view;
     private DatabaseManager manager;
+    private final static Integer TABLE_NAME = 1;
 
     public Find(View view, DatabaseManager manager) {
         this.view = view;
@@ -31,7 +32,7 @@ public class Find implements Command {
     public void process(InputValidation command) {
         command.validationParameters(format());
         String[] data = command.getParameters();
-        String tableName = data[1];
+        String tableName = data[TABLE_NAME];
 
         Set<String> tableColumns = manager.getTableColumns(tableName);
         List<DataSet> tableData = manager.getTableData(tableName);

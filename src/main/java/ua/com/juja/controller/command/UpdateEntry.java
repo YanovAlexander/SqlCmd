@@ -13,6 +13,8 @@ import ua.com.juja.view.View;
 public class UpdateEntry implements Command {
     private DatabaseManager manager;
     private View view;
+    private final static Integer TABLE_NAME = 1;
+    private final static Integer USER_ID = 2;
 
     public UpdateEntry(View view, DatabaseManager manager){
         this.manager = manager;
@@ -42,10 +44,10 @@ public class UpdateEntry implements Command {
 
             dataSet.put(columnName, value);
         }
-        String userID = data[2];
+        String userID = data[USER_ID];
         int id = Integer.parseInt(userID);
 
-        String tableName = data[1];
+        String tableName = data[TABLE_NAME];
         manager.update(tableName, id, dataSet);
         view.write("Update is successful !");
     }

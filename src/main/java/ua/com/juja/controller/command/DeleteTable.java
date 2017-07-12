@@ -10,6 +10,7 @@ import ua.com.juja.view.View;
 public class DeleteTable implements Command {
     private View view;
     private DatabaseManager manager;
+    private final static Integer TABLE_NAME = 1;
 
     public DeleteTable(View view, DatabaseManager manager) {
         this.view = view;
@@ -25,7 +26,7 @@ public class DeleteTable implements Command {
     public void process(InputValidation command) {
         command.validationParameters(format());
         String[] data = command.getParameters();
-        String tableName = data[1];
+        String tableName = data[TABLE_NAME];
 
         view.write("Do you really want to delete table '" + tableName + " ? All data will delete ! Press Y/N ?");
         if (view.read().equalsIgnoreCase("Y")){
