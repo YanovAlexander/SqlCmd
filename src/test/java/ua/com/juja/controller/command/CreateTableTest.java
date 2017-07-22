@@ -28,7 +28,7 @@ public class CreateTableTest {
     @Test
     public void testCanProcess(){
         //when
-        InputString userInput = new InputString("createTable|");
+        InputString userInput = new InputString("createTable");
         boolean result = command.canProcess(userInput);
         //then
         assertTrue(result);
@@ -42,30 +42,4 @@ public class CreateTableTest {
         //then
         assertFalse(result);
     }
-
-    @Test
-    public void testProcess(){
-        //when
-        InputString userInput = new InputString("createTable|users(id SERIAL NOT NULL PRIMARY KEY," +
-                "username varchar(225) NOT NULL UNIQUE, password varchar(225))");
-        command.process(userInput);
-        //then
-        verify(manager).createTable("users(id SERIAL NOT NULL PRIMARY KEY," +
-                "username varchar(225) NOT NULL UNIQUE, password varchar(225))");
-        verify(view).write("Table with name users created successful !");
-    }
-
-    @Test
-    public void testProcessWithEmptyParameters() {
-        //when
-        try {
-            InputString userInput = new InputString("createTable|users|ss");
-            command.process(userInput);
-            fail("IllegalArgumentException expected");
-        }catch (IllegalArgumentException e){
-            //then
-            assertEquals("Invalid number of parameters separated by '|', expected 2, but was: 3", e.getMessage());
-        }
-    }
-
 }
