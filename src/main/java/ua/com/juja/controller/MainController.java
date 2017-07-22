@@ -1,21 +1,25 @@
 package ua.com.juja.controller;
 
 import ua.com.juja.controller.command.*;
-import ua.com.juja.controller.command.util.InputValidation;
+import ua.com.juja.controller.command.util.InputString;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Alexandero on 13.06.2017.
  */
 public class MainController {
 
-    private Command[] commands;
+    private List<Command> commands;
     private View view;
 
     public MainController(View view, DatabaseManager manager) {
         this.view = view;
-        this.commands = new Command[]{
+        this.commands = new ArrayList<>(Arrays.asList(
                 new Connect(view, manager),
                 new Help(view),
                 new Exit(view),
@@ -31,8 +35,9 @@ public class MainController {
                 new DeleteTable(view, manager),
                 new DeleteDatabase(view, manager),
                 new DisconnectFromDB(view, manager),
-                new UnsuportedCommand(view)};
-    }
+                new UnsuportedCommand(view)
+    ));
+}
 
     public void run() {
         view.write("Welcome!");
@@ -40,30 +45,33 @@ public class MainController {
                 "connect|database|username|password  or use 'help' to list all commands");
 
         try {
-            while (true) {
-                InputValidation entry = new InputValidation(view.read());
-
-                for (Command command : commands) {
-                    try {
-                        if (command.canProcess(entry)) {
-                            command.process(entry);
-                            break;
-                        }
-                    } catch (Exception e) {
-                        if (e instanceof ExitException) {
-                            throw e;
-                        }
-                        printError(e);
-                        break;
-                    }
-                }
-                view.write("Type command (or use 'help' to list all commands):");
-            }
+           doCommand();
         } catch (ExitException e) {
             //do nothing...
         }
     }
 
+    private void doCommand() {
+        while (true) {
+            InputString entry = new InputString(view.read());
+
+            for (Command command : commands) {
+                try {
+                    if (command.canProcess(entry)) {
+                        command.process(entry);
+                        break;
+                    }
+                } catch (Exception e) {
+                    if (e instanceof ExitException) {
+                        throw e;
+                    }
+                    printError(e);
+                    break;
+                }
+            }
+            view.write("Type command (or use 'help' to list all commands):");
+        }
+    }
 
     private void printError(Exception e) {
         String message = e.getMessage();

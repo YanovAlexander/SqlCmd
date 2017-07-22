@@ -1,7 +1,7 @@
 package ua.com.juja.controller.command;
 
 
-import ua.com.juja.controller.command.util.InputValidation;
+import ua.com.juja.controller.command.util.InputString;
 import ua.com.juja.model.DataSet;
 import ua.com.juja.model.DataSetImpl;
 import ua.com.juja.model.DatabaseManager;
@@ -27,12 +27,12 @@ public class UpdateEntry implements Command {
     }
 
     @Override
-    public void process(InputValidation command) {
-        command.validationParameters(format());
-        String[] data = command.getParameters();
+    public void process(InputString userInput) {
+        userInput.validationParameters(format());
+        String[] data = userInput.getParameters();
 
         view.write("Enter data of entry in format 'column1|value1|column2|value2|....|columnN|valueN':");
-        InputValidation dataEntry = new InputValidation(view.read());
+        InputString dataEntry = new InputString(view.read());
         dataEntry.validationPairs("column1|value1|column2|value2|...|columnN|valueN");
         String[] dataEntryParameters = dataEntry.getParameters();
 

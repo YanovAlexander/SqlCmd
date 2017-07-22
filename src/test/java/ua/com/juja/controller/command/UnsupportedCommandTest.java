@@ -4,9 +4,7 @@ import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
-import ua.com.juja.controller.command.Command;
-import ua.com.juja.controller.command.UnsuportedCommand;
-import ua.com.juja.controller.command.util.InputValidation;
+import ua.com.juja.controller.command.util.InputString;
 import ua.com.juja.view.View;
 
 import static org.junit.Assert.assertTrue;
@@ -30,7 +28,8 @@ public class UnsupportedCommandTest {
     @Test
     public void canProcess(){
         //when
-        boolean result = command.canProcess(new InputValidation("unsupported"));
+        InputString userInput = new InputString("unsupported");
+        boolean result = command.canProcess(userInput);
         //then
         assertTrue(result);
     }
@@ -38,7 +37,8 @@ public class UnsupportedCommandTest {
     @Test
     public void process(){
         //when
-        command.process(new InputValidation("unsupported"));
+        InputString userInput = new InputString("unsupported");
+        command.process(userInput);
         //then
        shouldPrint("[Unsupported command :unsupported]");
     }

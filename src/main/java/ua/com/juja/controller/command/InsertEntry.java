@@ -1,6 +1,6 @@
 package ua.com.juja.controller.command;
 
-import ua.com.juja.controller.command.util.InputValidation;
+import ua.com.juja.controller.command.util.InputString;
 import ua.com.juja.model.DataSet;
 import ua.com.juja.model.DataSetImpl;
 import ua.com.juja.model.DatabaseManager;
@@ -26,9 +26,9 @@ public class InsertEntry implements Command {
     }
 
     @Override
-    public void process(InputValidation command) {
-        command.validationPairs(format());
-        String[] data = command.getParameters();
+    public void process(InputString userInput) {
+        userInput.validationPairs(format());
+        String[] data = userInput.getParameters();
         String tableName = data[TABLE_NAME];
 
         DataSet dataSet = new DataSetImpl();

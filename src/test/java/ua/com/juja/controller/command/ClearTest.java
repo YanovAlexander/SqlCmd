@@ -1,8 +1,6 @@
 package ua.com.juja.controller.command;
 
-import ua.com.juja.controller.command.Clear;
-import ua.com.juja.controller.command.Command;
-import ua.com.juja.controller.command.util.InputValidation;
+import ua.com.juja.controller.command.util.InputString;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 import org.junit.Before;
@@ -36,10 +34,11 @@ public class ClearTest {
     @Test
     public void testPrintTableData() {
         //given
-        when(manager.getTableColumns("users"))
-                .thenReturn((new LinkedHashSet<String>(Arrays.asList("id", "username", "password"))));
+        LinkedHashSet<String> table = new LinkedHashSet<>(Arrays.asList("id", "username", "password"));
+        when(manager.getTableColumns("users")).thenReturn(table);
         //when
-        command.process(new InputValidation("clear|users"));
+        InputString userInput = new InputString("clear|users");
+        command.process(userInput);
         //then
         verify(manager).clear("users");
         verify(view).write("Table users was successfully cleaned.");
@@ -49,7 +48,8 @@ public class ClearTest {
     @Test
     public void clearCanProcessTest() {
         //when
-        boolean result = command.canProcess(new InputValidation("clear|users"));
+        InputString userInput = new InputString("clear|users");
+        boolean result = command.canProcess(userInput);
         //then
         assertTrue(result);
     }
@@ -57,7 +57,8 @@ public class ClearTest {
     @Test
     public void clearCantProcessWithoutParametersTest() {
         //when
-        boolean result = command.canProcess(new InputValidation("clear"));
+        InputString userInput = new InputString("clear");
+        boolean result = command.canProcess(userInput);
         //then
         assertTrue(result);
     }
@@ -65,7 +66,8 @@ public class ClearTest {
     @Test
     public void clearCantProcessWithQWETest() {
         //when
-        boolean result = command.canProcess(new InputValidation("qwe|users"));
+        InputString userInput = new InputString("qwe|users");
+        boolean result = command.canProcess(userInput);
         //then
         assertFalse(result);
     }
@@ -74,7 +76,8 @@ public class ClearTest {
     public void clearCantProcessWithErrorParametersLessThenTwo() {
         //when
         try {
-            command.process(new InputValidation("clear"));
+            InputString userInput = new InputString("clear");
+            command.process(userInput);
             fail();
         } catch (IllegalArgumentException e) {
             //then
@@ -87,12 +90,12 @@ public class ClearTest {
     public void clearCantProcessWithErrorParametersMoreThenTwo() {
         //when
         try {
-            command.process(new InputValidation("clear|users|tables"));
+            InputString userInput = new InputString("clear|users|tables");
+            command.process(userInput);
             fail();
         } catch (IllegalArgumentException e) {
             //then
             assertEquals("Invalid number of parameters separated by '|', expected 2, but was: 3", e.getMessage());
         }
     }
-
 }

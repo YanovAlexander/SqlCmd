@@ -2,9 +2,7 @@ package ua.com.juja.controller.command;
 
 import org.junit.Before;
 import org.junit.Test;
-import ua.com.juja.controller.command.Command;
-import ua.com.juja.controller.command.Connect;
-import ua.com.juja.controller.command.util.InputValidation;
+import ua.com.juja.controller.command.util.InputString;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
@@ -30,7 +28,8 @@ public class ConnectTest {
     @Test
     public void testCanProcess() {
         //when
-        boolean result = command.canProcess(new InputValidation("connect|"));
+        InputString userInput = new InputString("connect|");
+        boolean result = command.canProcess(userInput);
         //then
         assertTrue(result);
     }
@@ -38,7 +37,8 @@ public class ConnectTest {
     @Test
     public void testCantProcessWithWrongCommand() {
         //when
-        boolean result = command.canProcess(new InputValidation("connection|"));
+        InputString userInput = new InputString("connection|");
+        boolean result = command.canProcess(userInput);
         //then
         assertFalse(result);
     }
@@ -46,7 +46,8 @@ public class ConnectTest {
     @Test
     public void testProcess() {
         //when
-        command.process(new InputValidation("connect|postgres|postgres|pass"));
+        InputString userInput = new InputString("connect|postgres|postgres|pass");
+        command.process(userInput);
         //then
         verify(view).write("Connected successful");
     }
@@ -55,10 +56,11 @@ public class ConnectTest {
     public void testCantProcessWithWrongUserAndPassword() {
         //when
         try {
-            command.process(new InputValidation("connect|dbName|User"));
+            InputString userInput = new InputString("connect|dbName|User");
+            command.process(userInput);
             fail("Expected IllegalArgumentException");
-        }catch (IllegalArgumentException e){
-         //then
+        } catch (IllegalArgumentException e) {
+            //then
             assertEquals("Invalid number of parameters separated by '|', expected 4, but was: 3", e.getMessage());
         }
     }

@@ -3,8 +3,7 @@ package ua.com.juja.controller.command;
 
 import org.junit.Before;
 import org.junit.Test;
-import ua.com.juja.controller.command.*;
-import ua.com.juja.controller.command.util.InputValidation;
+import ua.com.juja.controller.command.util.InputString;
 import ua.com.juja.view.View;
 
 import static org.junit.Assert.assertFalse;
@@ -29,7 +28,8 @@ public class HelpTest {
     @Test
     public void testCanProcessWithoutParameters() {
         //when
-        boolean result = command.canProcess(new InputValidation("help"));
+        InputString userInput = new InputString("help");
+        boolean result = command.canProcess(userInput);
         //then
         assertTrue(result);
     }
@@ -37,7 +37,8 @@ public class HelpTest {
     @Test
     public void testCantProcessWithWrongCommand(){
         //when
-        boolean result = command.canProcess(new InputValidation("helpCommand"));
+        InputString userInput = new InputString("helpCommand");
+        boolean result = command.canProcess(userInput);
         //then
         assertFalse(result);
     }
@@ -45,7 +46,8 @@ public class HelpTest {
     @Test
     public void testProcess(){
         //when
-        command.process(new InputValidation("help"));
+        InputString userInput = new InputString("help");
+        command.process(userInput);
         //then
         verify(view).write("\t+----------------------------COMMANDS------------------------------");
     }

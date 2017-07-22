@@ -2,9 +2,7 @@ package ua.com.juja.controller.command;
 
 import org.junit.Before;
 import org.junit.Test;
-import ua.com.juja.controller.command.Command;
-import ua.com.juja.controller.command.DeleteTable;
-import ua.com.juja.controller.command.util.InputValidation;
+import ua.com.juja.controller.command.util.InputString;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
@@ -35,7 +33,8 @@ public class DeleteTableTest {
     @Test
     public void testCanProcess() {
         //when
-        boolean result = command.canProcess(new InputValidation("deleteTable|"));
+        InputString userInput = new InputString("deleteTable|");
+        boolean result = command.canProcess(userInput);
         //then
         assertTrue(result);
     }
@@ -43,7 +42,8 @@ public class DeleteTableTest {
     @Test
     public void testCantProcessWithWrongCommand() {
         //when
-        boolean result = command.canProcess(new InputValidation("deleteTables|"));
+        InputString userInput = new InputString("deleteTables|");
+        boolean result = command.canProcess(userInput);
         //then
         assertFalse(result);
     }
@@ -52,7 +52,8 @@ public class DeleteTableTest {
     public void testProcess() {
         //when
         when(view.read()).thenReturn("y");
-        command.process(new InputValidation("deleteTable|test"));
+        InputString userInput = new InputString("deleteTable|test");
+        command.process(userInput);
         verify(view).write("Do you really want to delete table 'test ? All data will delete ! Press Y/N ?");
         verify(manager).deleteTable("test");
         //then
@@ -63,7 +64,8 @@ public class DeleteTableTest {
     public void testProcessPressNo() {
         //when
         when(view.read()).thenReturn("n");
-        command.process(new InputValidation("deleteTable|test"));
+        InputString userInput = new InputString("deleteTable|test");
+        command.process(userInput);
         verify(view).write("Do you really want to delete table 'test ? All data will delete ! Press Y/N ?");
         //then
         verify(view).write("The action is canceled!");
@@ -73,7 +75,8 @@ public class DeleteTableTest {
     public void testDeleteTableWithWrongParameters() {
         //when
         try {
-            command.process(new InputValidation("deleteTable|test|one"));
+            InputString userInput = new InputString("deleteTable|test|one");
+            command.process(userInput);
             fail("Expected IllegalArgumentException");
         } catch (IllegalArgumentException e) {
          //then

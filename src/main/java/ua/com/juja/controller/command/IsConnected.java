@@ -1,6 +1,6 @@
 package ua.com.juja.controller.command;
 
-import ua.com.juja.controller.command.util.InputValidation;
+import ua.com.juja.controller.command.util.InputString;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
@@ -17,7 +17,7 @@ public class IsConnected implements Command {
     }
 
     @Override
-    public boolean canProcess(InputValidation command) {
+    public boolean canProcess(InputString userInput) {
         return !manager.isConnected();
     }
 
@@ -27,8 +27,8 @@ public class IsConnected implements Command {
     }
 
     @Override
-    public void process(InputValidation command) {
+    public void process(InputString userInput) {
         view.write(String.format("You can not use the command '%s', " +
-                "while not connect with the command connect|database|username|password", command));
+                "while not connect with the command connect|database|username|password", userInput));
     }
 }

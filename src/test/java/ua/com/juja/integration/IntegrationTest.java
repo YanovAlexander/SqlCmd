@@ -181,7 +181,7 @@ public class IntegrationTest {
         //when
         in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
         in.add("tables");
-        in.add("connect||" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("connect|" + "|" + DB_USERNAME + "|" + DB_PASSWORD);
         in.add("exit");
 
         //then
@@ -206,7 +206,7 @@ public class IntegrationTest {
         //given
         in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
         in.add("find|" + DB_NAME);
-        in.add("connect||" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("connect|" + "|" + DB_USERNAME + "|" + DB_PASSWORD);
         in.add("exit");
 
         //when
@@ -232,7 +232,7 @@ public class IntegrationTest {
         in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
         in.add("insertEntry|testing|id|10|username|Alexandero|password|+++000");
         in.add("find|" + DB_NAME);
-        in.add("connect||" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("connect|" + "|" + DB_USERNAME + "|" + DB_PASSWORD);
         in.add("exit");
 
         //when
@@ -278,7 +278,7 @@ public class IntegrationTest {
         //given
         in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
         in.add("asdf");
-        in.add("connect||" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("connect|" + "|" + DB_USERNAME + "|" + DB_PASSWORD);
         in.add("exit");
 
         //when
@@ -301,9 +301,9 @@ public class IntegrationTest {
         //given
         in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
         in.add("tables");
-        in.add("connect|" + DB_NAME_SECOND + "|postgres|pass");
+        in.add("connect|" + DB_NAME_SECOND + "|" + DB_USERNAME + "|" + DB_PASSWORD );
         in.add("tables");
-        in.add("connect||" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("connect|" + "|" + DB_USERNAME + "|" + DB_PASSWORD);
         in.add("exit");
 
         //when
@@ -351,7 +351,7 @@ public class IntegrationTest {
         //given
         in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
         in.add("clear");
-        in.add("connect||" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("connect|" + "|" + DB_USERNAME + "|" + DB_PASSWORD);
         in.add("exit");
 
         //when
@@ -375,7 +375,7 @@ public class IntegrationTest {
         //given
         in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
         in.add("clear|papspsps|asasasa");
-        in.add("connect||" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("connect|" + "|" + DB_USERNAME + "|" + DB_PASSWORD);
         in.add("exit");
 
         //when
@@ -399,7 +399,7 @@ public class IntegrationTest {
         //given
         in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
         in.add("insertEntry|users|bugaga");
-        in.add("connect||" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("connect|" + "|" + DB_USERNAME + "|" + DB_PASSWORD);
         in.add("exit");
 
         //when

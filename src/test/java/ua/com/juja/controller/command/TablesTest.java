@@ -4,9 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
-import ua.com.juja.controller.command.Command;
-import ua.com.juja.controller.command.Tables;
-import ua.com.juja.controller.command.util.InputValidation;
+import ua.com.juja.controller.command.util.InputString;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
@@ -35,7 +33,8 @@ public class TablesTest {
     @Test
     public void testCanProcessWithoutParameter() {
         //when
-        boolean result = command.canProcess(new InputValidation("tables"));
+        InputString userInput = new InputString("tables");
+        boolean result = command.canProcess(userInput);
         //then
         assertTrue(result);
     }
@@ -43,7 +42,8 @@ public class TablesTest {
     @Test
     public void testCanProcessWithParameters() {
         //when
-        boolean result = command.canProcess(new InputValidation("tables|users"));
+        InputString userInput = new InputString("tables|users");
+        boolean result = command.canProcess(userInput);
         //then
         assertTrue(result);
     }
@@ -51,7 +51,8 @@ public class TablesTest {
     @Test
     public void testCantProcessWithWrongCommand() {
         //when
-        boolean result = command.canProcess(new InputValidation("tables1"));
+        InputString userInput = new InputString("tables1");
+        boolean result = command.canProcess(userInput);
         //then
         assertFalse(result);
     }
@@ -60,7 +61,8 @@ public class TablesTest {
     public void testPrintTables() {
         //when
         when(manager.getTableNames()).thenReturn(new HashSet<>(Arrays.asList("users", "test")));
-        command.process(new InputValidation("tables"));
+        InputString userInput = new InputString("tables");
+        command.process(userInput);
         //then
         shouldPrint("[-------------------TABLES-------------------, - test, - users, --------------------------------------------]");
     }
@@ -69,7 +71,8 @@ public class TablesTest {
     public void testPrintEmptyTables() {
         //when
         when(manager.getTableNames()).thenReturn(new HashSet<>());
-        command.process(new InputValidation("tables"));
+        InputString userInput = new InputString("tables");
+        command.process(userInput);
         //then
         shouldPrint("[-------------------TABLES-------------------, --------------------------------------------]");
     }

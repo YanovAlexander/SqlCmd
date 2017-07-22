@@ -2,9 +2,7 @@ package ua.com.juja.controller.command;
 
 import org.junit.Before;
 import org.junit.Test;
-import ua.com.juja.controller.command.Command;
-import ua.com.juja.controller.command.CreateTable;
-import ua.com.juja.controller.command.util.InputValidation;
+import ua.com.juja.controller.command.util.InputString;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
@@ -30,7 +28,8 @@ public class CreateTableTest {
     @Test
     public void testCanProcess(){
         //when
-        boolean result = command.canProcess(new InputValidation("createTable|"));
+        InputString userInput = new InputString("createTable|");
+        boolean result = command.canProcess(userInput);
         //then
         assertTrue(result);
     }
@@ -38,7 +37,8 @@ public class CreateTableTest {
     @Test
     public void testCantProcessWithWrongParameters(){
         //when
-        boolean result = command.canProcess(new InputValidation("createTables|"));
+        InputString userInput = new InputString("createTables|");
+        boolean result = command.canProcess(userInput);
         //then
         assertFalse(result);
     }
@@ -46,8 +46,9 @@ public class CreateTableTest {
     @Test
     public void testProcess(){
         //when
-        command.process(new InputValidation("createTable|users(id SERIAL NOT NULL PRIMARY KEY," +
-                "username varchar(225) NOT NULL UNIQUE, password varchar(225))"));
+        InputString userInput = new InputString("createTable|users(id SERIAL NOT NULL PRIMARY KEY," +
+                "username varchar(225) NOT NULL UNIQUE, password varchar(225))");
+        command.process(userInput);
         //then
         verify(manager).createTable("users(id SERIAL NOT NULL PRIMARY KEY," +
                 "username varchar(225) NOT NULL UNIQUE, password varchar(225))");
@@ -58,7 +59,8 @@ public class CreateTableTest {
     public void testProcessWithEmptyParameters() {
         //when
         try {
-            command.process(new InputValidation("createTable|users|ss"));
+            InputString userInput = new InputString("createTable|users|ss");
+            command.process(userInput);
             fail("IllegalArgumentException expected");
         }catch (IllegalArgumentException e){
             //then

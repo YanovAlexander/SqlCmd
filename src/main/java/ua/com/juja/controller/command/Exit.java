@@ -1,6 +1,6 @@
 package ua.com.juja.controller.command;
 
-import ua.com.juja.controller.command.util.InputValidation;
+import ua.com.juja.controller.command.util.InputString;
 import ua.com.juja.view.View;
 
 /**
@@ -20,7 +20,7 @@ public class Exit implements Command {
     }
 
     @Override
-    public void process(InputValidation command) {
+    public void process(InputString userInput) {
         view.write("Good Bye !");
         throw new ExitException();
     }

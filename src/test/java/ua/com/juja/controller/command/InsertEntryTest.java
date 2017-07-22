@@ -3,9 +3,7 @@ package ua.com.juja.controller.command;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
-import ua.com.juja.controller.command.Command;
-import ua.com.juja.controller.command.InsertEntry;
-import ua.com.juja.controller.command.util.InputValidation;
+import ua.com.juja.controller.command.util.InputString;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
@@ -35,7 +33,8 @@ public class InsertEntryTest {
     @Test
     public void testCanProcess() {
         //when
-        boolean result = command.canProcess(new InputValidation("insertEntry|"));
+        InputString userInput = new InputString("insertEntry|");
+        boolean result = command.canProcess(userInput);
         //then
         assertTrue(result);
     }
@@ -43,7 +42,8 @@ public class InsertEntryTest {
     @Test
     public void testCantProcessWithWrongCommand() {
         //when
-        boolean result = command.canProcess(new InputValidation("createQuery1|"));
+        InputString userInput = new InputString("createQuery1|");
+        boolean result = command.canProcess(userInput);
         //then
         assertFalse(result);
     }
@@ -51,7 +51,8 @@ public class InsertEntryTest {
     @Test
     public void testProcess() {
         //when
-        command.process(new InputValidation("createQuery|users|id|26|userName|Alex|password|++++"));
+        InputString userInput = new InputString("createQuery|users|id|26|userName|Alex|password|++++");
+        command.process(userInput);
         //then
         shouldPrint("[{names = [id, userName, password], values = [26, Alex, ++++], } was successfully created in table users.]");
     }
@@ -60,7 +61,8 @@ public class InsertEntryTest {
     public void testProcessWithWrongFormat() {
         //when
         try {
-            command.process(new InputValidation("insertEntry|users|name"));
+            InputString userInput = new InputString("insertEntry|users|name");
+            command.process(userInput);
             fail("IllegalArgumentException expected");
         } catch (IllegalArgumentException e) {
             //then
@@ -74,7 +76,8 @@ public class InsertEntryTest {
     public void testProcessWithEmptyParameters() {
         //when
         try {
-            command.process(new InputValidation("insertEntry|"));
+            InputString userInput = new InputString("insertEntry|");
+            command.process(userInput);
             fail("IllegalArgumentException expected");
         } catch (IllegalArgumentException e) {
             assertEquals("Invalid command, you must enter and even number of parameters " +

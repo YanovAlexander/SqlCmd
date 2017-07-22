@@ -1,9 +1,8 @@
 package ua.com.juja.controller.command;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import ua.com.juja.controller.command.util.InputValidation;
+import ua.com.juja.controller.command.util.InputString;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
@@ -23,7 +22,7 @@ public class UpdateEntryTest {
     private Command command;
 
     @Before
-    public void setup(){
+    public void setup() {
         manager = mock(DatabaseManager.class);
         view = mock(View.class);
         command = new UpdateEntry(view, manager);
@@ -32,7 +31,8 @@ public class UpdateEntryTest {
     @Test
     public void testCanProcess() {
         //when
-        boolean result = command.canProcess(new InputValidation("updateEntry|"));
+        InputString userInput = new InputString("updateEntry|");
+        boolean result = command.canProcess(userInput);
         //then
         assertTrue(result);
     }
@@ -40,7 +40,8 @@ public class UpdateEntryTest {
     @Test
     public void testCantProcessWithWrongCommand() {
         //when
-        boolean result = command.canProcess(new InputValidation("updateEntry1|"));
+        InputString userInput = new InputString("updateEntry1|");
+        boolean result = command.canProcess(userInput);
         //then
         assertFalse(result);
     }
@@ -49,7 +50,8 @@ public class UpdateEntryTest {
     public void testProcessWithWrongFormat() {
         //when
         try {
-            command.process(new InputValidation("username|user|password|100"));
+            InputString userInput = new InputString("username|user|password|100");
+            command.process(userInput);
             fail("IllegalArgumentException expected");
         } catch (IllegalArgumentException e) {
             //then
@@ -61,7 +63,8 @@ public class UpdateEntryTest {
     public void testProcessWithEmptyParameters() {
         //when
         try {
-            command.process(new InputValidation("insertEntry|"));
+            InputString userInput = new InputString("insertEntry|");
+            command.process(userInput);
             fail("IllegalArgumentException expected");
         } catch (IllegalArgumentException e) {
             assertEquals("Invalid number of parameters separated by '|', expected 3, but was: 1", e.getMessage());

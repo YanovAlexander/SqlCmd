@@ -2,9 +2,7 @@ package ua.com.juja.controller.command;
 
 import org.junit.Before;
 import org.junit.Test;
-import ua.com.juja.controller.command.Command;
-import ua.com.juja.controller.command.DeleteDatabase;
-import ua.com.juja.controller.command.util.InputValidation;
+import ua.com.juja.controller.command.util.InputString;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
@@ -31,7 +29,8 @@ public class DeleteDatabaseTest {
     @Test
     public void testCanProcess(){
         //when
-        boolean result = command.canProcess(new InputValidation("deleteDatabase|"));
+        InputString userInput = new InputString("deleteDatabase|");
+        boolean result = command.canProcess(userInput);
         //then
         assertTrue(result);
     }
@@ -39,7 +38,8 @@ public class DeleteDatabaseTest {
     @Test
     public void testCantProcessWithWrongCommand(){
         //when
-        boolean result = command.canProcess(new InputValidation("dropDatabase|"));
+        InputString userInput = new InputString("dropDatabase|");
+        boolean result = command.canProcess(userInput);
         //then
         assertFalse(result);
     }
@@ -48,7 +48,8 @@ public class DeleteDatabaseTest {
     public void testProcess(){
         //when
         when(view.read()).thenReturn("y");
-        command.process(new InputValidation("deleteDatabase|test"));
+        InputString userInput = new InputString("deleteDatabase|test");
+        command.process(userInput);
         //then
         verify(view).write("Do you really want to delete database 'test' ? All data will delete ! If you sure press Y/N ?");
         verify(manager).deleteDatabase("test");
@@ -59,7 +60,8 @@ public class DeleteDatabaseTest {
     public void testProcessActionCancelled(){
         //when
         when(view.read()).thenReturn("n");
-        command.process(new InputValidation("deleteDatabase|test"));
+        InputString userInput = new InputString("deleteDatabase|test");
+        command.process(userInput);
         //then
         verify(view).write("Do you really want to delete database 'test' ? All data will delete ! If you sure press Y/N ?");
         verify(view).write("Action is Cancelled !");
@@ -69,7 +71,8 @@ public class DeleteDatabaseTest {
     public void testWrongFormatOfCommand(){
         //when
         try{
-            command.process(new InputValidation("deleteDatabase|test|test"));
+            InputString userInput = new InputString("deleteDatabase|test|test");
+            command.process(userInput);
             fail("Expected IllegalArgumentException");
         }catch (IllegalArgumentException e){
             assertEquals("Invalid number of parameters separated by '|'," +

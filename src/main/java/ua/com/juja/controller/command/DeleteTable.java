@@ -1,6 +1,6 @@
 package ua.com.juja.controller.command;
 
-import ua.com.juja.controller.command.util.InputValidation;
+import ua.com.juja.controller.command.util.InputString;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
@@ -23,9 +23,9 @@ public class DeleteTable implements Command {
     }
 
     @Override
-    public void process(InputValidation command) {
-        command.validationParameters(format());
-        String[] data = command.getParameters();
+    public void process(InputString userInput) {
+        userInput.validationParameters(format());
+        String[] data = userInput.getParameters();
         String tableName = data[TABLE_NAME];
 
         view.write("Do you really want to delete table '" + tableName + " ? All data will delete ! Press Y/N ?");

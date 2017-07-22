@@ -1,6 +1,6 @@
 package ua.com.juja.controller.command;
 
-import ua.com.juja.controller.command.util.InputValidation;
+import ua.com.juja.controller.command.util.InputString;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
@@ -25,7 +25,7 @@ public class Tables implements Command {
     }
 
     @Override
-    public void process(InputValidation command) {
+    public void process(InputString userInput) {
         Set<String> tableNames = manager.getTableNames();
         view.write("-------------------TABLES-------------------");
         for (String message : tableNames ){

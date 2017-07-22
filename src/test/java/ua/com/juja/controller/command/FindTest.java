@@ -2,9 +2,7 @@ package ua.com.juja.controller.command;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
-import ua.com.juja.controller.command.Command;
-import ua.com.juja.controller.command.Find;
-import ua.com.juja.controller.command.util.InputValidation;
+import ua.com.juja.controller.command.util.InputString;
 import ua.com.juja.model.DataSet;
 import ua.com.juja.model.DataSetImpl;
 import ua.com.juja.model.DatabaseManager;
@@ -33,7 +31,7 @@ public class FindTest {
 
     @Before
     public void setup() {
-        Logger.getRootLogger().setLevel(Level.OFF); //Disable log4j
+        Logger.getRootLogger().setLevel(Level.INFO); //Disable log4j
         manager = mock(DatabaseManager.class);
         view = mock(View.class);
         command = new Find(view, manager);
@@ -42,8 +40,8 @@ public class FindTest {
     @Test
     public void testPrintTableData() {
         //given
-        when(manager.getTableColumns("users"))
-                .thenReturn(new LinkedHashSet<String>(Arrays.asList("id", "username", "password")));
+        LinkedHashSet<String> table = new LinkedHashSet<>(Arrays.asList("id", "username", "password"));
+        when(manager.getTableColumns("users")).thenReturn(table);
 
         DataSet user1 = new DataSetImpl();
         user1.put("id", 10);
@@ -55,9 +53,11 @@ public class FindTest {
         user2.put("username", "Martial");
         user2.put("password", "+++===");
 
-        when(manager.getTableData("users")).thenReturn(Arrays.asList(user1, user2));
+        List<DataSet> tableData = Arrays.asList(user1, user2);
+        when(manager.getTableData("users")).thenReturn(tableData);
         //when
-        command.process(new InputValidation("find|users"));
+        InputString userInput = new InputString("find|users");
+        command.process(userInput);
         //then
         shouldPrint("[+--+--------+--------+\n" +
                 "|id|username|password|\n" +
@@ -72,7 +72,8 @@ public class FindTest {
     @Test
     public void findCanProcessTest() {
         //when
-        boolean result = command.canProcess(new InputValidation("find|users"));
+        InputString userInput = new InputString("find|users");
+        boolean result = command.canProcess(userInput);
         //then
         assertTrue(result);
     }
@@ -80,7 +81,8 @@ public class FindTest {
     @Test
     public void findCantProcessWithoutParametersTest() {
         //when
-        boolean result = command.canProcess(new InputValidation("find"));
+        InputString userInput = new InputString("find");
+        boolean result = command.canProcess(userInput);
         //then
         assertTrue(result);
     }
@@ -88,7 +90,8 @@ public class FindTest {
     @Test
     public void findCantProcessWithQWETest() {
         //when
-        boolean result = command.canProcess(new InputValidation("qwe"));
+        InputString userInput = new InputString("qwe");
+        boolean result = command.canProcess(userInput);
         //then
         assertFalse(result);
     }
@@ -96,11 +99,12 @@ public class FindTest {
 
     @Test
     public void testPrintEmptyTableData() {
-        when(manager.getTableColumns("users"))
-                .thenReturn(new LinkedHashSet<String>(Arrays.asList("id", "username", "password")));
+        LinkedHashSet<String> table = new LinkedHashSet<>(Arrays.asList("id", "username", "password"));
+        when(manager.getTableColumns("users")).thenReturn(table);
         when(manager.getTableData("users")).thenReturn(new ArrayList<>());
         //when
-        command.process(new InputValidation("find|users"));
+        InputString userInput = new InputString("find|users");
+        command.process(userInput);
         //then
 
         shouldPrint("[+--+--------+--------+\n" +
@@ -111,8 +115,9 @@ public class FindTest {
     @Test
     public void testPrintTableDataWithOneID() {
         //given
+        LinkedHashSet<String> table = new LinkedHashSet<>(Arrays.asList("id"));
         when(manager.getTableColumns("users"))
-                .thenReturn((new LinkedHashSet<String>(Arrays.asList("id"))));
+                .thenReturn(table);
 
         DataSet user1 = new DataSetImpl();
         user1.put("id", 10);
@@ -120,9 +125,11 @@ public class FindTest {
         DataSet user2 = new DataSetImpl();
         user2.put("id", 11);
 
-        when(manager.getTableData("users")).thenReturn(Arrays.asList(user1, user2));
+        List<DataSet> tableData = Arrays.asList(user1, user2);
+        when(manager.getTableData("users")).thenReturn(tableData);
         //when
-        command.process(new InputValidation("find|users"));
+        InputString userInput = new InputString("find|users");
+        command.process(userInput);
         //then
         shouldPrint("[+--+\n" +
                 "|id|\n" +
@@ -135,12 +142,15 @@ public class FindTest {
 
     @Test
     public void testErrorWhenWrongCommandFind() {
+        LinkedHashSet<String> table = new LinkedHashSet<>(Arrays.asList("id", "username", "password"));
         when(manager.getTableColumns("users"))
-                .thenReturn(new LinkedHashSet<>(Arrays.asList("id", "username", "password")));
-        when(manager.getTableData("users")).thenReturn(new ArrayList<>());
+                .thenReturn(table);
+        ArrayList<DataSet> tableData = new ArrayList<>();
+        when(manager.getTableData("users")).thenReturn(tableData);
         //when
         try {
-            command.process(new InputValidation("find|users|wtf"));
+            InputString userInput = new InputString("find|users|wtf");
+            command.process(userInput);
             fail("Expected exception");
         } catch (IllegalArgumentException e) {
             assertEquals("Invalid number of parameters separated by '|', expected 2, but was: 3", e.getMessage());

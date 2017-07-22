@@ -2,9 +2,7 @@ package ua.com.juja.controller.command;
 
 import org.junit.Before;
 import org.junit.Test;
-import ua.com.juja.controller.command.Command;
-import ua.com.juja.controller.command.CreateDatabase;
-import ua.com.juja.controller.command.util.InputValidation;
+import ua.com.juja.controller.command.util.InputString;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
@@ -30,16 +28,17 @@ public class CreateDatabaseTest {
     @Test
     public void testCanProcess(){
         //when
-        InputValidation input = new InputValidation("createDatabase|");
-        boolean result = command.canProcess(input);
+        InputString userInput = new InputString("createDatabase|");
+        boolean result = command.canProcess(userInput);
         //then
         assertTrue(result);
     }
 
     @Test
-    public void testCantProcessWithWrongCOmmand(){
+    public void testCantProcessWithWrongCommand(){
         //when
-        boolean result = command.canProcess(new InputValidation("creatDataB|"));
+        InputString userInput = new InputString("creatDataB|");
+        boolean result = command.canProcess(userInput);
         //then
         assertFalse(result);
     }
@@ -47,7 +46,8 @@ public class CreateDatabaseTest {
     @Test
     public void testProcess(){
         //when
-        command.process(new InputValidation("createDatabase|test"));
+        InputString userInput = new InputString("createDatabase|test");
+        this.command.process(userInput);
         //then
         verify(manager).createDatabase("test");
         verify(view).write("Database with name test created successful !");
@@ -57,7 +57,8 @@ public class CreateDatabaseTest {
     public void testProcessWithWrongFormat(){
         //when
         try{
-            command.process(new InputValidation("createDatabase|test|test"));
+            InputString userInput = new InputString("createDatabase|test|test");
+            command.process(userInput);
             fail("IllegalArgumentException expected");
         }catch (IllegalArgumentException e){
         //then

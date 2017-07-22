@@ -3,9 +3,7 @@ package ua.com.juja.controller.command;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
-import ua.com.juja.controller.command.Command;
-import ua.com.juja.controller.command.DatabaseList;
-import ua.com.juja.controller.command.util.InputValidation;
+import ua.com.juja.controller.command.util.InputString;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
@@ -35,7 +33,8 @@ public class DatabaseListTest {
     @Test
     public void testCanProcess(){
         //when
-        boolean result = command.canProcess(new InputValidation("databaseList"));
+        InputString userInput = new InputString("databaseList");
+        boolean result = command.canProcess(userInput);
         //then
         assertTrue(result);
     }
@@ -43,25 +42,30 @@ public class DatabaseListTest {
     @Test
     public void testCantProcessWithWrongCommand(){
         //when
-        boolean result = command.canProcess(new InputValidation("dabaseLList"));
+        InputString userInput = new InputString("dabaseLList");
+        boolean result = command.canProcess(userInput);
         //then
         assertFalse(result);
     }
 
     @Test
-    public void testProcessPtint(){
+    public void testProcessPrint(){
         //when
-        when(manager.databasesList()).thenReturn(new HashSet<>(Arrays.asList("test1", "test2")));
-        command.process(new InputValidation("databaseList"));
+        HashSet<String> databases = new HashSet<>(Arrays.asList("test1", "test2"));
+        when(manager.databasesList()).thenReturn(databases);
+        InputString userInput = new InputString("databaseList");
+        command.process(userInput);
         //then
         shouldPrint("[-------------------DATABASES----------------, - test2, - test1, --------------------------------------------]");
     }
 
     @Test
-    public void testProcessPtintEmptyDatabaseList(){
+    public void testProcessPrintEmptyDatabaseList(){
         //when
-        when(manager.databasesList()).thenReturn(new HashSet<>());
-        command.process(new InputValidation("databaseList"));
+        HashSet<String> databases = new HashSet<>();
+        when(manager.databasesList()).thenReturn(databases);
+        InputString userInput = new InputString("databaseList");
+        command.process(userInput);
         //then
         shouldPrint("[-------------------DATABASES----------------, --------------------------------------------]");
     }

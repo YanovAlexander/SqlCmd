@@ -1,6 +1,6 @@
 package ua.com.juja.controller.command;
 
-import ua.com.juja.controller.command.util.InputValidation;
+import ua.com.juja.controller.command.util.InputString;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
@@ -23,8 +23,8 @@ public class DatabaseList implements Command {
     }
 
     @Override
-    public void process(InputValidation command) {
-        command.validationParameters(format());
+    public void process(InputString userInput) {
+        userInput.validationParameters(format());
         view.write("-------------------DATABASES----------------");
         for (String database : manager.databasesList()){
             view.write("- " + database);

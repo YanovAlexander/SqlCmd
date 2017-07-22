@@ -2,9 +2,7 @@ package ua.com.juja.controller.command;
 
 import org.junit.Before;
 import org.junit.Test;
-import ua.com.juja.controller.command.Command;
-import ua.com.juja.controller.command.IsConnected;
-import ua.com.juja.controller.command.util.InputValidation;
+import ua.com.juja.controller.command.util.InputString;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
@@ -29,7 +27,8 @@ public class IsConnectedTest {
     @Test
     public void testProcessWrongCommand(){
         //when
-        command.process(new InputValidation("createQuery"));
+        InputString userInput = new InputString("createQuery");
+        command.process(userInput);
         //then
         verify(view).write("You can not use the command 'createQuery'," +
                 " while not connect with the command connect|database|username|password");
@@ -38,13 +37,10 @@ public class IsConnectedTest {
     @Test
     public void testProcessCommandHelp(){
         //when
-        command.process(new InputValidation("help"));
+        InputString userInput = new InputString("help");
+        command.process(userInput);
         //then
         verify(view).write("You can not use the command 'help'," +
                 " while not connect with the command connect|database|username|password");
     }
-
-
-
-
 }

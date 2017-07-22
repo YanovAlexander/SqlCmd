@@ -1,9 +1,6 @@
 package ua.com.juja.controller.command;
 
-import ua.com.juja.controller.command.Command;
-import ua.com.juja.controller.command.Exit;
-import ua.com.juja.controller.command.ExitException;
-import ua.com.juja.controller.command.util.InputValidation;
+import ua.com.juja.controller.command.util.InputString;
 import ua.com.juja.view.View;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -25,7 +22,8 @@ public class ExitTestWithMockito {
         Command command = new Exit(view);
 
         //when
-        boolean exit = command.canProcess(new InputValidation("exit"));
+        InputString userInput = new InputString("exit");
+        boolean exit = command.canProcess(userInput);
 
         //then
         assertTrue(exit);
@@ -37,7 +35,8 @@ public class ExitTestWithMockito {
         Command command = new Exit(view);
 
         //when
-        boolean exit = command.canProcess(new InputValidation("qwe"));
+        InputString userInput = new InputString("qwe");
+        boolean exit = command.canProcess(userInput);
 
         //then
         assertFalse(exit);
@@ -50,7 +49,8 @@ public class ExitTestWithMockito {
 
         //when
         try {
-            command.process(new InputValidation("exit"));
+            InputString userInput = new InputString("exit");
+            command.process(userInput);
             fail("Expected ExitException");
         } catch (ExitException e) {
             //do nothing
@@ -58,5 +58,4 @@ public class ExitTestWithMockito {
         //then
         Mockito.verify(view).write("Good Bye !");
     }
-
 }
