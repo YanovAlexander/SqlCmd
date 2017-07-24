@@ -23,7 +23,7 @@ public class UpdateEntry implements Command {
 
     @Override
     public String format() {
-        return "updateEntry|tableName|ID";
+        return "updateEntry|tableName|id";
     }
 
     @Override

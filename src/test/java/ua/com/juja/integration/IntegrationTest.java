@@ -701,6 +701,192 @@ public class IntegrationTest {
     }
 
 
+    @Test
+    public void testDeleteDatabase(){
+        //given
+        in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("createDatabase|newdatabasetest");
+        in.add("deleteDatabase|newdatabasetest");
+        in.add("y");
+        in.add("connect|" + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("exit");
+
+        //when
+        Main.main(new String[0]);
+
+        //then
+        assertEquals("Welcome!\n" +
+                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
+                "Connected successful\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Database with name newdatabasetest created successful !\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Do you really want to delete database 'newdatabasetest' ? All data will delete ! If you sure press Y/N ?\n" +
+                "Database newdatabasetest delete successful !\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Connected successful\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Good Bye !\n", getData());
+    }
+
+    @Test
+    public void testDeleteDatabaseWhichAlreadyConnected(){
+        //given
+        in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("deleteDatabase|" + DB_NAME);
+        in.add("y");
+        in.add("connect|" + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("exit");
+
+        //when
+        Main.main(new String[0]);
+
+        //then
+        assertEquals("Welcome!\n" +
+                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
+                "Connected successful\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Do you really want to delete database 'testing' ? All data will delete ! If you sure press Y/N ?\n" +
+                "You cant delete database to which already connected !\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Connected successful\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Good Bye !\n", getData());
+    }
+
+    @Test
+    public void testDisconnectFromDB(){
+        //given
+        in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("disconnect");
+        in.add("connect|" + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("exit");
+
+        //when
+        Main.main(new String[0]);
+
+        //then
+        assertEquals("Welcome!\n" +
+                "Enter the database name, username, and password of the user in format : " +
+                "connect|database|username|password  or use 'help' to list all commands\n" +
+                "Connected successful\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Disconnected\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Connected successful\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Good Bye !\n", getData());
+    }
+
+
+    @Test
+    public void testUpdateEntry(){
+        //given
+        in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("insertEntry|testing|id|30|username|alex|password|987789");
+        in.add("find|testing");
+        in.add("updateEntry|testing|30");
+        in.add("username|alexandero|password|8888");
+        in.add("find|testing");
+        in.add("clear|testing");
+        in.add("find|testing");
+        in.add("connect|" + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("exit");
+
+        //when
+        Main.main(new String[0]);
+
+        //then
+        assertEquals("Welcome!\n" +
+                "Enter the database name, username, and password of the user in format :" +
+                " connect|database|username|password  or use 'help' to list all commands\n" +
+                "Connected successful\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "{names = [id, username, password], values = [30, alex, 987789], } " +
+                "was successfully created in table testing.\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "+--+--------+--------+\n" +
+                "|id|username|password|\n" +
+                "+--+--------+--------+\n" +
+                "|30|alex    |987789  |\n" +
+                "+--+--------+--------+\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Enter data of entry in format 'column1|value1|column2|value2|....|columnN|valueN':\n" +
+                "Update is successful !\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "+--+----------+--------+\n" +
+                "|id|username  |password|\n" +
+                "+--+----------+--------+\n" +
+                "|30|alexandero|8888    |\n" +
+                "+--+----------+--------+\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Table testing was successfully cleaned.\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "+--+--------+--------+\n" +
+                "|id|username|password|\n" +
+                "+--+--------+--------+\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Connected successful\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Good Bye !\n", getData());
+    }
+
+    @Test
+    public void testUpdateEntryWithError(){
+        //given
+        in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("insertEntry|testing|id|30|username|alex|password|987789");
+        in.add("find|testing");
+        in.add("updateEntry|testing|30");
+        in.add("id|45|username|alexandero|password|8888");
+        in.add("find|testing");
+        in.add("clear|testing");
+        in.add("find|testing");
+        in.add("connect|" + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("exit");
+
+        //when
+        Main.main(new String[0]);
+
+        //then
+        assertEquals("Welcome!\n" +
+                "Enter the database name, username, and password of the user in format : " +
+                "connect|database|username|password  or use 'help' to list all commands\n" +
+                "Connected successful\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "{names = [id, username, password], values = [30, alex, 987789], } " +
+                "was successfully created in table testing.\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "+--+--------+--------+\n" +
+                "|id|username|password|\n" +
+                "+--+--------+--------+\n" +
+                "|30|alex    |987789  |\n" +
+                "+--+--------+--------+\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Enter data of entry in format 'column1|value1|column2|value2|....|columnN|valueN':\n" +
+                "Error! Because of: ERROR: column \"id\" is of type integer but expression " +
+                "is of type character varying\n" +
+                "  Подсказка: You will need to rewrite or cast the expression.\n" +
+                "  Позиция: 32\n" +
+                "Please try again.\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "+--+--------+--------+\n" +
+                "|id|username|password|\n" +
+                "+--+--------+--------+\n" +
+                "|30|alex    |987789  |\n" +
+                "+--+--------+--------+\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Table testing was successfully cleaned.\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "+--+--------+--------+\n" +
+                "|id|username|password|\n" +
+                "+--+--------+--------+\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Connected successful\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Good Bye !\n", getData());
+    }
+
     public String getData() {
         try {
             String result = new String(out.toByteArray(), "UTF-8").replaceAll("\r\n", "\n");

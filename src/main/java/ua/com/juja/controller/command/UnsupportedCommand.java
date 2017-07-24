@@ -6,10 +6,10 @@ import ua.com.juja.view.View;
 /**
  * Created by Alexandero on 14.06.2017.
  */
-public class UnsuportedCommand implements Command {
+public class UnsupportedCommand implements Command {
     private View view;
 
-    public UnsuportedCommand(View view) {
+    public UnsupportedCommand(View view) {
         this.view = view;
     }
 

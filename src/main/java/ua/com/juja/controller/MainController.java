@@ -35,7 +35,7 @@ public class MainController {
                 new DeleteTable(view, manager),
                 new DeleteDatabase(view, manager),
                 new DisconnectFromDB(view, manager),
-                new UnsuportedCommand(view)
+                new UnsupportedCommand(view)
     ));
 }
 

@@ -22,7 +22,7 @@ public class UnsupportedCommandTest {
     @Before
     public void setup(){
         view = mock(View.class);
-        command = new UnsuportedCommand(view);
+        command = new UnsupportedCommand(view);
     }
 
     @Test
