@@ -29,10 +29,11 @@ public class DeleteTable implements Command {
         String tableName = data[TABLE_NAME];
 
         view.write("Do you really want to delete table '" + tableName + " ? All data will delete ! Press Y/N ?");
-        if (view.read().equalsIgnoreCase("Y")){
+        if (view.read().equalsIgnoreCase("Y")) {
             manager.deleteTable(tableName);
             view.write("Table " + tableName + " delete successful !");
+        } else {
+            view.write("The action is canceled!");
         }
-        view.write("The action is canceled!");
     }
 }

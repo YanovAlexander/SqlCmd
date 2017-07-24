@@ -47,7 +47,7 @@ public class MainController {
         try {
            doCommand();
         } catch (ExitException e) {
-            //do nothing...
+            /*NOP*/
         }
     }
 

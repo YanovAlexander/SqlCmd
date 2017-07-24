@@ -37,7 +37,7 @@ public class CreateTableTest {
     @Test
     public void testCantProcessWithWrongParameters(){
         //when
-        InputString userInput = new InputString("createTables|");
+        InputString userInput = new InputString("createTable11");
         boolean result = command.canProcess(userInput);
         //then
         assertFalse(result);

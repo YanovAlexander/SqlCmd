@@ -240,10 +240,12 @@ public class IntegrationTest {
 
         //then
         assertEquals("Welcome!\n" +
-                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
+                "Enter the database name, username, and password of the user in format : " +
+                "connect|database|username|password  or use 'help' to list all commands\n" +
                 "Connected successful\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "{names = [id, username, password], values = [10, Alexandero, +++000], } was successfully created in table testing.\n" +
+                "{names = [id, username, password], values = [10, Alexandero, +++000], }" +
+                " was successfully created in table testing.\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "+--+----------+--------+\n" +
                 "|id|username  |password|\n" +
@@ -267,8 +269,10 @@ public class IntegrationTest {
 
         //then
         assertEquals("Welcome!\n" +
-                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
-                "You can not use the command 'asdf', while not connect with the command connect|database|username|password\n" +
+                "Enter the database name, username, and password of the user in format :" +
+                " connect|database|username|password  or use 'help' to list all commands\n" +
+                "You can not use the command 'asdf', while not connect with the" +
+                " command connect|database|username|password\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Good Bye !\n", getData());
     }
@@ -286,7 +290,8 @@ public class IntegrationTest {
 
         //then
         assertEquals("Welcome!\n" +
-                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
+                "Enter the database name, username, and password of the user in format :" +
+                " connect|database|username|password  or use 'help' to list all commands\n" +
                 "Connected successful\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Unsupported command :asdf\n" +
@@ -311,7 +316,8 @@ public class IntegrationTest {
 
         //then
         assertEquals("Welcome!\n" +
-                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
+                "Enter the database name, username, and password of the user in format :" +
+                " connect|database|username|password  or use 'help' to list all commands\n" +
                 "Connected successful\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "-------------------TABLES-------------------\n" +
@@ -339,7 +345,8 @@ public class IntegrationTest {
 
         //then
         assertEquals("Welcome!\n" +
-                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
+                "Enter the database name, username, and password of the user in format :" +
+                " connect|database|username|password  or use 'help' to list all commands\n" +
                 "Error! Because of: Invalid number of parameters separated by '|', expected 4, but was: 2\n" +
                 "Please try again.\n" +
                 "Type command (or use 'help' to list all commands):\n" +
@@ -359,7 +366,8 @@ public class IntegrationTest {
 
         //then
         assertEquals("Welcome!\n" +
-                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
+                "Enter the database name, username, and password of the user in format :" +
+                " connect|database|username|password  or use 'help' to list all commands\n" +
                 "Connected successful\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Error! Because of: Invalid number of parameters separated by '|', expected 2, but was: 1\n" +
@@ -383,7 +391,8 @@ public class IntegrationTest {
 
         //then
         assertEquals("Welcome!\n" +
-                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
+                "Enter the database name, username, and password of the user in format :" +
+                " connect|database|username|password  or use 'help' to list all commands\n" +
                 "Connected successful\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Error! Because of: Invalid number of parameters separated by '|', expected 2, but was: 3\n" +
@@ -395,7 +404,7 @@ public class IntegrationTest {
     }
 
     @Test
-    public void testCreatUserWithError() {
+    public void testCreateUserWithError() {
         //given
         in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
         in.add("insertEntry|users|bugaga");
@@ -407,11 +416,284 @@ public class IntegrationTest {
 
         //then
         assertEquals("Welcome!\n" +
+                "Enter the database name, username, and password of the user in format :" +
+                " connect|database|username|password  or use 'help' to list all commands\n" +
+                "Connected successful\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Error! Because of: Invalid command, you must enter and even number of parameters in the " +
+                "following format : insertEntry|tableName|column1|value1|column2|value2...columnN|valueN\n" +
+                "Please try again.\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Connected successful\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Good Bye !\n", getData());
+    }
+
+    @Test
+    public void testCreateTable(){
+        //given
+        in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("createTable");
+        in.add("usersssss");
+        in.add("id");
+        in.add("name");
+        in.add("password");
+        in.add("finish");
+        in.add("deleteTable|usersssss");
+        in.add("y");
+        in.add("connect|" + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("exit");
+
+        //when
+        Main.main(new String[0]);
+
+        //then
+        assertEquals("Welcome!\n" +
                 "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
                 "Connected successful\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Error! Because of: Invalid command, you must enter and even number of parameters in the following format : insertEntry|tableName|column1|value1|column2|value2...columnN|valueN\n" +
+                "Enter name of creating table(name should start from letter) or type 'cancel' for exit to main menu\n" +
+                "Name of new table : usersssss\n" +
+                "Enter the name for PRIMARY KEY column(often it's an identifier):\n" +
+                "Name of PRIMARY KEY column : id\n" +
+                "Enter the name for next column or 'finish' to create table with entered columns or type 'cancel' for exit to main menu\n" +
+                "Name of column: name\n" +
+                "Enter the name for next column or 'finish' to create table with entered columns or type 'cancel' for exit to main menu\n" +
+                "Name of column: password\n" +
+                "Enter the name for next column or 'finish' to create table with entered columns or type 'cancel' for exit to main menu\n" +
+                "Table usersssss created successful !\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Do you really want to delete table 'usersssss ? All data will delete ! Press Y/N ?\n" +
+                "Table usersssss delete successful !\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Connected successful\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Good Bye !\n", getData());
+
+    }
+
+
+    @Test
+    public void testCreateTableWithColumnsStartFromNumber(){
+        //given
+        in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("createTable");
+        in.add("12usersssss");
+        in.add("usersssss");
+        in.add("4id");
+        in.add("id");
+        in.add("43name");
+        in.add("33password");
+        in.add("password");
+        in.add("finish");
+        in.add("find|usersssss");
+        in.add("deleteTable|usersssss");
+        in.add("y");
+        in.add("connect|" + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("exit");
+
+        //when
+        Main.main(new String[0]);
+
+        //then
+        assertEquals("Welcome!\n" +
+                "Enter the database name, username, and password of the user in format :" +
+                " connect|database|username|password  or use 'help' to list all commands\n" +
+                "Connected successful\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Enter name of creating table(name should start from letter) or type 'cancel' for exit to main menu\n" +
+                "Name should start from letter, but you type '1'\n" +
+                "Enter name of creating table(name should start from letter) or type 'cancel' for exit to main menu\n" +
+                "Name of new table : usersssss\n" +
+                "Enter the name for PRIMARY KEY column(often it's an identifier):\n" +
+                "Name should start from letter, but you type '4'\n" +
+                "Enter the name for PRIMARY KEY column(often it's an identifier):\n" +
+                "Name of PRIMARY KEY column : id\n" +
+                "Enter the name for next column or 'finish' to create table with entered columns or type 'cancel'" +
+                " for exit to main menu\n" +
+                "Name should start from letter, but you type '4'\n" +
+                "Enter the name for next column or 'finish' to create table with entered columns or type 'cancel'" +
+                " for exit to main menu\n" +
+                "Name should start from letter, but you type '3'\n" +
+                "Enter the name for next column or 'finish' to create table with entered columns or type 'cancel'" +
+                " for exit to main menu\n" +
+                "Name of column: password\n" +
+                "Enter the name for next column or 'finish' to create table with entered columns or type 'cancel'" +
+                " for exit to main menu\n" +
+                "Table usersssss created successful !\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "+--+--------+\n" +
+                "|id|password|\n" +
+                "+--+--------+\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Do you really want to delete table 'usersssss ? All data will delete ! Press Y/N ?\n" +
+                "Table usersssss delete successful !\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Connected successful\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Good Bye !\n", getData());
+    }
+
+    @Test
+    public void testCreateTableWithColumnsStartFromEmptyString(){
+        //given
+        in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("createTable");
+        in.add("");
+        in.add("usersssss");
+        in.add("");
+        in.add("id");
+        in.add("name");
+        in.add("");
+        in.add("password");
+        in.add("finish");
+        in.add("find|usersssss");
+        in.add("deleteTable|usersssss");
+        in.add("y");
+        in.add("connect|" + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("exit");
+
+        //when
+        Main.main(new String[0]);
+
+        //then
+        assertEquals("Welcome!\n" +
+                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
+                "Connected successful\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Enter name of creating table(name should start from letter) or type 'cancel' for exit to main menu\n" +
+                "Enter name for create table, you enter empty string\n" +
+                "Enter name of creating table(name should start from letter) or type 'cancel' for exit to main menu\n" +
+                "Name of new table : usersssss\n" +
+                "Enter the name for PRIMARY KEY column(often it's an identifier):\n" +
+                "Enter name for column of the table, you enter empty string\n" +
+                "Enter the name for PRIMARY KEY column(often it's an identifier):\n" +
+                "Name of PRIMARY KEY column : id\n" +
+                "Enter the name for next column or 'finish' to create table with entered columns or type 'cancel' for exit to main menu\n" +
+                "Name of column: name\n" +
+                "Enter the name for next column or 'finish' to create table with entered columns or type 'cancel' for exit to main menu\n" +
+                "Enter name for column of the table, you enter empty string\n" +
+                "Enter the name for next column or 'finish' to create table with entered columns or type 'cancel' for exit to main menu\n" +
+                "Name of column: password\n" +
+                "Enter the name for next column or 'finish' to create table with entered columns or type 'cancel' for exit to main menu\n" +
+                "Table usersssss created successful !\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "+--+----+--------+\n" +
+                "|id|name|password|\n" +
+                "+--+----+--------+\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Do you really want to delete table 'usersssss ? All data will delete ! Press Y/N ?\n" +
+                "Table usersssss delete successful !\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Connected successful\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Good Bye !\n", getData());
+    }
+
+    @Test
+    public void testCreateTableWithCancelInColumn(){
+        //given
+        in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("createTable");
+        in.add("usersssss");
+        in.add("id");
+        in.add("name");
+        in.add("password");
+        in.add("cancel");
+        in.add("find|usersssss");
+        in.add("connect|" + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("exit");
+
+        //when
+        Main.main(new String[0]);
+
+        //then
+        assertEquals("Welcome!\n" +
+                "Enter the database name, username, and password of the user in format : " +
+                "connect|database|username|password  or use 'help' to list all commands\n" +
+                "Connected successful\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Enter name of creating table(name should start from letter) or type 'cancel' for exit to main menu\n" +
+                "Name of new table : usersssss\n" +
+                "Enter the name for PRIMARY KEY column(often it's an identifier):\n" +
+                "Name of PRIMARY KEY column : id\n" +
+                "Enter the name for next column or 'finish' to create table with entered " +
+                "columns or type 'cancel' for exit to main menu\n" +
+                "Name of column: name\n" +
+                "Enter the name for next column or 'finish' to create table with entered " +
+                "columns or type 'cancel' for exit to main menu\n" +
+                "Name of column: password\n" +
+                "Enter the name for next column or 'finish' to create table with entered " +
+                "columns or type 'cancel' for exit to main menu\n" +
+                "Exit to main menu !\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Error! Because of: ERROR: relation \"public.usersssss\" does not exist\n" +
+                "  Позиция: 15\n" +
                 "Please try again.\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Connected successful\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Good Bye !\n", getData());
+    }
+
+
+    @Test
+    public void testCreateTableWithCancelInColumnPrimaryKey(){
+        //given
+        in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("createTable");
+        in.add("usersssss");
+        in.add("cancel");
+        in.add("find|usersssss");
+        in.add("connect|" + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("exit");
+
+        //when
+        Main.main(new String[0]);
+
+        //then
+        assertEquals("Welcome!\n" +
+                "Enter the database name, username, and password of the user in format :" +
+                " connect|database|username|password  or use 'help' to list all commands\n" +
+                "Connected successful\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Enter name of creating table(name should start from letter) or type" +
+                " 'cancel' for exit to main menu\n" +
+                "Name of new table : usersssss\n" +
+                "Enter the name for PRIMARY KEY column(often it's an identifier):\n" +
+                "Exit to main menu !\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Error! Because of: ERROR: relation \"public.usersssss\" does not exist\n" +
+                "  Позиция: 15\n" +
+                "Please try again.\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Connected successful\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Good Bye !\n", getData());
+    }
+
+
+    @Test
+    public void testCreateTableWithCancelInTableName(){
+        //given
+        in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("createTable");
+        in.add("cancel");
+        in.add("connect|" + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("exit");
+
+        //when
+        Main.main(new String[0]);
+
+        //then
+        assertEquals("Welcome!\n" +
+                "Enter the database name, username, and password of the user in format :" +
+                " connect|database|username|password  or use 'help' to list all commands\n" +
+                "Connected successful\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Enter name of creating table(name should start from letter) or type" +
+                " 'cancel' for exit to main menu\n" +
+                "Exit to main menu !\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Connected successful\n" +
                 "Type command (or use 'help' to list all commands):\n" +

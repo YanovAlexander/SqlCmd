@@ -12,7 +12,7 @@ public class CreateTable implements Command {
     private DatabaseManager manager;
     private final static Integer TABLE_NAME = 0;
     private boolean interruptCreate;
-    String query = "";
+    StringBuilder query = new StringBuilder();
 
     public CreateTable(View view, DatabaseManager manager) {
         this.view = view;
@@ -27,13 +27,12 @@ public class CreateTable implements Command {
     @Override
     public void process(InputString userInput) {
         interruptCreate = false;
-        query = "";
         createQuery();
         userInput.validationParameters(format());
 
         if (!interruptCreate){
-            manager.createTable(query);
-            String table = query.split("\\(")[TABLE_NAME];
+            manager.createTable(query.toString());
+            String table = query.toString().split("\\(")[TABLE_NAME];
             view.write(String.format("Table %s created successful !", table));
         }else {
             view.write("Exit to main menu !");
@@ -59,16 +58,16 @@ public class CreateTable implements Command {
                     " or type 'cancel' for exit to main menu");
             String input = view.read();
             if (input.equals("finish")){
-                query += ")";
+                query.append(")");
                 exit = true;
             }else if (input.equals("cancel")){
                 exit = true;
                 interruptCreate = true;
             }else if (input.equals("")){
-                view.write("Type name for column of the table");
+                view.write("Enter name for column of the table, you enter empty string");
             }else {
                 if (userInputStartWithLetters(input)){
-                    query += "," + input + " varchar(255)";
+                    query.append(",").append(input).append(" varchar(255)");
                     view.write("Name of column: " + input);
                     createColumn();
                     exit = true;
@@ -86,11 +85,11 @@ public class CreateTable implements Command {
                 exit = true;
                 interruptCreate = true;
             }else if (input.equals("")){
-                view.write("Type name for column of the table");
+                view.write("Enter name for column of the table, you enter empty string");
             }else {
                 if (userInputStartWithLetters(input)){
                     view.write("Name of PRIMARY KEY column : " + input);
-                    query += input + " SERIAL NOT NULL PRIMARY KEY";
+                    query.append(input).append(" SERIAL NOT NULL PRIMARY KEY");
                     exit = true;
                 }
             }
@@ -100,17 +99,17 @@ public class CreateTable implements Command {
     private void createTableName() {
         boolean exit = false;
         while (!exit){
-            view.write("Type name of creating table(name should start from letter) or type 'cancel' for exit to main menu");
+            view.write("Enter name of creating table(name should start from letter) or type 'cancel' for exit to main menu");
             String input = view.read();
 
             if (input.equalsIgnoreCase("cancel")){
                 exit = true;
                 interruptCreate = true;
             }else if (input.equalsIgnoreCase("")){
-                view.write("Type name for create table");
+                view.write("Enter name for create table, you enter empty string");
             }else
                 if (userInputStartWithLetters(input)){
-                query += input + "(";
+                query.append(input).append("(");
                 view.write("Name of new table : " + input);
                 exit = true;
             }
