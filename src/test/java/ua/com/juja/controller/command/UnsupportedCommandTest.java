@@ -40,7 +40,7 @@ public class UnsupportedCommandTest {
         InputString userInput = new InputString("unsupported");
         command.process(userInput);
         //then
-       shouldPrint("[Unsupported command :unsupported]");
+       shouldPrint("[Unsupported command: unsupported]");
     }
 
     private void shouldPrint(String expected) {

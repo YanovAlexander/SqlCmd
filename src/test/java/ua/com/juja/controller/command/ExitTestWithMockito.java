@@ -56,6 +56,6 @@ public class ExitTestWithMockito {
             //do nothing
         }
         //then
-        Mockito.verify(view).write("Good Bye !");
+        Mockito.verify(view).write("Good Bye!");
     }
 }

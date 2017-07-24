@@ -124,7 +124,7 @@ public class IntegrationTest {
                         "\t|\t-> To display this list on the screen\n" +
                         "\t+------------------------------------------------------------------\n" +
                         "Type command (or use 'help' to list all commands):\n" +
-                        "Good Bye !\n", getData());
+                        "Good Bye!\n", getData());
     }
 
 
@@ -139,7 +139,7 @@ public class IntegrationTest {
         //then
         assertEquals("Welcome!\n" +
                 "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
-                "Good Bye !\n", getData());
+                "Good Bye!\n", getData());
     }
 
     @Test
@@ -156,7 +156,7 @@ public class IntegrationTest {
                 "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
                 "You can not use the command 'tables', while not connect with the command connect|database|username|password\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Good Bye !\n", getData());
+                "Good Bye!\n", getData());
     }
 
     @Test
@@ -173,7 +173,7 @@ public class IntegrationTest {
                 "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
                 "You can not use the command 'find|users', while not connect with the command connect|database|username|password\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Good Bye !\n", getData());
+                "Good Bye!\n", getData());
     }
 
     @Test
@@ -190,15 +190,15 @@ public class IntegrationTest {
         //then
         assertEquals("Welcome!\n" +
                 "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "-------------------TABLES-------------------\n" +
                 "- testing\n" +
                 "--------------------------------------------\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Good Bye !\n", getData());
+                "Good Bye!\n", getData());
     }
 
     @Test
@@ -215,15 +215,15 @@ public class IntegrationTest {
         //then
         assertEquals("Welcome!\n" +
                 "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "+--+--------+--------+\n" +
                 "|id|username|password|\n" +
                 "+--+--------+--------+\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Good Bye !\n", getData());
+                "Good Bye!\n", getData());
     }
 
     @Test
@@ -242,7 +242,7 @@ public class IntegrationTest {
         assertEquals("Welcome!\n" +
                 "Enter the database name, username, and password of the user in format : " +
                 "connect|database|username|password  or use 'help' to list all commands\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "{names = [id, username, password], values = [10, Alexandero, +++000], }" +
                 " was successfully created in table testing.\n" +
@@ -253,9 +253,9 @@ public class IntegrationTest {
                 "|10|Alexandero|+++000  |\n" +
                 "+--+----------+--------+\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Good Bye !\n", getData());
+                "Good Bye!\n", getData());
     }
 
     @Test
@@ -274,7 +274,7 @@ public class IntegrationTest {
                 "You can not use the command 'asdf', while not connect with the" +
                 " command connect|database|username|password\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Good Bye !\n", getData());
+                "Good Bye!\n", getData());
     }
 
     @Test
@@ -290,15 +290,14 @@ public class IntegrationTest {
 
         //then
         assertEquals("Welcome!\n" +
-                "Enter the database name, username, and password of the user in format :" +
-                " connect|database|username|password  or use 'help' to list all commands\n" +
-                "Connected successful\n" +
+                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Unsupported command :asdf\n" +
+                "Unsupported command: asdf\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Good Bye !\n", getData());
+                "Good Bye!\n", getData());
     }
 
     @Test
@@ -318,20 +317,20 @@ public class IntegrationTest {
         assertEquals("Welcome!\n" +
                 "Enter the database name, username, and password of the user in format :" +
                 " connect|database|username|password  or use 'help' to list all commands\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "-------------------TABLES-------------------\n" +
                 "- testing\n" +
                 "--------------------------------------------\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "-------------------TABLES-------------------\n" +
                 "--------------------------------------------\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Good Bye !\n", getData());
+                "Good Bye!\n", getData());
     }
 
     @Test
@@ -350,7 +349,7 @@ public class IntegrationTest {
                 "Error! Because of: Invalid number of parameters separated by '|', expected 4, but was: 2\n" +
                 "Please try again.\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Good Bye !\n", getData());
+                "Good Bye!\n", getData());
     }
 
     @Test
@@ -368,14 +367,14 @@ public class IntegrationTest {
         assertEquals("Welcome!\n" +
                 "Enter the database name, username, and password of the user in format :" +
                 " connect|database|username|password  or use 'help' to list all commands\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Error! Because of: Invalid number of parameters separated by '|', expected 2, but was: 1\n" +
                 "Please try again.\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Good Bye !\n", getData());
+                "Good Bye!\n", getData());
     }
 
     @Test
@@ -393,14 +392,14 @@ public class IntegrationTest {
         assertEquals("Welcome!\n" +
                 "Enter the database name, username, and password of the user in format :" +
                 " connect|database|username|password  or use 'help' to list all commands\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Error! Because of: Invalid number of parameters separated by '|', expected 2, but was: 3\n" +
                 "Please try again.\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Good Bye !\n", getData());
+                "Good Bye!\n", getData());
     }
 
     @Test
@@ -416,17 +415,15 @@ public class IntegrationTest {
 
         //then
         assertEquals("Welcome!\n" +
-                "Enter the database name, username, and password of the user in format :" +
-                " connect|database|username|password  or use 'help' to list all commands\n" +
-                "Connected successful\n" +
+                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Error! Because of: Invalid command, you must enter and even number of parameters in the " +
-                "following format : insertEntry|tableName|column1|value1|column2|value2...columnN|valueN\n" +
+                "Error! Because of: Invalid command, you must enter and even number of parameters in the following format: insertEntry|tableName|column1|value1|column2|value2...columnN|valueN\n" +
                 "Please try again.\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Good Bye !\n", getData());
+                "Good Bye!\n", getData());
     }
 
     @Test
@@ -450,7 +447,7 @@ public class IntegrationTest {
         //then
         assertEquals("Welcome!\n" +
                 "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Enter name of creating table(name should start from letter) or type 'cancel' for exit to main menu\n" +
                 "Name of new table : usersssss\n" +
@@ -461,14 +458,14 @@ public class IntegrationTest {
                 "Enter the name for next column or 'finish' to create table with entered columns or type 'cancel' for exit to main menu\n" +
                 "Name of column: password\n" +
                 "Enter the name for next column or 'finish' to create table with entered columns or type 'cancel' for exit to main menu\n" +
-                "Table usersssss created successful !\n" +
+                "Table usersssss created successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Do you really want to delete table 'usersssss ? All data will delete ! Press Y/N ?\n" +
-                "Table usersssss delete successful !\n" +
+                "Do you really want to delete table 'usersssss'? All data will delete! Press Y/N?\n" +
+                "Table usersssss delete successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Good Bye !\n", getData());
+                "Good Bye!\n", getData());
 
     }
 
@@ -497,9 +494,8 @@ public class IntegrationTest {
 
         //then
         assertEquals("Welcome!\n" +
-                "Enter the database name, username, and password of the user in format :" +
-                " connect|database|username|password  or use 'help' to list all commands\n" +
-                "Connected successful\n" +
+                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Enter name of creating table(name should start from letter) or type 'cancel' for exit to main menu\n" +
                 "Name should start from letter, but you type '1'\n" +
@@ -509,29 +505,25 @@ public class IntegrationTest {
                 "Name should start from letter, but you type '4'\n" +
                 "Enter the name for PRIMARY KEY column(often it's an identifier):\n" +
                 "Name of PRIMARY KEY column : id\n" +
-                "Enter the name for next column or 'finish' to create table with entered columns or type 'cancel'" +
-                " for exit to main menu\n" +
+                "Enter the name for next column or 'finish' to create table with entered columns or type 'cancel' for exit to main menu\n" +
                 "Name should start from letter, but you type '4'\n" +
-                "Enter the name for next column or 'finish' to create table with entered columns or type 'cancel'" +
-                " for exit to main menu\n" +
+                "Enter the name for next column or 'finish' to create table with entered columns or type 'cancel' for exit to main menu\n" +
                 "Name should start from letter, but you type '3'\n" +
-                "Enter the name for next column or 'finish' to create table with entered columns or type 'cancel'" +
-                " for exit to main menu\n" +
+                "Enter the name for next column or 'finish' to create table with entered columns or type 'cancel' for exit to main menu\n" +
                 "Name of column: password\n" +
-                "Enter the name for next column or 'finish' to create table with entered columns or type 'cancel'" +
-                " for exit to main menu\n" +
-                "Table usersssss created successful !\n" +
+                "Enter the name for next column or 'finish' to create table with entered columns or type 'cancel' for exit to main menu\n" +
+                "Table usersssss created successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "+--+--------+\n" +
                 "|id|password|\n" +
                 "+--+--------+\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Do you really want to delete table 'usersssss ? All data will delete ! Press Y/N ?\n" +
-                "Table usersssss delete successful !\n" +
+                "Do you really want to delete table 'usersssss'? All data will delete! Press Y/N?\n" +
+                "Table usersssss delete successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Good Bye !\n", getData());
+                "Good Bye!\n", getData());
     }
 
     @Test
@@ -559,7 +551,7 @@ public class IntegrationTest {
         //then
         assertEquals("Welcome!\n" +
                 "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Enter name of creating table(name should start from letter) or type 'cancel' for exit to main menu\n" +
                 "Enter name for create table, you enter empty string\n" +
@@ -576,18 +568,18 @@ public class IntegrationTest {
                 "Enter the name for next column or 'finish' to create table with entered columns or type 'cancel' for exit to main menu\n" +
                 "Name of column: password\n" +
                 "Enter the name for next column or 'finish' to create table with entered columns or type 'cancel' for exit to main menu\n" +
-                "Table usersssss created successful !\n" +
+                "Table usersssss created successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "+--+----+--------+\n" +
                 "|id|name|password|\n" +
                 "+--+----+--------+\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Do you really want to delete table 'usersssss ? All data will delete ! Press Y/N ?\n" +
-                "Table usersssss delete successful !\n" +
+                "Do you really want to delete table 'usersssss'? All data will delete! Press Y/N?\n" +
+                "Table usersssss delete successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Good Bye !\n", getData());
+                "Good Bye!\n", getData());
     }
 
     @Test
@@ -611,7 +603,7 @@ public class IntegrationTest {
         assertEquals("Welcome!\n" +
                 "Enter the database name, username, and password of the user in format : " +
                 "connect|database|username|password  or use 'help' to list all commands\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Enter name of creating table(name should start from letter) or type 'cancel' for exit to main menu\n" +
                 "Name of new table : usersssss\n" +
@@ -625,15 +617,15 @@ public class IntegrationTest {
                 "Name of column: password\n" +
                 "Enter the name for next column or 'finish' to create table with entered " +
                 "columns or type 'cancel' for exit to main menu\n" +
-                "Exit to main menu !\n" +
+                "Exit to main menu!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Error! Because of: ERROR: relation \"public.usersssss\" does not exist\n" +
                 "  Позиция: 15\n" +
                 "Please try again.\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Good Bye !\n", getData());
+                "Good Bye!\n", getData());
     }
 
 
@@ -655,21 +647,21 @@ public class IntegrationTest {
         assertEquals("Welcome!\n" +
                 "Enter the database name, username, and password of the user in format :" +
                 " connect|database|username|password  or use 'help' to list all commands\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Enter name of creating table(name should start from letter) or type" +
                 " 'cancel' for exit to main menu\n" +
                 "Name of new table : usersssss\n" +
                 "Enter the name for PRIMARY KEY column(often it's an identifier):\n" +
-                "Exit to main menu !\n" +
+                "Exit to main menu!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Error! Because of: ERROR: relation \"public.usersssss\" does not exist\n" +
                 "  Позиция: 15\n" +
                 "Please try again.\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Good Bye !\n", getData());
+                "Good Bye!\n", getData());
     }
 
 
@@ -689,15 +681,15 @@ public class IntegrationTest {
         assertEquals("Welcome!\n" +
                 "Enter the database name, username, and password of the user in format :" +
                 " connect|database|username|password  or use 'help' to list all commands\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Enter name of creating table(name should start from letter) or type" +
                 " 'cancel' for exit to main menu\n" +
-                "Exit to main menu !\n" +
+                "Exit to main menu!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Good Bye !\n", getData());
+                "Good Bye!\n", getData());
     }
 
 
@@ -717,16 +709,16 @@ public class IntegrationTest {
         //then
         assertEquals("Welcome!\n" +
                 "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Database with name newdatabasetest created successful !\n" +
+                "Database with name newdatabasetest created successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Do you really want to delete database 'newdatabasetest' ? All data will delete ! If you sure press Y/N ?\n" +
-                "Database newdatabasetest delete successful !\n" +
+                "Do you really want to delete database 'newdatabasetest'? All data will delete! If you sure press Y/N?\n" +
+                "Database newdatabasetest delete successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Good Bye !\n", getData());
+                "Good Bye!\n", getData());
     }
 
     @Test
@@ -744,14 +736,14 @@ public class IntegrationTest {
         //then
         assertEquals("Welcome!\n" +
                 "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Do you really want to delete database 'testing' ? All data will delete ! If you sure press Y/N ?\n" +
-                "You cant delete database to which already connected !\n" +
+                "Do you really want to delete database 'testing'? All data will delete! If you sure press Y/N?\n" +
+                "You cant delete database to which already connected!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Good Bye !\n", getData());
+                "Good Bye!\n", getData());
     }
 
     @Test
@@ -769,13 +761,13 @@ public class IntegrationTest {
         assertEquals("Welcome!\n" +
                 "Enter the database name, username, and password of the user in format : " +
                 "connect|database|username|password  or use 'help' to list all commands\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Disconnected\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Good Bye !\n", getData());
+                "Good Bye!\n", getData());
     }
 
 
@@ -798,12 +790,10 @@ public class IntegrationTest {
 
         //then
         assertEquals("Welcome!\n" +
-                "Enter the database name, username, and password of the user in format :" +
-                " connect|database|username|password  or use 'help' to list all commands\n" +
-                "Connected successful\n" +
+                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "{names = [id, username, password], values = [30, alex, 987789], } " +
-                "was successfully created in table testing.\n" +
+                "{names = [id, username, password], values = [30, alex, 987789], } was successfully created in table testing.\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "+--+--------+--------+\n" +
                 "|id|username|password|\n" +
@@ -812,7 +802,7 @@ public class IntegrationTest {
                 "+--+--------+--------+\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Enter data of entry in format 'column1|value1|column2|value2|....|columnN|valueN':\n" +
-                "Update is successful !\n" +
+                "Update is successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "+--+----------+--------+\n" +
                 "|id|username  |password|\n" +
@@ -826,9 +816,9 @@ public class IntegrationTest {
                 "|id|username|password|\n" +
                 "+--+--------+--------+\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Good Bye !\n", getData());
+                "Good Bye!\n", getData());
     }
 
     @Test
@@ -850,12 +840,10 @@ public class IntegrationTest {
 
         //then
         assertEquals("Welcome!\n" +
-                "Enter the database name, username, and password of the user in format : " +
-                "connect|database|username|password  or use 'help' to list all commands\n" +
-                "Connected successful\n" +
+                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "{names = [id, username, password], values = [30, alex, 987789], } " +
-                "was successfully created in table testing.\n" +
+                "{names = [id, username, password], values = [30, alex, 987789], } was successfully created in table testing.\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "+--+--------+--------+\n" +
                 "|id|username|password|\n" +
@@ -864,8 +852,7 @@ public class IntegrationTest {
                 "+--+--------+--------+\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Enter data of entry in format 'column1|value1|column2|value2|....|columnN|valueN':\n" +
-                "Error! Because of: ERROR: column \"id\" is of type integer but expression " +
-                "is of type character varying\n" +
+                "Error! Because of: ERROR: column \"id\" is of type integer but expression is of type character varying\n" +
                 "  Подсказка: You will need to rewrite or cast the expression.\n" +
                 "  Позиция: 32\n" +
                 "Please try again.\n" +
@@ -882,9 +869,9 @@ public class IntegrationTest {
                 "|id|username|password|\n" +
                 "+--+--------+--------+\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Connected successful\n" +
+                "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Good Bye !\n", getData());
+                "Good Bye!\n", getData());
     }
 
     public String getData() {

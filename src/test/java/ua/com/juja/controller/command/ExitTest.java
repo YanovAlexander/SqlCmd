@@ -50,6 +50,6 @@ public class ExitTest {
             //do nothing
         }
         //then
-        assertEquals("Good Bye !\n", view.getContent());
+        assertEquals("Good Bye!\n", view.getContent());
     }
 }

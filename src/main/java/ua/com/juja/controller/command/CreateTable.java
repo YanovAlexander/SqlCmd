@@ -33,9 +33,9 @@ public class CreateTable implements Command {
         if (!interruptCreate){
             manager.createTable(query.toString());
             String table = query.toString().split("\\(")[TABLE_NAME];
-            view.write(String.format("Table %s created successful !", table));
+            view.write(String.format("Table %s created successful!", table));
         }else {
-            view.write("Exit to main menu !");
+            view.write("Exit to main menu!");
         }
     }
 

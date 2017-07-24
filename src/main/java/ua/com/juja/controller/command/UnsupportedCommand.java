@@ -25,6 +25,6 @@ public class UnsupportedCommand implements Command {
 
     @Override
     public void process(InputString userInput) {
-        view.write("Unsupported command :" + userInput);
+        view.write("Unsupported command: " + userInput);
     }
 }

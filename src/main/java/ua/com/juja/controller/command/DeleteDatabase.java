@@ -28,17 +28,17 @@ public class DeleteDatabase implements Command {
         String[] data = userInput.getParameters();
         String databaseName = data[DATABASE_NAME];
 
-        view.write("Do you really want to delete database '" + databaseName + "' ? All data will delete ! " +
-                "If you sure press Y/N ?");
+        view.write("Do you really want to delete database '" + databaseName + "'? All data will delete! " +
+                "If you sure press Y/N?");
         if (view.read().equalsIgnoreCase("Y")) {
             if (databaseName.equals(manager.getDatabaseName())){
-                view.write("You cant delete database to which already connected !");
+                view.write("You cant delete database to which already connected!");
                 return;
             }
             manager.deleteDatabase(databaseName);
-            view.write("Database " + databaseName + " delete successful !");
+            view.write("Database " + databaseName + " delete successful!");
         } else {
-            view.write("Action is Cancelled !");
+            view.write("Action is Cancelled!");
         }
     }
 }

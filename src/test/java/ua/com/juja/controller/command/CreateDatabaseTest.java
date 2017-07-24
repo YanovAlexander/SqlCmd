@@ -50,7 +50,7 @@ public class CreateDatabaseTest {
         this.command.process(userInput);
         //then
         verify(manager).createDatabase("test");
-        verify(view).write("Database with name test created successful !");
+        verify(view).write("Database with name test created successful!");
     }
 
     @Test

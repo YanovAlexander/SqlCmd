@@ -54,10 +54,10 @@ public class DeleteTableTest {
         when(view.read()).thenReturn("y");
         InputString userInput = new InputString("deleteTable|test");
         command.process(userInput);
-        verify(view).write("Do you really want to delete table 'test ? All data will delete ! Press Y/N ?");
+        verify(view).write("Do you really want to delete table 'test'? All data will delete! Press Y/N?");
         verify(manager).deleteTable("test");
         //then
-        verify(view).write("Table test delete successful !");
+        verify(view).write("Table test delete successful!");
     }
 
     @Test
@@ -66,7 +66,7 @@ public class DeleteTableTest {
         when(view.read()).thenReturn("n");
         InputString userInput = new InputString("deleteTable|test");
         command.process(userInput);
-        verify(view).write("Do you really want to delete table 'test ? All data will delete ! Press Y/N ?");
+        verify(view).write("Do you really want to delete table 'test'? All data will delete! Press Y/N?");
         //then
         verify(view).write("The action is canceled!");
     }

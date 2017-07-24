@@ -34,6 +34,6 @@ public class Connect implements Command {
         String password = data[PASSWORD];
 
         manager.connect(databaseName, userName, password);
-        view.write("Connected successful");
+        view.write("Connected successful!");
     }
 }

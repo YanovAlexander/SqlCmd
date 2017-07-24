@@ -29,6 +29,6 @@ public class CreateDatabase implements Command {
         String databaseName = data[DATABASE_NAME];
 
         manager.createDatabase(databaseName);
-        view.write("Database with name "+ databaseName + " created successful !" );
+        view.write("Database with name "+ databaseName + " created successful!" );
     }
 }

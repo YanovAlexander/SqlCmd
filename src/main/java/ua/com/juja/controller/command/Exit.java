@@ -21,7 +21,7 @@ public class Exit implements Command {
 
     @Override
     public void process(InputString userInput) {
-        view.write("Good Bye !");
+        view.write("Good Bye!");
         throw new ExitException();
     }
 }

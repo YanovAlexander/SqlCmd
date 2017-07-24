@@ -49,7 +49,7 @@ public class ConnectTest {
         InputString userInput = new InputString("connect|postgres|postgres|pass");
         command.process(userInput);
         //then
-        verify(view).write("Connected successful");
+        verify(view).write("Connected successful!");
     }
 
     @Test

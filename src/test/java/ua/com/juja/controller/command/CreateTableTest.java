@@ -8,7 +8,6 @@ import ua.com.juja.view.View;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 
 /**
  * Created by Alexandero on 01.07.2017.

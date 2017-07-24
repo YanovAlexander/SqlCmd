@@ -49,7 +49,6 @@ public class UpdateEntry implements Command {
 
         String tableName = data[TABLE_NAME];
         manager.update(tableName, id, dataSet);
-        view.write("Update is successful !");
+        view.write("Update is successful!");
     }
-
 }

@@ -67,7 +67,7 @@ public class InsertEntryTest {
         } catch (IllegalArgumentException e) {
             //then
             assertEquals("Invalid command, you must enter and even number of parameters" +
-                    " in the following format : " +
+                    " in the following format: " +
                     "insertEntry|tableName|column1|value1|column2|value2...columnN|valueN", e.getMessage());
         }
     }
@@ -81,7 +81,7 @@ public class InsertEntryTest {
             fail("IllegalArgumentException expected");
         } catch (IllegalArgumentException e) {
             assertEquals("Invalid command, you must enter and even number of parameters " +
-                    "in the following format : " +
+                    "in the following format: " +
                     "insertEntry|tableName|column1|value1|column2|value2...columnN|valueN", e.getMessage());
         }
     }

@@ -51,9 +51,9 @@ public class DeleteDatabaseTest {
         InputString userInput = new InputString("deleteDatabase|test");
         command.process(userInput);
         //then
-        verify(view).write("Do you really want to delete database 'test' ? All data will delete ! If you sure press Y/N ?");
+        verify(view).write("Do you really want to delete database 'test'? All data will delete! If you sure press Y/N?");
         verify(manager).deleteDatabase("test");
-        verify(view).write("Database test delete successful !");
+        verify(view).write("Database test delete successful!");
     }
 
     @Test
@@ -63,8 +63,8 @@ public class DeleteDatabaseTest {
         InputString userInput = new InputString("deleteDatabase|test");
         command.process(userInput);
         //then
-        verify(view).write("Do you really want to delete database 'test' ? All data will delete ! If you sure press Y/N ?");
-        verify(view).write("Action is Cancelled !");
+        verify(view).write("Do you really want to delete database 'test'? All data will delete! If you sure press Y/N?");
+        verify(view).write("Action is Cancelled!");
     }
 
     @Test

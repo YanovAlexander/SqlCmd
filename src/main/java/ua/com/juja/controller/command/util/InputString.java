@@ -23,7 +23,7 @@ public class InputString {
     public void validationPairs(String inputString){
         if (getLength() % 2 != 0){
             throw new IllegalArgumentException("Invalid command, you must enter and even " +
-                    "number of parameters in the following format : " + inputString);
+                    "number of parameters in the following format: " + inputString);
         }
     }
 
