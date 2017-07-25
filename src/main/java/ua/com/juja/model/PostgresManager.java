@@ -3,13 +3,15 @@ package ua.com.juja.model;
 import java.sql.*;
 import java.util.*;
 
-public class JDBCDatabaseManager implements DatabaseManager {
+public class PostgresManager implements DatabaseManager {
 
     private Connection connection;
     private String database;
     private String userName;
     private String password;
     private boolean isConnected;
+    private static final String HOST = "localhost";
+    private static final String PORT = "5432";
 
     @Override
     public Set<String> getTableNames() {
@@ -81,8 +83,8 @@ public class JDBCDatabaseManager implements DatabaseManager {
             if (connection != null) {
                 connection.close();
             }
-            connection = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/" + databaseName,
+            String url = String.format("jdbc:postgresql://%s:%s/", HOST, PORT);
+            connection = DriverManager.getConnection(url + databaseName,
                     userName, password);
         } catch (SQLException e) {
             connection = null;

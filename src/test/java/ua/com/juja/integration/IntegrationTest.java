@@ -3,7 +3,7 @@ package ua.com.juja.integration;
 import org.junit.*;
 import ua.com.juja.controller.Main;
 import ua.com.juja.model.DatabaseManager;
-import ua.com.juja.model.JDBCDatabaseManager;
+import ua.com.juja.model.PostgresManager;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -32,7 +32,7 @@ public class IntegrationTest {
 
     @BeforeClass
     public static void init() {
-        manager = new JDBCDatabaseManager();
+        manager = new PostgresManager();
         try {
             manager.connect("", DB_USERNAME, DB_PASSWORD);
         } catch (RuntimeException e) {
