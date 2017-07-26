@@ -20,9 +20,6 @@ import static org.mockito.Mockito.*;
 
 import static junit.framework.TestCase.assertEquals;
 
-/**
- * Created by Alexandero on 17.06.2017.
- */
 public class FindTest {
 
     private View view;

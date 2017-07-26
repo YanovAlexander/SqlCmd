@@ -10,9 +10,6 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-/**
- * Created by Alexandero on 01.07.2017.
- */
 public class CreateDatabaseTest {
     private DatabaseManager manager;
     private View view;
@@ -26,7 +23,7 @@ public class CreateDatabaseTest {
     }
 
     @Test
-    public void testCanProcess(){
+    public void testCanProcessWithRightParameters(){
         //when
         InputString userInput = new InputString("createDatabase|");
         boolean result = command.canProcess(userInput);
@@ -44,7 +41,7 @@ public class CreateDatabaseTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcessWithRightParameters(){
         //when
         InputString userInput = new InputString("createDatabase|test");
         this.command.process(userInput);
@@ -54,7 +51,7 @@ public class CreateDatabaseTest {
     }
 
     @Test
-    public void testProcessWithWrongFormat(){
+    public void testProcessWithWrongFormatError(){
         //when
         try{
             InputString userInput = new InputString("createDatabase|test|test");

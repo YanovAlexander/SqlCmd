@@ -2,9 +2,7 @@ package ua.com.juja.controller.command;
 
 import ua.com.juja.controller.command.util.InputString;
 
-/**
- * Created by Alexandero on 14.06.2017.
- */
+
 public interface Command {
 
     void process(InputString userInput);

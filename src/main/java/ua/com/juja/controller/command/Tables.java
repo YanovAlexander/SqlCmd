@@ -6,9 +6,6 @@ import ua.com.juja.view.View;
 
 import java.util.Set;
 
-/**
- * Created by Alexandero on 14.06.2017.
- */
 public class Tables implements Command {
 
     private View view;

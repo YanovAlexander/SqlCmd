@@ -9,9 +9,6 @@ import ua.com.juja.view.View;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 
-/**
- * Created by Alexandero on 01.07.2017.
- */
 public class CreateTableTest {
     private DatabaseManager manager;
     private View view;
@@ -25,7 +22,7 @@ public class CreateTableTest {
     }
 
     @Test
-    public void testCanProcess(){
+    public void testCanProcessWithRightParameters(){
         //when
         InputString userInput = new InputString("createTable");
         boolean result = command.canProcess(userInput);

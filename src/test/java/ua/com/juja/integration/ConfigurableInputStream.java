@@ -3,9 +3,6 @@ package ua.com.juja.integration;
 import java.io.IOException;
 import java.io.InputStream;
 
-/**
- * Created by Alexandero on 10.07.2017.
- */
 public class ConfigurableInputStream extends InputStream {
     private String line;
     private String printed = "";

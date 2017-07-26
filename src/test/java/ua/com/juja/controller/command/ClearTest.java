@@ -15,9 +15,6 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.*;
 
-/**
- * Created by Alexandero on 17.06.2017.
- */
 public class ClearTest {
 
     private View view;
@@ -46,18 +43,9 @@ public class ClearTest {
 
 
     @Test
-    public void clearCanProcessTest() {
+    public void clearCanProcessWithRightParametersTest() {
         //when
         InputString userInput = new InputString("clear|users");
-        boolean result = command.canProcess(userInput);
-        //then
-        assertTrue(result);
-    }
-
-    @Test
-    public void clearCantProcessWithoutParametersTest() {
-        //when
-        InputString userInput = new InputString("clear");
         boolean result = command.canProcess(userInput);
         //then
         assertTrue(result);
@@ -73,7 +61,7 @@ public class ClearTest {
     }
 
     @Test
-    public void clearCantProcessWithErrorParametersLessThenTwo() {
+    public void clearCannotProcessWithErrorParametersLessThenTwo() {
         //when
         try {
             InputString userInput = new InputString("clear");

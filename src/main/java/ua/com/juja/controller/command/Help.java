@@ -3,9 +3,6 @@ package ua.com.juja.controller.command;
 import ua.com.juja.controller.command.util.InputString;
 import ua.com.juja.view.View;
 
-/**
- * Created by Alexandero on 14.06.2017.
- */
 public class Help implements Command {
 
     private View view;
@@ -21,7 +18,7 @@ public class Help implements Command {
 
     @Override
     public void process(InputString userInput) {
-        userInput.validationParameters(format());
+        userInput.validateParameters(format());
         view.write("\t+----------------------------COMMANDS------------------------------");
 
         view.write("\t| connect|database|username|password");
@@ -32,7 +29,7 @@ public class Help implements Command {
         view.write("\t|\t-> To get a list of all database tables");
         view.write("\t+------------------------------------------------------------------");
 
-        view.write("\t| databaseList");
+        view.write("\t| databases");
         view.write("\t|\t -> To get a list of all databases");
         view.write("\t+------------------------------------------------------------------");
 
@@ -56,11 +53,8 @@ public class Help implements Command {
         view.write("\t|\t -> Create new database named 'databaseName'");
         view.write("\t+------------------------------------------------------------------");
 
-        view.write("\t| createTable|tableName(column1,column2,...,columnN)");
-        view.write("\t|\t -> Create new table named 'tableName', in parentheses enter\n " +
-                "\t| column description in SQL format example:\n" +
-                "\t| user(id SERIAL NOT NULL PRIMARY KEY,username varchar(225)\n" +
-                "\t| NOT NULL UNIQUE, password varchar(225))");
+        view.write("\t| createTable|tableName");
+        view.write("\t|\t -> Create new table named 'tableName'");
         view.write("\t+------------------------------------------------------------------");
 
         view.write("\t| deleteDatabase|databaseName");

@@ -15,9 +15,6 @@ import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-/**
- * Created by Alexandero on 01.07.2017.
- */
 public class InsertEntryTest {
     private DatabaseManager manager;
     private View view;

@@ -15,9 +15,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
-/**
- * Created by Alexandero on 01.07.2017.
- */
 public class DatabaseListTest {
     private DatabaseManager manager;
     private View view;
@@ -31,9 +28,9 @@ public class DatabaseListTest {
     }
 
     @Test
-    public void testCanProcess(){
+    public void testCanProcessWithRightParameters(){
         //when
-        InputString userInput = new InputString("databaseList");
+        InputString userInput = new InputString("databases");
         boolean result = command.canProcess(userInput);
         //then
         assertTrue(result);
@@ -49,7 +46,7 @@ public class DatabaseListTest {
     }
 
     @Test
-    public void testProcessPrint(){
+    public void testProcessPrintWithData(){
         //when
         HashSet<String> databases = new HashSet<>(Arrays.asList("test1", "test2"));
         when(manager.databasesList()).thenReturn(databases);

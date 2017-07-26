@@ -15,9 +15,6 @@ import static junit.framework.TestCase.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
-/**
- * Created by Alexandero on 30.06.2017.
- */
 public class TablesTest {
     private Command command;
     private DatabaseManager manager;

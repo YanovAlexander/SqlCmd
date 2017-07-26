@@ -4,9 +4,7 @@ import ua.com.juja.controller.command.util.InputString;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
-/**
- * Created by Alexandero on 10.07.2017.
- */
+
 public class DisconnectFromDB implements Command{
 
     private DatabaseManager manager;
@@ -24,7 +22,7 @@ public class DisconnectFromDB implements Command{
 
     @Override
     public void process(InputString userInput) {
-        userInput.validationParameters(format());
+        userInput.validateParameters(format());
 
         manager.disconnectFromDB();
         view.write("Disconnected");

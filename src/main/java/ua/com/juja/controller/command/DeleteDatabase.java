@@ -4,9 +4,6 @@ import ua.com.juja.controller.command.util.InputString;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
-/**
- * Created by Alexandero on 30.06.2017.
- */
 public class DeleteDatabase implements Command {
     private View view;
     private DatabaseManager manager;
@@ -24,7 +21,7 @@ public class DeleteDatabase implements Command {
 
     @Override
     public void process(InputString userInput) {
-        userInput.validationParameters(format());
+        userInput.validateParameters(format());
         String[] data = userInput.getParameters();
         String databaseName = data[DATABASE_NAME];
 

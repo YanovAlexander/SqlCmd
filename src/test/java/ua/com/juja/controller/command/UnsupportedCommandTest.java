@@ -12,9 +12,6 @@ import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-/**
- * Created by Alexandero on 30.06.2017.
- */
 public class UnsupportedCommandTest {
     private Command command;
     private View view;

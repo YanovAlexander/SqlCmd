@@ -11,9 +11,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-/**
- * Created by Alexandero on 01.07.2017.
- */
 public class DeleteDatabaseTest {
     private DatabaseManager manager;
     private View view;
@@ -27,7 +24,7 @@ public class DeleteDatabaseTest {
     }
 
     @Test
-    public void testCanProcess(){
+    public void testCanProcessWithRightParameters(){
         //when
         InputString userInput = new InputString("deleteDatabase|");
         boolean result = command.canProcess(userInput);
@@ -45,7 +42,7 @@ public class DeleteDatabaseTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcessWithRightParameters(){
         //when
         when(view.read()).thenReturn("y");
         InputString userInput = new InputString("deleteDatabase|test");

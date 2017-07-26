@@ -2,9 +2,6 @@ package ua.com.juja.controller.command;
 
 import ua.com.juja.view.View;
 
-/**
- * Created by Alexandero on 17.06.2017.
- */
 public class ViewTest implements View {
 
     private String messages = "";

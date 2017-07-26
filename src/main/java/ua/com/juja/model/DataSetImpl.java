@@ -2,9 +2,6 @@ package ua.com.juja.model;
 
 import java.util.*;
 
-/**
- * Created by Alexandero on 02.06.2017.
- */
 public class DataSetImpl implements DataSet {
 
     private Map<String, Object> data = new LinkedHashMap<>();
@@ -22,20 +19,6 @@ public class DataSetImpl implements DataSet {
     @Override
     public Set<String> getNames() {
        return data.keySet();
-    }
-
-    @Override
-    public Object get(String name) {
-        return data.get(name);
-    }
-
-    @Override
-    public void updateFrom(DataSet newValue) {
-        Set<String> columns = newValue.getNames();
-        for (String names : columns) {
-            Object data = newValue.get(names);
-            this.put(names, data);
-        }
     }
 
     @Override

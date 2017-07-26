@@ -8,9 +8,6 @@ import ua.com.juja.model.PostgresManager;
 import ua.com.juja.view.Console;
 import ua.com.juja.view.View;
 
-/**
- * Created by Alexandero on 13.06.2017.
- */
 public class Main {
     public static void main(String[] args) {
         BasicConfigurator.configure();

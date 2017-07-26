@@ -4,9 +4,6 @@ import ua.com.juja.controller.command.util.InputString;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
-/**
- * Created by Alexandero on 14.06.2017.
- */
 public class IsConnected implements Command {
     private View view;
     private DatabaseManager manager;

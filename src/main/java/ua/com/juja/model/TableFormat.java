@@ -7,9 +7,6 @@ import org.nocrala.tools.texttablefmt.Table;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by Alexandero on 30.06.2017.
- */
 public class TableFormat {
     private Set<String> columns;
     private Table table;

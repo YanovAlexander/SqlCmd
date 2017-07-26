@@ -3,9 +3,6 @@ package ua.com.juja.view;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-/**
- * Created by Alexandero on 13.06.2017.
- */
 public class Console implements View {
 
     @Override

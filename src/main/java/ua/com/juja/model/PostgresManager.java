@@ -10,6 +10,7 @@ public class PostgresManager implements DatabaseManager {
     private String userName;
     private String password;
     private boolean isConnected;
+
     private static final String HOST = "localhost";
     private static final String PORT = "5432";
 
@@ -48,19 +49,6 @@ public class PostgresManager implements DatabaseManager {
             return result;
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
-        }
-    }
-
-    @Override
-    public int getSize(String tableName) {
-        try (Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery("SELECT COUNT (*) FROM public." + tableName))
-        {
-            resultSet.next();
-            int size = resultSet.getInt(1);
-            return size;
-        } catch (SQLException e) {
-            throw new DatabaseManagerException(e.getMessage(), e.getCause());
         }
     }
 
@@ -171,9 +159,8 @@ public class PostgresManager implements DatabaseManager {
             }
             return result;
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e.getMessage());
         }
-        return result;
     }
 
     @Override

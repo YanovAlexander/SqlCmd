@@ -9,9 +9,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by Alexandero on 13.06.2017.
- */
 public class MainController {
 
     private List<Command> commands;

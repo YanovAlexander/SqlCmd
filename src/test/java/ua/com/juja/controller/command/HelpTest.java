@@ -11,9 +11,6 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-/**
- * Created by Alexandero on 30.06.2017.
- */
 public class HelpTest {
     private View view;
     private Command command;

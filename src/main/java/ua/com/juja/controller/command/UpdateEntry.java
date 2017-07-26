@@ -7,9 +7,6 @@ import ua.com.juja.model.DataSetImpl;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
-/**
- * Created by Alexandero on 10.07.2017.
- */
 public class UpdateEntry implements Command {
     private DatabaseManager manager;
     private View view;
@@ -28,12 +25,12 @@ public class UpdateEntry implements Command {
 
     @Override
     public void process(InputString userInput) {
-        userInput.validationParameters(format());
+        userInput.validateParameters(format());
         String[] data = userInput.getParameters();
 
         view.write("Enter data of entry in format 'column1|value1|column2|value2|....|columnN|valueN':");
         InputString dataEntry = new InputString(view.read());
-        dataEntry.validationPairs("column1|value1|column2|value2|...|columnN|valueN");
+        dataEntry.validatePairs("column1|value1|column2|value2|...|columnN|valueN");
         String[] dataEntryParameters = dataEntry.getParameters();
 
 

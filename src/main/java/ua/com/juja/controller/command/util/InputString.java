@@ -1,8 +1,5 @@
 package ua.com.juja.controller.command.util;
 
-/**
- * Created by Alexandero on 08.07.2017.
- */
 public class InputString {
 
     private String command;
@@ -12,7 +9,7 @@ public class InputString {
     }
 
 
-    public void validationParameters(String inputString){
+    public void validateParameters(String inputString){
         int formatLength = inputString.split("\\|").length;
         if (formatLength != getLength()){
             throw new IllegalArgumentException(String.format("Invalid number of parameters" +
@@ -20,7 +17,7 @@ public class InputString {
         }
     }
 
-    public void validationPairs(String inputString){
+    public void validatePairs(String inputString){
         if (getLength() % 2 != 0){
             throw new IllegalArgumentException("Invalid command, you must enter and even " +
                     "number of parameters in the following format: " + inputString);

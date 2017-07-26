@@ -6,9 +6,6 @@ import ua.com.juja.model.DataSetImpl;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
-/**
- * Created by Alexandero on 14.06.2017.
- */
 public class InsertEntry implements Command {
     private View view;
     private DatabaseManager manager;
@@ -27,7 +24,7 @@ public class InsertEntry implements Command {
 
     @Override
     public void process(InputString userInput) {
-        userInput.validationPairs(format());
+        userInput.validatePairs(format());
         String[] data = userInput.getParameters();
         String tableName = data[TABLE_NAME];
 

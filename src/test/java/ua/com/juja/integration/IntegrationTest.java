@@ -11,15 +11,11 @@ import java.io.UnsupportedEncodingException;
 
 import static org.junit.Assert.assertEquals;
 
-
-/**
- * Created by Alexandero on 14.06.2017.
- */
 public class IntegrationTest {
 
     private final static String DB_USERNAME = "postgres"; //change only username and password
     private final static String DB_PASSWORD = "pass";
-    private final static String DB_NAME = "testing"; // db will be deleted, don't put db what you using, dont change db
+    private final static String DB_NAME = "testing"; // db will be deleted, don't put db what you using, don't change db
     private final static String DB_NAME_SECOND = "testingdb";
     private final static String TABLE_NAME = "testing";
     private final static String SQL_CREATE_TABLE = TABLE_NAME + "(id SERIAL PRIMARY KEY," +
@@ -75,56 +71,52 @@ public class IntegrationTest {
 
         //then
         assertEquals("Welcome!\n" +
-                        "Enter the database name, username, and password of the user in format :" +
-                        " connect|database|username|password  or use 'help' to list all commands\n" +
-                        "\t+----------------------------COMMANDS------------------------------\n" +
-                        "\t| connect|database|username|password\n" +
-                        "\t|\t-> To get to the database, with which it is necessary to work\n" +
-                        "\t+------------------------------------------------------------------\n" +
-                        "\t| tables\n" +
-                        "\t|\t-> To get a list of all database tables\n" +
-                        "\t+------------------------------------------------------------------\n" +
-                        "\t| databaseList\n" +
-                        "\t|\t -> To get a list of all databases\n" +
-                        "\t+------------------------------------------------------------------\n" +
-                        "\t| find|tableName\n" +
-                        "\t|\t-> To retrieve table contents 'tableName'\n" +
-                        "\t+------------------------------------------------------------------\n" +
-                        "\t| clear|tableName\n" +
-                        "\t|\t-> To clear the entire table with the name 'tableName'\n" +
-                        "\t+------------------------------------------------------------------\n" +
-                        "\t| insertEntry|tableName|column1|value1|column2|value2...columnN|valueN\n" +
-                        "\t|\t-> To create an entry in the table named 'tableName'\n" +
-                        "\t+------------------------------------------------------------------\n" +
-                        "\t| updateEntry|tableName|ID\n" +
-                        "\t|\t-> update the entry in the table 'tableName' using the ID\n" +
-                        "\t+------------------------------------------------------------------\n" +
-                        "\t| createDatabase|databaseName\n" +
-                        "\t|\t -> Create new database named 'databaseName'\n" +
-                        "\t+------------------------------------------------------------------\n" +
-                        "\t| createTable|tableName(column1,column2,...,columnN)\n" +
-                        "\t|\t -> Create new table named 'tableName', in parentheses enter\n" +
-                        " \t| column description in SQL format example:\n" +
-                        "\t| user(id SERIAL NOT NULL PRIMARY KEY,username varchar(225)\n" +
-                        "\t| NOT NULL UNIQUE, password varchar(225))\n" +
-                        "\t+------------------------------------------------------------------\n" +
-                        "\t| deleteDatabase|databaseName\n" +
-                        "\t|\t -> Delete database named 'databaseName'\n" +
-                        "\t+------------------------------------------------------------------\n" +
-                        "\t| deleteTable|tableName\n" +
-                        "\t|\t -> Delete table named 'tableName'\n" +
-                        "\t+------------------------------------------------------------------\n" +
-                        "\t| disconnect\n" +
-                        "\t|\t -> disconnect from current database\n" +
-                        "\t+------------------------------------------------------------------\n" +
-                        "\t| exit\n" +
-                        "\t|\t-> To terminate the application\n" +
-                        "\t+------------------------------------------------------------------\n" +
-                        "\t| help\n" +
-                        "\t|\t-> To display this list on the screen\n" +
-                        "\t+------------------------------------------------------------------\n" +
-                        "Type command (or use 'help' to list all commands):\n" +
-                        "Good Bye!\n", getData());
+                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
+                "\t+----------------------------COMMANDS------------------------------\n" +
+                "\t| connect|database|username|password\n" +
+                "\t|\t-> To get to the database, with which it is necessary to work\n" +
+                "\t+------------------------------------------------------------------\n" +
+                "\t| tables\n" +
+                "\t|\t-> To get a list of all database tables\n" +
+                "\t+------------------------------------------------------------------\n" +
+                "\t| databases\n" +
+                "\t|\t -> To get a list of all databases\n" +
+                "\t+------------------------------------------------------------------\n" +
+                "\t| find|tableName\n" +
+                "\t|\t-> To retrieve table contents 'tableName'\n" +
+                "\t+------------------------------------------------------------------\n" +
+                "\t| clear|tableName\n" +
+                "\t|\t-> To clear the entire table with the name 'tableName'\n" +
+                "\t+------------------------------------------------------------------\n" +
+                "\t| insertEntry|tableName|column1|value1|column2|value2...columnN|valueN\n" +
+                "\t|\t-> To create an entry in the table named 'tableName'\n" +
+                "\t+------------------------------------------------------------------\n" +
+                "\t| updateEntry|tableName|ID\n" +
+                "\t|\t-> update the entry in the table 'tableName' using the ID\n" +
+                "\t+------------------------------------------------------------------\n" +
+                "\t| createDatabase|databaseName\n" +
+                "\t|\t -> Create new database named 'databaseName'\n" +
+                "\t+------------------------------------------------------------------\n" +
+                "\t| createTable|tableName\n" +
+                "\t|\t -> Create new table named 'tableName'\n" +
+                "\t+------------------------------------------------------------------\n" +
+                "\t| deleteDatabase|databaseName\n" +
+                "\t|\t -> Delete database named 'databaseName'\n" +
+                "\t+------------------------------------------------------------------\n" +
+                "\t| deleteTable|tableName\n" +
+                "\t|\t -> Delete table named 'tableName'\n" +
+                "\t+------------------------------------------------------------------\n" +
+                "\t| disconnect\n" +
+                "\t|\t -> disconnect from current database\n" +
+                "\t+------------------------------------------------------------------\n" +
+                "\t| exit\n" +
+                "\t|\t-> To terminate the application\n" +
+                "\t+------------------------------------------------------------------\n" +
+                "\t| help\n" +
+                "\t|\t-> To display this list on the screen\n" +
+                "\t+------------------------------------------------------------------\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Good Bye!\n", getData());
     }
 
 
@@ -194,6 +186,8 @@ public class IntegrationTest {
                 "Type command (or use 'help' to list all commands):\n" +
                 "-------------------TABLES-------------------\n" +
                 "- testing\n" +
+                "- usersssss\n" +
+                "- usersssssfff\n" +
                 "--------------------------------------------\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Connected successful!\n" +
@@ -315,12 +309,13 @@ public class IntegrationTest {
 
         //then
         assertEquals("Welcome!\n" +
-                "Enter the database name, username, and password of the user in format :" +
-                " connect|database|username|password  or use 'help' to list all commands\n" +
+                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
                 "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "-------------------TABLES-------------------\n" +
                 "- testing\n" +
+                "- usersssss\n" +
+                "- usersssssfff\n" +
                 "--------------------------------------------\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Connected successful!\n" +
@@ -403,7 +398,7 @@ public class IntegrationTest {
     }
 
     @Test
-    public void testCreateUserWithError() {
+    public void testInsertEntryWithError() {
         //given
         in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
         in.add("insertEntry|users|bugaga");
@@ -436,8 +431,7 @@ public class IntegrationTest {
         in.add("name");
         in.add("password");
         in.add("finish");
-        in.add("deleteTable|usersssss");
-        in.add("y");
+        in.add("tables");
         in.add("connect|" + "|" + DB_USERNAME + "|" + DB_PASSWORD);
         in.add("exit");
 
@@ -460,8 +454,10 @@ public class IntegrationTest {
                 "Enter the name for next column or 'finish' to create table with entered columns or type 'cancel' for exit to main menu\n" +
                 "Table usersssss created successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Do you really want to delete table 'usersssss'? All data will delete! Press Y/N?\n" +
-                "Table usersssss delete successful!\n" +
+                "-------------------TABLES-------------------\n" +
+                "- testing\n" +
+                "- usersssss\n" +
+                "--------------------------------------------\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
@@ -476,16 +472,14 @@ public class IntegrationTest {
         in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
         in.add("createTable");
         in.add("12usersssss");
-        in.add("usersssss");
+        in.add("usersssssfff");
         in.add("4id");
         in.add("id");
         in.add("43name");
         in.add("33password");
         in.add("password");
         in.add("finish");
-        in.add("find|usersssss");
-        in.add("deleteTable|usersssss");
-        in.add("y");
+        in.add("tables");
         in.add("connect|" + "|" + DB_USERNAME + "|" + DB_PASSWORD);
         in.add("exit");
 
@@ -500,7 +494,7 @@ public class IntegrationTest {
                 "Enter name of creating table(name should start from letter) or type 'cancel' for exit to main menu\n" +
                 "Name should start from letter, but you type '1'\n" +
                 "Enter name of creating table(name should start from letter) or type 'cancel' for exit to main menu\n" +
-                "Name of new table : usersssss\n" +
+                "Name of new table : usersssssfff\n" +
                 "Enter the name for PRIMARY KEY column(often it's an identifier):\n" +
                 "Name should start from letter, but you type '4'\n" +
                 "Enter the name for PRIMARY KEY column(often it's an identifier):\n" +
@@ -512,14 +506,13 @@ public class IntegrationTest {
                 "Enter the name for next column or 'finish' to create table with entered columns or type 'cancel' for exit to main menu\n" +
                 "Name of column: password\n" +
                 "Enter the name for next column or 'finish' to create table with entered columns or type 'cancel' for exit to main menu\n" +
-                "Table usersssss created successful!\n" +
+                "Table usersssssfff created successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "+--+--------+\n" +
-                "|id|password|\n" +
-                "+--+--------+\n" +
-                "Type command (or use 'help' to list all commands):\n" +
-                "Do you really want to delete table 'usersssss'? All data will delete! Press Y/N?\n" +
-                "Table usersssss delete successful!\n" +
+                "-------------------TABLES-------------------\n" +
+                "- testing\n" +
+                "- usersssss\n" +
+                "- usersssssfff\n" +
+                "--------------------------------------------\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
@@ -539,9 +532,7 @@ public class IntegrationTest {
         in.add("");
         in.add("password");
         in.add("finish");
-        in.add("find|usersssss");
-        in.add("deleteTable|usersssss");
-        in.add("y");
+        in.add("tables");
         in.add("connect|" + "|" + DB_USERNAME + "|" + DB_PASSWORD);
         in.add("exit");
 
@@ -570,12 +561,10 @@ public class IntegrationTest {
                 "Enter the name for next column or 'finish' to create table with entered columns or type 'cancel' for exit to main menu\n" +
                 "Table usersssss created successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "+--+----+--------+\n" +
-                "|id|name|password|\n" +
-                "+--+----+--------+\n" +
-                "Type command (or use 'help' to list all commands):\n" +
-                "Do you really want to delete table 'usersssss'? All data will delete! Press Y/N?\n" +
-                "Table usersssss delete successful!\n" +
+                "-------------------TABLES-------------------\n" +
+                "- testing\n" +
+                "- usersssss\n" +
+                "--------------------------------------------\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
@@ -587,12 +576,12 @@ public class IntegrationTest {
         //given
         in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
         in.add("createTable");
-        in.add("usersssss");
+        in.add("userssssssss");
         in.add("id");
         in.add("name");
         in.add("password");
         in.add("cancel");
-        in.add("find|usersssss");
+        in.add("find|userssssssss");
         in.add("connect|" + "|" + DB_USERNAME + "|" + DB_PASSWORD);
         in.add("exit");
 
@@ -601,25 +590,21 @@ public class IntegrationTest {
 
         //then
         assertEquals("Welcome!\n" +
-                "Enter the database name, username, and password of the user in format : " +
-                "connect|database|username|password  or use 'help' to list all commands\n" +
+                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
                 "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Enter name of creating table(name should start from letter) or type 'cancel' for exit to main menu\n" +
-                "Name of new table : usersssss\n" +
+                "Name of new table : userssssssss\n" +
                 "Enter the name for PRIMARY KEY column(often it's an identifier):\n" +
                 "Name of PRIMARY KEY column : id\n" +
-                "Enter the name for next column or 'finish' to create table with entered " +
-                "columns or type 'cancel' for exit to main menu\n" +
+                "Enter the name for next column or 'finish' to create table with entered columns or type 'cancel' for exit to main menu\n" +
                 "Name of column: name\n" +
-                "Enter the name for next column or 'finish' to create table with entered " +
-                "columns or type 'cancel' for exit to main menu\n" +
+                "Enter the name for next column or 'finish' to create table with entered columns or type 'cancel' for exit to main menu\n" +
                 "Name of column: password\n" +
-                "Enter the name for next column or 'finish' to create table with entered " +
-                "columns or type 'cancel' for exit to main menu\n" +
+                "Enter the name for next column or 'finish' to create table with entered columns or type 'cancel' for exit to main menu\n" +
                 "Exit to main menu!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Error! Because of: ERROR: relation \"public.usersssss\" does not exist\n" +
+                "Error! Because of: ERROR: relation \"public.userssssssss\" does not exist\n" +
                 "  Позиция: 15\n" +
                 "Please try again.\n" +
                 "Type command (or use 'help' to list all commands):\n" +
@@ -873,6 +858,133 @@ public class IntegrationTest {
                 "Type command (or use 'help' to list all commands):\n" +
                 "Good Bye!\n", getData());
     }
+
+    @Test
+    public void testDatabaseListWithRightParameters(){
+        //given
+        in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("databases");
+        in.add("connect|" + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("exit");
+
+        //when
+        Main.main(new String[0]);
+
+        //then
+        assertEquals("Welcome!\n" +
+                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
+                "Connected successful!\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "-------------------DATABASES----------------\n" +
+                "- postgres\n" +
+                "- test\n" +
+                "- databa\n" +
+                "- postgresdb\n" +
+                "- testing\n" +
+                "- testingdb\n" +
+                "--------------------------------------------\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Connected successful!\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Good Bye!\n", getData());
+    }
+
+    @Test
+    public void testDatabaseListWithError(){
+        //given
+        in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("databases|blabla");
+        in.add("connect|" + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("exit");
+
+        //when
+        Main.main(new String[0]);
+
+        //then
+        assertEquals("Welcome!\n" +
+                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
+                "Connected successful!\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Error! Because of: Invalid number of parameters separated by '|', expected 1, but was: 2\n" +
+                "Please try again.\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Connected successful!\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Good Bye!\n", getData());
+    }
+
+  @Test
+    public void testInsertWithWrongFormat(){
+        //given
+        in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("insertEntry|testing|id|10|user|hhh|pas|5656565");
+        in.add("connect|" + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("exit");
+
+        //when
+        Main.main(new String[0]);
+
+        //then
+        assertEquals("Welcome!\n" +
+                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
+                "Connected successful!\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Error! Because of: ERROR: syntax error at or near \"user\"\n" +
+                "  Позиция: 24\n" +
+                "Please try again.\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Connected successful!\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Good Bye!\n", getData());
+    }
+
+
+  @Test
+    public void testConnectionWithErrorWrongParameters(){
+        //given
+        in.add("connect|" + DB_NAME + "|alex_test|" + DB_PASSWORD);
+        in.add("connect|" + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("exit");
+
+        //when
+        Main.main(new String[0]);
+
+        //then
+        assertEquals("Welcome!\n" +
+                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
+                "Error! Because of: Can't get connection for model :testing user:alex_test FATAL: password authentication failed for user \"alex_test\"\n" +
+                "Please try again.\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Connected successful!\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Good Bye!\n", getData());
+    }
+
+  @Test
+    public void testClearNotExistTable(){
+        //given
+        in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("clear|notexisttable");
+        in.add("connect|" + "|" + DB_USERNAME + "|" + DB_PASSWORD);
+        in.add("exit");
+
+        //when
+        Main.main(new String[0]);
+
+        //then
+        assertEquals("Welcome!\n" +
+                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
+                "Connected successful!\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Error! Because of: ERROR: relation \"public.notexisttable\" does not exist\n" +
+                "  Позиция: 13\n" +
+                "Please try again.\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Connected successful!\n" +
+                "Type command (or use 'help' to list all commands):\n" +
+                "Good Bye!\n", getData());
+    }
+
 
     public String getData() {
         try {

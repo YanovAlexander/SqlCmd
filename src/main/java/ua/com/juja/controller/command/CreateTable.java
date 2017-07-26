@@ -4,9 +4,6 @@ import ua.com.juja.controller.command.util.InputString;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
-/**
- * Created by Alexandero on 30.06.2017.
- */
 public class CreateTable implements Command {
     private View view;
     private DatabaseManager manager;
@@ -28,7 +25,7 @@ public class CreateTable implements Command {
     public void process(InputString userInput) {
         interruptCreate = false;
         createQuery();
-        userInput.validationParameters(format());
+        userInput.validateParameters(format());
 
         if (!interruptCreate){
             manager.createTable(query.toString());

@@ -4,9 +4,8 @@ import ua.com.juja.controller.command.util.InputString;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
-/**
- * Created by Alexandero on 30.06.2017.
- */
+import java.util.Set;
+
 public class DatabaseList implements Command {
     private View view;
     private DatabaseManager manager;
@@ -19,14 +18,15 @@ public class DatabaseList implements Command {
 
     @Override
     public String format() {
-        return "databaseList";
+        return "databases";
     }
 
     @Override
     public void process(InputString userInput) {
-        userInput.validationParameters(format());
+        userInput.validateParameters(format());
+        Set<String> databasesSet = manager.databasesList();
         view.write("-------------------DATABASES----------------");
-        for (String database : manager.databasesList()){
+        for (String database : databasesSet){
             view.write("- " + database);
         }
         view.write("--------------------------------------------");

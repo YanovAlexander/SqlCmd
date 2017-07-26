@@ -3,15 +3,10 @@ package ua.com.juja.model;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by Alexandero on 13.06.2017.
- */
 public interface DatabaseManager {
     Set<String> getTableNames();
 
     List<DataSet> getTableData(String tableName);
-
-    int getSize(String tableName);
 
     void connect(String databaseName, String userName, String password);
 

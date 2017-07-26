@@ -8,9 +8,6 @@ import static junit.framework.TestCase.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-/**
- * Created by Alexandero on 17.06.2017.
- */
 public class ExitTest {
 
     private ViewTest view = new ViewTest();

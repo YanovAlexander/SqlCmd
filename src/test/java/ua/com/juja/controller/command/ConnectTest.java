@@ -10,9 +10,6 @@ import ua.com.juja.view.View;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-/**
- * Created by Alexandero on 30.06.2017.
- */
 public class ConnectTest {
     private Command command;
     private DatabaseManager manager;
@@ -26,7 +23,7 @@ public class ConnectTest {
     }
 
     @Test
-    public void testCanProcess() {
+    public void testCanProcessWithRightCommand() {
         //when
         InputString userInput = new InputString("connect|");
         boolean result = command.canProcess(userInput);
@@ -35,7 +32,7 @@ public class ConnectTest {
     }
 
     @Test
-    public void testCantProcessWithWrongCommand() {
+    public void testCannotProcessWithWrongCommand() {
         //when
         InputString userInput = new InputString("connection|");
         boolean result = command.canProcess(userInput);
@@ -44,7 +41,7 @@ public class ConnectTest {
     }
 
     @Test
-    public void testProcess() {
+    public void testProcessWithRightParameters() {
         //when
         InputString userInput = new InputString("connect|postgres|postgres|pass");
         command.process(userInput);
