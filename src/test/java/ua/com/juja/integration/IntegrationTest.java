@@ -581,7 +581,7 @@ public class IntegrationTest {
         in.add("name");
         in.add("password");
         in.add("cancel");
-        in.add("find|userssssssss");
+        in.add("tables");
         in.add("connect|" + "|" + DB_USERNAME + "|" + DB_PASSWORD);
         in.add("exit");
 
@@ -604,9 +604,10 @@ public class IntegrationTest {
                 "Enter the name for next column or 'finish' to create table with entered columns or type 'cancel' for exit to main menu\n" +
                 "Exit to main menu!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Error! Because of: ERROR: relation \"public.userssssssss\" does not exist\n" +
-                "  Позиция: 15\n" +
-                "Please try again.\n" +
+                "-------------------TABLES-------------------\n" +
+                "- testing\n" +
+                "- usersssss\n" +
+                "--------------------------------------------\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
@@ -621,7 +622,7 @@ public class IntegrationTest {
         in.add("createTable");
         in.add("usersssss");
         in.add("cancel");
-        in.add("find|usersssss");
+        in.add("tables");
         in.add("connect|" + "|" + DB_USERNAME + "|" + DB_PASSWORD);
         in.add("exit");
 
@@ -630,19 +631,17 @@ public class IntegrationTest {
 
         //then
         assertEquals("Welcome!\n" +
-                "Enter the database name, username, and password of the user in format :" +
-                " connect|database|username|password  or use 'help' to list all commands\n" +
+                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
                 "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Enter name of creating table(name should start from letter) or type" +
-                " 'cancel' for exit to main menu\n" +
+                "Enter name of creating table(name should start from letter) or type 'cancel' for exit to main menu\n" +
                 "Name of new table : usersssss\n" +
                 "Enter the name for PRIMARY KEY column(often it's an identifier):\n" +
                 "Exit to main menu!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Error! Because of: ERROR: relation \"public.usersssss\" does not exist\n" +
-                "  Позиция: 15\n" +
-                "Please try again.\n" +
+                "-------------------TABLES-------------------\n" +
+                "- testing\n" +
+                "--------------------------------------------\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
@@ -816,7 +815,7 @@ public class IntegrationTest {
         in.add("id|45|username|alexandero|password|8888");
         in.add("find|testing");
         in.add("clear|testing");
-        in.add("find|testing");
+        in.add("tables");
         in.add("connect|" + "|" + DB_USERNAME + "|" + DB_PASSWORD);
         in.add("exit");
 
@@ -837,9 +836,7 @@ public class IntegrationTest {
                 "+--+--------+--------+\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Enter data of entry in format 'column1|value1|column2|value2|....|columnN|valueN':\n" +
-                "Error! Because of: ERROR: column \"id\" is of type integer but expression is of type character varying\n" +
-                "  Подсказка: You will need to rewrite or cast the expression.\n" +
-                "  Позиция: 32\n" +
+                "Error! Because of: Cant update , please try again (cant update Primary Key field)\n" +
                 "Please try again.\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "+--+--------+--------+\n" +
@@ -850,38 +847,9 @@ public class IntegrationTest {
                 "Type command (or use 'help' to list all commands):\n" +
                 "Table testing was successfully cleaned.\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "+--+--------+--------+\n" +
-                "|id|username|password|\n" +
-                "+--+--------+--------+\n" +
-                "Type command (or use 'help' to list all commands):\n" +
-                "Connected successful!\n" +
-                "Type command (or use 'help' to list all commands):\n" +
-                "Good Bye!\n", getData());
-    }
-
-    @Test
-    public void testDatabaseListWithRightParameters(){
-        //given
-        in.add("connect|" + DB_NAME + "|" + DB_USERNAME + "|" + DB_PASSWORD);
-        in.add("databases");
-        in.add("connect|" + "|" + DB_USERNAME + "|" + DB_PASSWORD);
-        in.add("exit");
-
-        //when
-        Main.main(new String[0]);
-
-        //then
-        assertEquals("Welcome!\n" +
-                "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
-                "Connected successful!\n" +
-                "Type command (or use 'help' to list all commands):\n" +
-                "-------------------DATABASES----------------\n" +
-                "- postgres\n" +
-                "- test\n" +
-                "- databa\n" +
-                "- postgresdb\n" +
+                "-------------------TABLES-------------------\n" +
                 "- testing\n" +
-                "- testingdb\n" +
+                "- usersssss\n" +
                 "--------------------------------------------\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Connected successful!\n" +
@@ -929,8 +897,7 @@ public class IntegrationTest {
                 "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
                 "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Error! Because of: ERROR: syntax error at or near \"user\"\n" +
-                "  Позиция: 24\n" +
+                "Error! Because of: Cant insert to testing\n" +
                 "Please try again.\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Connected successful!\n" +
@@ -952,7 +919,7 @@ public class IntegrationTest {
         //then
         assertEquals("Welcome!\n" +
                 "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
-                "Error! Because of: Can't get connection for model :testing user:alex_test FATAL: password authentication failed for user \"alex_test\"\n" +
+                "Error! Because of: Can't get connection for model :testing user:alex_test FATAL: role \"alex_test\" does not exist\n" +
                 "Please try again.\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Connected successful!\n" +
@@ -976,8 +943,7 @@ public class IntegrationTest {
                 "Enter the database name, username, and password of the user in format : connect|database|username|password  or use 'help' to list all commands\n" +
                 "Connected successful!\n" +
                 "Type command (or use 'help' to list all commands):\n" +
-                "Error! Because of: ERROR: relation \"public.notexisttable\" does not exist\n" +
-                "  Позиция: 13\n" +
+                "Error! Because of: Wrong command, please try again. \n" +
                 "Please try again.\n" +
                 "Type command (or use 'help' to list all commands):\n" +
                 "Connected successful!\n" +

@@ -90,7 +90,7 @@ public class PostgresManager implements DatabaseManager {
         try (Statement statement = connection.createStatement()) {
             statement.executeUpdate(sql);
         } catch (SQLException e) {
-            throw new RuntimeException(e.getMessage());
+            throw new DatabaseManagerException("Wrong command, please try again. ", e.getCause());
         }
     }
 
@@ -104,7 +104,7 @@ public class PostgresManager implements DatabaseManager {
             statement.executeUpdate("INSERT INTO " + tableName + "(" + tableNames + ") "
                     + "VALUES (" + values + ")");
         } catch (SQLException e) {
-            throw new RuntimeException(e.getMessage());
+            throw  new DatabaseManagerException("Cant insert to " + tableName , e.getCause());
         }
     }
 
@@ -122,7 +122,7 @@ public class PostgresManager implements DatabaseManager {
             preparedStatement.setInt(index, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e.getMessage());
+            throw new DatabaseManagerException("Cant update , please try again (cant update Primary Key field)", e.getCause());
         }
     }
 
@@ -144,7 +144,7 @@ public class PostgresManager implements DatabaseManager {
 
     @Override
     public void createDatabase(String databaseName) {
-       executeUpdateQuery("CREATE DATABASE " + databaseName);
+       executeUpdateQuery("CREATE DATABASE " + databaseName + " ENCODING 'UTF8'");
     }
 
     @Override

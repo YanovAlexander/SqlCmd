@@ -11,7 +11,7 @@ import ua.com.juja.view.View;
 public class Main {
     public static void main(String[] args) {
         BasicConfigurator.configure();
-        Logger.getRootLogger().setLevel(Level.INFO); //Disable log4j
+        Logger.getRootLogger().setLevel(Level.OFF); //Disable log4j
 
         View view = new Console();
         DatabaseManager manager = new PostgresManager();
