@@ -97,7 +97,7 @@ public class IntegrationTest {
                 "\t| createDatabase|databaseName\n" +
                 "\t|\t -> Create new database named 'databaseName'\n" +
                 "\t+------------------------------------------------------------------\n" +
-                "\t| createTable|tableName\n" +
+                "\t| createTable\n" +
                 "\t|\t -> Create new table named 'tableName'\n" +
                 "\t+------------------------------------------------------------------\n" +
                 "\t| deleteDatabase|databaseName\n" +

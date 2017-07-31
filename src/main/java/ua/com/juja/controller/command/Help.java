@@ -53,7 +53,7 @@ public class Help implements Command {
         view.write("\t|\t -> Create new database named 'databaseName'");
         view.write("\t+------------------------------------------------------------------");
 
-        view.write("\t| createTable|tableName");
+        view.write("\t| createTable");
         view.write("\t|\t -> Create new table named 'tableName'");
         view.write("\t+------------------------------------------------------------------");
 

@@ -25,9 +25,7 @@ public class Tables implements Command {
     public void process(InputString userInput) {
         Set<String> tableNames = manager.getTableNames();
         view.write("-------------------TABLES-------------------");
-        for (String message : tableNames ){
-            view.write("- " + message);
-        }
+        tableNames.forEach(message -> view.write("- " + message));
         view.write("--------------------------------------------");
     }
 }

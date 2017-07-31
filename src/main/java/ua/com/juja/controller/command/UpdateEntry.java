@@ -6,6 +6,7 @@ import ua.com.juja.model.DataSet;
 import ua.com.juja.model.DataSetImpl;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
+import java.util.stream.IntStream;
 
 public class UpdateEntry implements Command {
     private DatabaseManager manager;
@@ -13,7 +14,7 @@ public class UpdateEntry implements Command {
     private final static Integer TABLE_NAME = 1;
     private final static Integer USER_ID = 2;
 
-    public UpdateEntry(View view, DatabaseManager manager){
+    public UpdateEntry(View view, DatabaseManager manager) {
         this.manager = manager;
         this.view = view;
     }
@@ -35,12 +36,20 @@ public class UpdateEntry implements Command {
 
 
         DataSet dataSet = new DataSetImpl();
-        for (int index = 0; index < (dataEntryParameters.length / 2); index++){
+        IntStream.range(0, (dataEntryParameters.length / 2)).forEach(index -> {
             String columnName = dataEntryParameters[index * 2];
             String value = dataEntryParameters[index * 2 + 1];
 
             dataSet.put(columnName, value);
-        }
+        });
+
+//        for (int index = 0; index < (dataEntryParameters.length / 2); index++) {
+//            String columnName = dataEntryParameters[index * 2];
+//            String value = dataEntryParameters[index * 2 + 1];
+//
+//            dataSet.put(columnName, value);
+//        }
+
         String userID = data[USER_ID];
         int id = Integer.parseInt(userID);
 

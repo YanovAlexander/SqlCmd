@@ -6,6 +6,8 @@ import ua.com.juja.model.DataSetImpl;
 import ua.com.juja.model.DatabaseManager;
 import ua.com.juja.view.View;
 
+import java.util.stream.IntStream;
+
 public class InsertEntry implements Command {
     private View view;
     private DatabaseManager manager;
@@ -29,12 +31,19 @@ public class InsertEntry implements Command {
         String tableName = data[TABLE_NAME];
 
         DataSet dataSet = new DataSetImpl();
-        for (int index = 1; index < (data.length / 2); index++) {
+
+//        for (int index = 1; index < (data.length / 2); index++) {
+//            String columnName = data[index * 2];
+//            String value = data[index * 2 + 1];
+//
+//            dataSet.put(columnName, value);
+//        }
+
+        IntStream.range(1, (data.length / 2)).forEach(index -> {
             String columnName = data[index * 2];
             String value = data[index * 2 + 1];
-
             dataSet.put(columnName, value);
-        }
+        });
 
         manager.create(tableName, dataSet);
         view.write(String.format("%s was successfully created in table %s.", dataSet, tableName));

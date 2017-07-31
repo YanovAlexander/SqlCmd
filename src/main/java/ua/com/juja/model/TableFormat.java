@@ -29,16 +29,11 @@ public class TableFormat {
     }
 
     private void buildHeader() {
-        for (String column: columns) {
-            table.addCell(column);
-        }
+        columns.forEach(column -> table.addCell(column));
     }
 
     private void buildRows() {
-        for (DataSet row: tableData) {
-            for (Object value: row.getValues()) {
-                table.addCell(value.toString());
-            }
-        }
+        tableData.forEach(row -> row.getValues()
+                .forEach(value -> table.addCell(value.toString())));
     }
 }

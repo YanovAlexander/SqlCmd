@@ -26,9 +26,7 @@ public class DatabaseList implements Command {
         userInput.validateParameters(format());
         Set<String> databasesSet = manager.databasesList();
         view.write("-------------------DATABASES----------------");
-        for (String database : databasesSet){
-            view.write("- " + database);
-        }
+        databasesSet.forEach(databse -> view.write("- " + databse));
         view.write("--------------------------------------------");
     }
 }
